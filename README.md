@@ -1,5 +1,5 @@
 # Proyecto: Paseos con Peques
-Este es un chat para jeugadores del Pokemon GO. Está construido con React, Vite y Firebase. A continuación, encontrarás una guía sobre cómo configurarlo y ejecutarlo en desarrollo.
+Está construido con React, Vite y Firebase. A continuación, encontrarás una guía sobre cómo configurarlo y ejecutarlo en desarrollo.
 
 ## Tecnologías Utilizadas
 - React: Biblioteca para construir interfaces de usuario.
