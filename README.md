@@ -76,7 +76,7 @@ Renombra el archivo `.env.template` a `.env` en la raíz del proyecto y copia la
 
 ```
 5. Abre el proyecto:
-Accede a http://localhost:3000 en tu navegador para ver el proyecto en desarrollo.
+Accede a http://localhost:5173 en tu navegador para ver el proyecto en desarrollo.
 
 ## Configurar GitHub Actions para Deploy Automático en Firebase Hosting ( Opcional )
 
@@ -104,8 +104,8 @@ Accede a http://localhost:3000 en tu navegador para ver el proyecto en desarroll
     - Ve al repositorio en GitHub y abre la pestaña Settings (Configuración).
     - En el menú lateral, selecciona Secrets and variables > Actions.
     - Haz clic en New repository secret.
-    - Crea un secreto con el nombre `FIREBASE_SERVICE_ACCOUNT_POGO_MDP_CHAT` y pega el token que generaste en el paso anterior.
+    - Crea un secreto con el nombre `FIREBASE_SERVICE_ACCOUNT_PASESO_CON_PEQUES` y pega el token que generaste en el paso anterior.
     - Guarda el secreto.
       
 ## SCRIPTS disponibles
-```
+
