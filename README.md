@@ -1,8 +1,9 @@
 # Proyecto: Paseos con Peques
-Está construido con React, Vite y Firebase. A continuación, encontrarás una guía sobre cómo configurarlo y ejecutarlo en desarrollo.
+Está construido con React, Vite, Tailwind y Firebase. A continuación, encontrarás una guía sobre cómo configurarlo y ejecutarlo en desarrollo.
 
 ## Tecnologías Utilizadas
 - React: Biblioteca para construir interfaces de usuario.
+- Tailwind: framework para estilos
 - Vite: Herramienta de desarrollo para un proceso de compilación rápido.
 - Firebase: Plataforma de desarrollo de aplicaciones que provee autenticación, base de datos y hosting.
 
@@ -78,7 +79,11 @@ Renombra el archivo `.env.template` a `.env` en la raíz del proyecto y copia la
 5. Abre el proyecto:
 Accede a http://localhost:5173 en tu navegador para ver el proyecto en desarrollo.
 
-## Configurar GitHub Actions para Deploy Automático en Firebase Hosting ( Opcional )
+## SCRIPTS disponibles
+- npm run dev - corre el poyecto en desarrollo y refleja los cambios de forma automatica
+- npm run build - crea los archivos finales para produccion en la carpeta dist
+
+## [ PRODUCCIÓN ] Configurar GitHub Actions para Deploy Automático en Firebase Hosting ( Opcional )
 
 > [!NOTE]
 > Este proyecto tiene dos archivos YAML de Workflow en ` .github/workflows ` para hacer deploy automatico al hosting cuando se hace un PR o un MERGE en la rama main. 
@@ -106,6 +111,4 @@ Accede a http://localhost:5173 en tu navegador para ver el proyecto en desarroll
     - Haz clic en New repository secret.
     - Crea un secreto con el nombre `FIREBASE_SERVICE_ACCOUNT_PASESO_CON_PEQUES` y pega el token que generaste en el paso anterior.
     - Guarda el secreto.
-      
-## SCRIPTS disponibles
 
