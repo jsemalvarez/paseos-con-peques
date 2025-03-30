@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
 import { Layout } from '../layout/Layout'
 import { InputForm } from '../components/InputForm'
 import { useForm } from '../../common/hooks/useForm'
-import { loginWithEmailPassword } from '../../../app/firebase/authProvider'
+import { useUserLogin } from '../hooks/useUserLogin'
 
 const initialForm  = {
   email:'email@gmail.com',
@@ -11,27 +10,19 @@ const initialForm  = {
 
 export const LoginPage = () => {
 
-  const { email, password, onInputChange, onResetForm } = useForm(initialForm)
+  const { email, password, onInputChange } = useForm(initialForm)
+  const { authState, errorMessage, loginWithEmailPassword } = useUserLogin()
 
-  const [isLoading, setIsLoading] = useState(false)
+  const isLoading = authState == 'checking';
 
-  
-  const startLogin = async(email, password) => {
-    try {
-      setIsLoading(true)
-      const user = await loginWithEmailPassword(email, password);
-      onResetForm()
-      setIsLoading(false)
-      console.log(user)
-    } catch (error) {
-      setIsLoading(false)
-      console.log(error)
-    }
+  if(errorMessage){
+    //TODO: cambiar por un alert
+    console.log(errorMessage)
   }
 
   const handleLogin = (e) => {
     e.preventDefault()
-    startLogin(email, password)
+    loginWithEmailPassword(email, password);
   }
 
   return (
