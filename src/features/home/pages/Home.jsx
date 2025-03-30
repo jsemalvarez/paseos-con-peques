@@ -7,6 +7,7 @@ import { SearchPlaces } from '../components/SearchPlaces'
 import { Contact } from '../components/Contact'
 import { Layout } from '../layout/Layout'
 
+// TODO: cambiar Home por HomePage
 export const Home = () => {
   return (
     <Layout>

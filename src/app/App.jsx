@@ -1,12 +1,15 @@
-import { Home } from '../features/home/pages/Home'
-import { LoginPage } from '../features/auth/pages/LoginPage'
+import { BrowserRouter } from 'react-router-dom'
+import { AppRoutes } from './routes/AppRoutes'
+
 import './styles/GlobalStyle.css'
 import './styles/App.css'
 
 export const App = () => {
 
   return (
-    <LoginPage />
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   )
 
 }
