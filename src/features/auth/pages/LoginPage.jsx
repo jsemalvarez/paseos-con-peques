@@ -1,12 +1,23 @@
 import React from 'react'
 import { Layout } from '../layout/Layout'
 import { InputForm } from '../components/InputForm'
+import { useForm } from '../../common/hooks/useForm'
+
+const initialForm  = {
+  email:'email@gmail.com',
+  password:'*********'
+}
 
 export const LoginPage = () => {
 
+  const { email, password, onInputChange, onResetForm } = useForm(initialForm)
+
   const handleLogin = (e) => {
     e.preventDefault()
-
+    //TODO: quitar estos console
+    console.log({email})
+    console.log({password})
+    onResetForm()
   }
 
   return (
@@ -23,13 +34,19 @@ export const LoginPage = () => {
             </h3>
 
             <InputForm 
-              name='email:'
+              title='email:'
+              name='email'
               type='text'
+              value={email}
+              onChange={onInputChange}
             />
 
             <InputForm 
-              name='contraseña:'
+              title='contraseña:'
+              name='password'
               type='password'
+              value={password}
+              onChange={onInputChange}
             />
 
             <button
