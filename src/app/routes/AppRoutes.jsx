@@ -2,14 +2,14 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
+import { useCheckAuth } from '../../features/auth/hooks/useCheckAuth';
 
 
 export const AppRoutes = () => {
 
-    //TODO: get user status from general state
-    const userStatus = 'not-authenticated';
+    const authState = useCheckAuth();
 
-    const isAuthenticated = userStatus == 'authenticated';
+    const isAuthenticated = authState == 'authenticated';
 
     return (
         <Routes>

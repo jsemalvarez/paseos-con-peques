@@ -5,7 +5,7 @@ import { useUserLogin } from '../hooks/useUserLogin'
 
 const initialForm  = {
   email:'email@gmail.com',
-  password:'*********'
+  password:'123456'
 }
 
 export const LoginPage = () => {
@@ -22,7 +22,7 @@ export const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    loginWithEmailPassword(email, password);
+    loginWithEmailPassword({email, password});
   }
 
   return (
