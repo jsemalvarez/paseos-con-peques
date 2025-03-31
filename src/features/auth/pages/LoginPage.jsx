@@ -22,6 +22,8 @@ export const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault()
+    //TODO: validar que el email y el password no esten vacios
+    //TODO: validar que el email sea un email
     loginWithEmailPassword({email, password});
   }
 

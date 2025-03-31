@@ -7,7 +7,7 @@ import { FirebaseAuth } from "../../../app/firebase/firebase";
 
 import { login, logout } from "../state/authSlice";
 
-
+//TODO: toda esta logica deberia estar dentro de useUserLogin
 export const useCheckAuth = () => {
 
     const { status } = useSelector( state => state.auth )
