@@ -1,11 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { startLoginWithEmailPassword } from "../state/thunks";
+import { startLoginWithEmailPassword, startLogOut } from "../state/thunks";
 
 //TODO: cambiar nombre a useAuth o useUserAuth y que todos los metodos de autenticacion esten aca dentro
 export const useUserLogin = () => {
 
     const dispatch = useDispatch()
-    const { status:authState, errorMessage } = useSelector( state => state.auth )
+    const { 
+        status:authState, 
+        errorMessage,
+        ...user 
+    } = useSelector( state => state.auth )
     
     const loginWithEmailPassword = ({ email, password }) => {
 
@@ -13,10 +17,16 @@ export const useUserLogin = () => {
 
     }
 
+    const logout = () => {
+        dispatch( startLogOut() )
+    }
+
     return { 
+        user,
         authState, 
         errorMessage, 
-        loginWithEmailPassword 
+        loginWithEmailPassword,
+        logout 
     };
 }
 

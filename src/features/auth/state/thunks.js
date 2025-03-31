@@ -26,7 +26,7 @@ export const startLoginWithEmailPassword = ({email, password}) => {
 export const startLogOut = () => {
     return async( dispatch ) => {
         
-        await authService.logoutFirebase()
+        await authService.logout()
 
         dispatch( logout({errorMessage: null}) )
     }
