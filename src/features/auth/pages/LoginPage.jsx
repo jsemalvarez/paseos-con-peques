@@ -2,6 +2,7 @@ import { Layout } from '../layout/Layout'
 import { InputForm } from '../components/InputForm'
 import { useForm } from '../../common/hooks/useForm'
 import { useUserLogin } from '../hooks/useUserLogin'
+import { Link } from 'react-router-dom'
 
 const initialForm  = {
   email:'email@gmail.com',
@@ -37,12 +38,21 @@ export const LoginPage = () => {
             <div className='min-h-screen flex justify-center items-center'>
     
               <form 
-                className='min-w-xs px-4 py-16 border-2 border-secondary rounded-xl'
+                className='min-w-xs px-4 py-16 border-3 border-secondary rounded-xl'
                 onSubmit={ handleLogin}
               >
-    
-                <h3 className='text-xl font-bold text-secondary tracking-wide'>
-                  Iniciar Sesión en PcP
+                <div className='flex justify-center'>
+                  <Link 
+                    to='/'
+                    className='border p-3 rounded-lg text-secondary cursor-pointer hover:text-indigo-100'
+                  >
+                    <span className='text-5xl font-bold'>P</span>
+                    <span className='text-3xl'>c</span>
+                    <span className='text-4xl font-bold'>P</span>
+                  </Link>
+                </div>
+                <h3 className='text-xl font-bold text-secondary tracking-wide mt-8'>
+                  Iniciar Sesión
                 </h3>
     
                 <InputForm 
@@ -64,7 +74,7 @@ export const LoginPage = () => {
                 <button
                   className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer'
                   type='submit'
-                >Iniciar Sesión</button>
+                >Ingresar</button>
     
               </form>
     
