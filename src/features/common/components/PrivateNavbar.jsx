@@ -10,21 +10,17 @@ export const PrivateNavbar = () => {
     }
 
     return (
-        <nav className='fixed flex justify-between top-0 w-full px-4 py-2 bg-primary border-b-4 border-solid border-secondary'>
-            <ul className='flex gap-3 text-indigo-100'>
-                <li>PcP</li>
-            </ul>
-            <ul className='flex gap-3 text-indigo-100'>
+        <nav className='fixed flex justify-between items-center top-0 w-full px-4 py-2 bg-primary border-b-4 border-solid border-secondary'>
+            <h3 className='w-[35px] h-[35px] bg-secondary rounded-full flex justify-center items-center  text-primary'>PcP</h3>
+            <ul className='flex gap-3'>
                 <li>{user.email}</li>
                 <li>Perfil</li>
-                <li>
-                    <button
-                        className='border border-secondary px-3 text-secondary rounded-sm cursor-pointer hover:text-primary hover:bg-secondary'
-                        onClick={ handleLogOut }
-                    >
-                        Salir
-                    </button>
-                </li>
+            <button
+                className='border border-secondary px-3 text-secondary rounded-sm cursor-pointer hover:text-primary hover:bg-secondary'
+                onClick={ handleLogOut }
+            >
+                Salir
+            </button>
             </ul>
         </nav>
     )
