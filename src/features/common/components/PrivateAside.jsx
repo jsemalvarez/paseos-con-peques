@@ -7,7 +7,7 @@ export const PrivateAside = () => {
 
     return (
         <aside
-            className="fixed bottom-0 h-9/10 w-[200px] border-r-2 border-secondary p-4"
+            className="fixed bottom-0 left-0 h-9/10 w-[200px] border-r-2 border-secondary p-4"
         >
             <ul className="flex flex-col items-center">
                 <li className="w-9/10">
