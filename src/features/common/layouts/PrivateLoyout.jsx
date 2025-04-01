@@ -1,9 +1,12 @@
+import { PrivateAside } from "../components/PrivateAside"
 import { PrivateNavbar } from "../components/PrivateNavbar"
+
 
 export const PrivateLoyout = ({children}) => {
   return (
-    <div className='min-h-screen w-full bg-primary text-indigo-100'>
+    <div className='min-h-screen w-full bg-primary text-indigo-100 pt-[100px]'>
         <PrivateNavbar />
+        <PrivateAside />
         {children}
     </div>
   )
