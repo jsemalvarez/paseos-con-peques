@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useForm } from '../../common/hooks/useForm'
-import { usePlaces } from '../hooks/usePlaces'
+import { useEvents } from '../hooks/useEvents'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../auth/components/InputForm'
@@ -11,35 +11,35 @@ const initialForm = {
     name: ''
 }
 
-export const PlaceFormPage = () => {
+export const EventFormPage = () => {
 
-    const { placeId } = useParams();
-    const { places, isProcessing, updatePlace, savePlace } = usePlaces()
+    const { eventId } = useParams();
+    const { events, isProcessing, updateEvent, saveEvent } = useEvents()
     const { name, formState, setFormState, onInputChange, onResetForm } = useForm(initialForm);
 
-    const placeToUpdate = useMemo(() => places.find(place => place.id == placeId), [places, placeId]);
+    const eventToUpdate = useMemo(() => events.find(event => event.id == eventId), [events, eventId]);
 
     useEffect(() => {
-        setFormState(placeToUpdate)
-    },[placeToUpdate,setFormState])
+        setFormState(eventToUpdate)
+    },[eventToUpdate,setFormState])
 
-    const handleNewPlace = ( event ) => {
+    const handleNewEvent = ( event ) => {
         event.preventDefault()
-        if(placeId){
-            if (!placeToUpdate) {
+        if(eventId){
+            if (!eventToUpdate) {
                 console.error('El lugar no existe');
                 return;
             }
-            updatePlace({ id: placeId, ...formState });
+            updateEvent({ id: eventId, ...formState });
         }else{
-            savePlace({name})
+            saveEvent({name})
         }
         onResetForm()
     }
 
     const renderButtonLabel = () => {
-        const textLabel = placeId ? 'Actualizar' : 'Guardar'; 
-        const processingLabel = placeId ? 'Actualizando...' : 'Guardando...';
+        const textLabel = eventId ? 'Actualizar' : 'Guardar'; 
+        const processingLabel = eventId ? 'Actualizando...' : 'Guardando...';
 
         return isProcessing ? processingLabel : textLabel;
     }
@@ -50,10 +50,10 @@ export const PlaceFormPage = () => {
 
                 <form 
                     className='min-w-xs px-4 py-16 border-3 border-secondary rounded-xl'
-                    onSubmit={ handleNewPlace }
+                    onSubmit={ handleNewEvent }
                 >
                     <h3 className='text-xl font-bold text-secondary tracking-wide'>
-                        {placeId ? 'Editar lugar' : 'Crear un nuevo lugar'}
+                        {eventId ? 'Editar lugar' : 'Crear un nuevo lugar'}
                     </h3>
 
                     <InputForm 

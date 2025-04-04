@@ -17,14 +17,14 @@ export const getData = async(collectionName) => {
     try {
         const querySnapshot = await getDocs(collection(FirebaseDB, collectionName));
 
-        const places = querySnapshot.docs.map(doc => ({
+        const data = querySnapshot.docs.map(doc => ({
             id: doc.id, // ID del documento
             ...doc.data() // Datos
           }));
 
         return {
             ok: true,
-            places: places
+            data: data
         }
     } catch (error) {
         return { ok: false, errorMessage: error.message }

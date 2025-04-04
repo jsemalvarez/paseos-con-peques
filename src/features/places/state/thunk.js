@@ -14,7 +14,7 @@ export const startGetingPlaces = () => {
     return async( dispatch) => {
         dispatch( initProcessingData() )
         const response = await placeService.getPlaces();
-        dispatch( setPlaces( response.places ) )
+        dispatch( setPlaces( response.data ) )
     }
 }
 
