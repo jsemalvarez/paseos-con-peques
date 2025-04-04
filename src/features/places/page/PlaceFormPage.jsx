@@ -64,6 +64,69 @@ export const PlaceFormPage = () => {
                         onChange={onInputChange}
                     />
 
+                    <InputForm 
+                        title='Dirección'
+                        name='adress'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Horarios'
+                        name='schedules'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Telefono'
+                        name='adress'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Whatsaap'
+                        name='whatsaap'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Link de foto'
+                        name='photoLink'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Web, Instagram, Facebook'
+                        name='externalLink'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Link de video'
+                        name='videoLink'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Descripcion'
+                        name='description'
+                        type='text'
+                        value={name}
+                        onChange={onInputChange}
+                    />
 
                     <button
                         className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
