@@ -1,9 +1,9 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
 import { FirebaseDB } from './firebase';
 
-export const saveNewPlace = async( placeToSave ) => {
+export const saveNewData = async( collectionName, dataToSave ) => {
     try {
-        const docRef = await addDoc(collection(FirebaseDB, "places"), placeToSave);
+        const docRef = await addDoc(collection(FirebaseDB, collectionName), dataToSave);
         return {
             ok: true,
             id: docRef.id
@@ -13,13 +13,13 @@ export const saveNewPlace = async( placeToSave ) => {
     }
 }
 
-export const getPlaces = async() => {
+export const getData = async(collectionName) => {
     try {
-        const querySnapshot = await getDocs(collection(FirebaseDB, "places"));
+        const querySnapshot = await getDocs(collection(FirebaseDB, collectionName));
 
         const places = querySnapshot.docs.map(doc => ({
             id: doc.id, // ID del documento
-            ...doc.data() // Datos del lugar
+            ...doc.data() // Datos
           }));
 
         return {
@@ -31,9 +31,9 @@ export const getPlaces = async() => {
     }
 }
 
-export const updatePlace = async (id, updatedData) => {
+export const updateData = async (collectionName, id, updatedData) => {
     try {
-        const placeRef = doc(FirebaseDB, "places", id); // Referencia al documento
+        const placeRef = doc(FirebaseDB, collectionName, id); // Referencia al documento
         await updateDoc(placeRef, updatedData); // Actualizar datos
 
         return {
@@ -44,9 +44,9 @@ export const updatePlace = async (id, updatedData) => {
     }
 };
 
-export const deletePlace = async (id) => {
+export const deleteData = async (collectionName, id) => {
     try {
-        const placeRef = doc(FirebaseDB, "places", id);
+        const placeRef = doc(FirebaseDB, collectionName, id);
         await deleteDoc(placeRef);
 
         return {

@@ -1,9 +1,10 @@
-import { saveNewPlace, deletePlace, getPlaces, updatePlace } from "../../../app/firebase/firestoreProvider";
+import { saveNewData, deleteData, getData, updateData } from "../../../app/firebase/firestoreProvider";
 
+const collectionName = "places";
 
 export const placeService = {
-    saveNewPlace: (newPlace)=> saveNewPlace(newPlace),
-    getPlaces: ()=> getPlaces(),
-    updatePlace: (id, updatedData) => updatePlace(id, updatedData),
-    deletePlace: deletePlace
+    saveNewPlace: (newPlace)=> saveNewData(collectionName, newPlace),
+    getPlaces: ()=> getData(collectionName),
+    updatePlace: (id, updatedData) => updateData(collectionName, id, updatedData),
+    deletePlace: (id) => deleteData(collectionName, id)
 }
