@@ -1,8 +1,10 @@
-import { Layout } from '../layout/Layout'
-import { InputForm } from '../components/InputForm'
+import { Link } from 'react-router-dom'
+
 import { useForm } from '../../common/hooks/useForm'
 import { useUserLogin } from '../hooks/useUserLogin'
-import { Link } from 'react-router-dom'
+
+import { Layout } from '../layout/Layout'
+import { InputForm } from '../../common/components/InputForm'
 
 const initialForm  = {
   email:'email@gmail.com',

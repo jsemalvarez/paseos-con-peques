@@ -5,7 +5,7 @@ import { useForm } from '../../common/hooks/useForm'
 import { useEvents } from '../hooks/useEvents'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
-import { InputForm } from '../../auth/components/InputForm'
+import { InputForm } from '../../common/components/InputForm'
 
 const initialForm = {
     name: ''
