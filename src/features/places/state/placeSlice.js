@@ -4,40 +4,41 @@ import { createSlice } from "@reduxjs/toolkit";
 export const placeSlice = createSlice({
     name: 'places',
     initialState: {
-        isSaving: false,
+        isProcessing : false,
         places:[],
-        // activePlace: null,
-        activePlace: {
-            uid:null,
-            name:null,
-        }
     },
     reducers:{
-        isSavingNewPlace: (state) => {
-            state.isSaving = true;
+        initProcessingData: (state) => {
+            state.isProcessing  = true;
         },
         addNewPlace: (state, action) => {
             state.places.push(action.payload);
-            state.isSaving = false;
+            state.isProcessing  = false;
         },
-        updatePlaceById:(state, action) => {
+        updatePlace:(state, action) => {
             const updatedPlaces = state.places.map(place => {
-                if(place.uid == action.payload.uid){
+                if(place.id == action.payload.id){
                     return {
                         ...place,
                         ...action.payload,
-                        uid: place.uid
+                        id: place.id
                     }
                 }
                 return place
             })
             state.places = updatedPlaces;
+            state.isProcessing  = false;
         },
-        deletePlaceById:(state, action) => {
-            const filteredPlaces = state.places.filter( place => place.uid != action.payload);
+        deletePlace:(state, action) => {
+            const filteredPlaces = state.places.filter( place => place.id != action.payload);
             state.places = filteredPlaces;
+            state.isProcessing  = false;
         },
+        setPlaces:(state, action) => {
+            state.places = action.payload
+            state.isProcessing = false;
+        }
     }
 })
 
-export const { isSavingNewPlace, addNewPlace, updatePlaceById, deletePlaceById } = placeSlice.actions;
+export const { initProcessingData, addNewPlace, updatePlace, deletePlace, setPlaces } = placeSlice.actions;

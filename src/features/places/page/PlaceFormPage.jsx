@@ -14,10 +14,10 @@ const initialForm = {
 export const PlaceFormPage = () => {
 
     const { placeId } = useParams();
-    const { addOnePlace, places, updateOnePlace } = usePlaces()
+    const { places, isProcessing, updatePlace, savePlace } = usePlaces()
     const { name, formState, setFormState, onInputChange, onResetForm } = useForm(initialForm);
 
-    const placeToUpdate = useMemo(() => places.find(place => place.uid == placeId), [places, placeId]);
+    const placeToUpdate = useMemo(() => places.find(place => place.id == placeId), [places, placeId]);
 
     useEffect(() => {
         setFormState(placeToUpdate)
@@ -30,11 +30,18 @@ export const PlaceFormPage = () => {
                 console.error('El lugar no existe');
                 return;
             }
-            updateOnePlace({ uid: placeId, ...formState });
+            updatePlace({ id: placeId, ...formState });
         }else{
-            addOnePlace({name})
+            savePlace({name})
         }
         onResetForm()
+    }
+
+    const renderButtonLabel = () => {
+        const processingLabel = isProcessing ? 'Actualizando...' : 'Guardando...';
+        const textLabel = placeId ? 'Actualizar' : 'Guardar'; 
+
+        return isProcessing ? processingLabel :textLabel;
     }
 
     return (
@@ -59,12 +66,13 @@ export const PlaceFormPage = () => {
 
 
                     <button
-                        className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer'
+                        className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
                         type='submit'
+                        disabled={ isProcessing } 
                     >
-                        {placeId ? 'Actualizar' : 'Guardar'}
+                        { renderButtonLabel() }
                     </button>
-                    
+
                 </form>
 
             </div>
