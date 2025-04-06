@@ -8,14 +8,47 @@ import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../common/components/InputForm'
 
 const initialForm = {
-    name: ''
+    name: '',
+    address: '',
+    schedules: '',
+    phone: '',
+    whatsapp: '',
+    photoUrl: '',
+    web: '',
+    instagram: '',
+    facebook: '',
+    videoLink: '',
+    hasFood: false,
+    hasShow: false,
+    hasGames: false,
+    hasSupervision: false,
+    description: '',
 }
 
 export const PlaceFormPage = () => {
 
     const { placeId } = useParams();
     const { places, isProcessing, updatePlace, savePlace } = usePlaces()
-    const { name, formState, setFormState, onInputChange, onResetForm } = useForm(initialForm);
+    const { 
+        name, 
+        address, 
+        schedules,
+        phone,
+        whatsapp,
+        photoUrl,
+        web,
+        instagram,
+        facebook,
+        videoLink,
+        hasFood,
+        hasShow,
+        hasGames,
+        hasSupervision,
+        description,
+        formState, 
+        setFormState, 
+        onInputChange, 
+        onResetForm } = useForm(initialForm);
 
     const placeToUpdate = useMemo(() => places.find(place => place.id == placeId), [places, placeId]);
 
@@ -32,7 +65,7 @@ export const PlaceFormPage = () => {
             }
             updatePlace({ id: placeId, ...formState });
         }else{
-            savePlace({name})
+            savePlace(formState)
         }
         onResetForm()
     }
@@ -65,66 +98,132 @@ export const PlaceFormPage = () => {
                     />
 
                     <InputForm 
-                        title='Dirección'
-                        name='adress'
+                        title='Dirección:'
+                        name='address'
                         type='text'
-                        value={name}
+                        value={address}
                         onChange={onInputChange}
                     />
 
                     <InputForm 
-                        title='Horarios'
+                        title='Horarios:'
                         name='schedules'
                         type='text'
-                        value={name}
+                        value={schedules}
                         onChange={onInputChange}
                     />
 
                     <InputForm 
-                        title='Telefono'
-                        name='adress'
+                        title='Telefono:'
+                        name='phone'
                         type='text'
-                        value={name}
+                        value={phone}
                         onChange={onInputChange}
                     />
 
                     <InputForm 
-                        title='Whatsaap'
-                        name='whatsaap'
+                        title='Whatsapp:'
+                        name='whatsapp'
                         type='text'
-                        value={name}
+                        value={whatsapp}
                         onChange={onInputChange}
                     />
 
                     <InputForm 
-                        title='Link de foto'
-                        name='photoLink'
+                        title='Link de foto:'
+                        name='photoUrl'
                         type='text'
-                        value={name}
+                        value={photoUrl}
                         onChange={onInputChange}
                     />
 
                     <InputForm 
-                        title='Web, Instagram, Facebook'
-                        name='externalLink'
+                        title='Web:'
+                        name='web'
                         type='text'
-                        value={name}
+                        value={web}
                         onChange={onInputChange}
                     />
+
+                    <InputForm 
+                        title='Instagram:'
+                        name='instagram'
+                        type='text'
+                        value={instagram}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Facebook:'
+                        name='facebook'
+                        type='text'
+                        value={facebook}
+                        onChange={onInputChange}
+                    />
+
 
                     <InputForm 
                         title='Link de video'
                         name='videoLink'
                         type='text'
-                        value={name}
+                        value={videoLink}
                         onChange={onInputChange}
                     />
 
+                    <div className='pt-2'>
+                        <label>
+                            <input 
+                                type="checkbox" 
+                                name='hasFood'
+                                checked={hasFood}
+                                onChange={onInputChange}
+                            />
+                            Gastronomia
+                        </label>
+                    </div>
+
+                    <div className='pt-2'>
+                        <label>
+                            <input 
+                                type="checkbox" 
+                                name='hasShow'
+                                checked={hasShow}
+                                onChange={onInputChange}
+                            />
+                            Show
+                        </label>
+                    </div>
+
+                    <div className='pt-2'>
+                        <label>
+                            <input 
+                                type="checkbox" 
+                                name='hasGames'
+                                checked={hasGames}
+                                onChange={onInputChange}
+                            />
+                            Juegos
+                        </label>
+                    </div>
+
+                    <div className='pt-2'>
+                        <label>
+                            <input 
+                                type="checkbox" 
+                                name='hasSupervision'
+                                checked={hasSupervision}
+                                onChange={onInputChange}
+                            />
+                            Profes a cargo
+                        </label>
+                    </div>
+
+
                     <InputForm 
-                        title='Descripcion'
+                        title='Descripción:'
                         name='description'
                         type='text'
-                        value={name}
+                        value={description}
                         onChange={onInputChange}
                     />
 
