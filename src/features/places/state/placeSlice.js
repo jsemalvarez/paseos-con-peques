@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
+//TODO: cambiar isProcessing por isProcessingPlace
 export const placeSlice = createSlice({
     name: 'places',
     initialState: {

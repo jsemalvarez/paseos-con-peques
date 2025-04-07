@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useEvents } from '../hooks/useEvents'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
+import { Calendar } from '../components/Calendar'
 
 export const EventsPage = () => {
 
@@ -29,6 +30,7 @@ export const EventsPage = () => {
         </div>
 
         <div className='flex flex-wrap justify-center gap-4 p-4'>
+          <Calendar />
           {
             events.map( event => ( 
               <div key={event.id } className='flex-1 min-w-[250px] max-w-[400px] h-[200px] flex flex-col p-2 rounded-lg shadow-md bg-secondary'>
