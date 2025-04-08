@@ -1,11 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { startDeletingEvent, startGetingEvents, startSavingNewEvent, startUpdatingEvent } from '../state/thunk';
-import { closeEventDetail, openEventDetail } from '../state/eventSlice';
+import { closeCalendarDayAside, closeEventDetail, openCalendarDayAside, openEventDetail } from '../state/eventSlice';
 
 export const useEvents = () => {
 
     const dispatch = useDispatch();
-    const { events, productDetail, isProcessing, isEventDetailOpen } = useSelector( state => state.events );
+    const { 
+        events, 
+        productDetail, 
+        isProcessing, 
+        isEventDetailOpen, 
+        isCalendarDayAsideOpen, 
+        calendarDayEvents 
+    } = useSelector( state => state.events );
 
     const saveEvent = (newEvent) => {
         dispatch(startSavingNewEvent(newEvent)) 
@@ -31,18 +38,30 @@ export const useEvents = () => {
         dispatch( closeEventDetail() )
     }
 
+    const handleOpenCalendarDayAside = ( events ) => {
+        dispatch( openCalendarDayAside( events ) )
+    }
+
+    const handleCloseCalendarDayAside = () => {
+        dispatch( closeCalendarDayAside() )
+    }
+
     return (
         {
             events,
             isProcessing,
             isEventDetailOpen,
+            isCalendarDayAsideOpen,
             productDetail,
+            calendarDayEvents,
             saveEvent,
             getEvents,
             updateEvent,
             deleteEvent,
             handleOpenEventDetail,
-            handleCloseEventDetail
+            handleCloseEventDetail,
+            handleOpenCalendarDayAside,
+            handleCloseCalendarDayAside,
         }
     )
 }

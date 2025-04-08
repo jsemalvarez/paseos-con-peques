@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import 'dayjs/locale/es'; // importa el idioma
 dayjs.locale('es'); // lo setea como predeterminado
 
-export const Calendar = ({events:eventData, openEventDetail}) => {
+export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAside}) => {
 
 
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -39,22 +39,22 @@ export const Calendar = ({events:eventData, openEventDetail}) => {
           </span>
 
           {events.slice(0, 2).map((event) => (
-            <div
+            <button
               key={event.id}
-              className={`${ event.bgColor ? event.bgColor : 'bg-gray-500'} cursor-pointer mb-1 px-1 truncate`}
+              className={`${ event.bgColor ? event.bgColor : 'bg-gray-500'} w-full cursor-pointer mb-1 px-1 truncate`}
               onClick={() => openEventDetail(event)}
             >
               {event.title}
-            </div>
+            </button>
           ))}
 
           {events.length > 2 && (
-            <div
-              className="bg-gray-100 text-blue-500 font-semibold text-center rounded-full text-red-500 cursor-pointer"
-              onClick={() => console.log("Abrir aside con todos los eventos de", dayKey)}
+            <button
+              className="block mx-auto w-9/10 bg-gray-200 text-blue-500 font-semibold text-center rounded-full text-red-500 cursor-pointer"
+              onClick={() => openCalendarDayAside( events )}
             >
               +{events.length - 2} más
-            </div>
+            </button>
           )}
 
         </div>

@@ -7,7 +7,9 @@ export const eventSlice = createSlice({
         isProcessing : false,
         events:[],
         productDetail:{},
-        isEventDetailOpen: false
+        calendarDayEvents:[],
+        isEventDetailOpen: false,
+        isCalendarDayAsideOpen: false
     },
     reducers:{
         initProcessingData: (state) => {
@@ -48,7 +50,25 @@ export const eventSlice = createSlice({
             state.isEventDetailOpen = false
             state.productDetail = {}
         },
+        openCalendarDayAside:(state, action) => {
+            state.calendarDayEvents = action.payload
+            state.isCalendarDayAsideOpen = true
+        },
+        closeCalendarDayAside:(state) => {
+            state.isCalendarDayAsideOpen = false
+            state.calendarDayEvents = []
+        },
     }
 })
 
-export const { initProcessingData, addNewEvent, updateEvent, deleteEvent, setEvents, openEventDetail, closeEventDetail } = eventSlice.actions;
+export const { 
+    initProcessingData, 
+    addNewEvent, 
+    updateEvent, 
+    deleteEvent, 
+    setEvents, 
+    openEventDetail, 
+    closeEventDetail,
+    openCalendarDayAside,
+    closeCalendarDayAside,
+} = eventSlice.actions;
