@@ -3,7 +3,9 @@ import dayjs from "dayjs";
 import 'dayjs/locale/es'; // importa el idioma
 dayjs.locale('es'); // lo setea como predeterminado
 
-export const Calendar = () => {
+export const Calendar = ({events:eventData, openEventDetail}) => {
+
+
   const [currentDate, setCurrentDate] = useState(dayjs());
 
   const startOfMonth = currentDate.startOf("month");
@@ -22,17 +24,39 @@ export const Calendar = () => {
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
+      const dateObj = currentDate.date(day);
+      const dayKey = dateObj.format("YYYY-MM-DD");
+      const events = eventData[dayKey] || [];
+
+      // esto tiene que ser <CalendarDays events={} />
       days.push(
         <div
           key={day}
           className="h-[120px] bg-primary"
         >
-            <span className="text-xs text-secondary p-1">
-                {day}
-            </span>
-            <div className="h-[25px] bg-blue-500 cursor-pointer mb-1 overflow-hidden px-1"> nombre muy muy muy muy largo</div>
-            <div className="h-[25px] bg-red-500 cursor-pointer mb-1"></div>
-            <div className="h-[25px] bg-gray-100 rounded-full cursor-pointer flex justify-center mx-1 font-semibold text-red-500">3 más</div>
+          <span className="text-xs text-secondary p-1">
+              {day}
+          </span>
+
+          {events.slice(0, 2).map((event) => (
+            <div
+              key={event.id}
+              className={`${ event.bgColor ? event.bgColor : 'bg-gray-500'} cursor-pointer mb-1 px-1 truncate`}
+              onClick={() => openEventDetail(event)}
+            >
+              {event.title}
+            </div>
+          ))}
+
+          {events.length > 2 && (
+            <div
+              className="bg-gray-100 text-blue-500 font-semibold text-center rounded-full text-red-500 cursor-pointer"
+              onClick={() => console.log("Abrir aside con todos los eventos de", dayKey)}
+            >
+              +{events.length - 2} más
+            </div>
+          )}
+
         </div>
       );
     }

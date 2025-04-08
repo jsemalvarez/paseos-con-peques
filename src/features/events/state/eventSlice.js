@@ -6,6 +6,8 @@ export const eventSlice = createSlice({
     initialState: {
         isProcessing : false,
         events:[],
+        productDetail:{},
+        isEventDetailOpen: false
     },
     reducers:{
         initProcessingData: (state) => {
@@ -37,8 +39,16 @@ export const eventSlice = createSlice({
         setEvents:(state, action) => {
             state.events = action.payload
             state.isProcessing = false;
-        }
+        },
+        openEventDetail:(state, action) => {
+            state.productDetail = action.payload
+            state.isEventDetailOpen = true
+        },
+        closeEventDetail:(state) => {
+            state.isEventDetailOpen = false
+            state.productDetail = {}
+        },
     }
 })
 
-export const { initProcessingData, addNewEvent, updateEvent, deleteEvent, setEvents } = eventSlice.actions;
+export const { initProcessingData, addNewEvent, updateEvent, deleteEvent, setEvents, openEventDetail, closeEventDetail } = eventSlice.actions;

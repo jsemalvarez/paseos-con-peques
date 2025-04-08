@@ -8,14 +8,38 @@ import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../common/components/InputForm'
 
 const initialForm = {
-    name: ''
+    title: "",
+    description: "",
+    date: "",
+    timeStart: "",
+    timeEnd: "",
+    location: "",
+    bgColor:"",
 }
 
 export const EventFormPage = () => {
 
     const { eventId } = useParams();
-    const { events, isProcessing, updateEvent, saveEvent } = useEvents()
-    const { name, formState, setFormState, onInputChange, onResetForm } = useForm(initialForm);
+    const { 
+        events, 
+        isProcessing, 
+        updateEvent, 
+        saveEvent 
+    } = useEvents()
+
+    const { 
+        title,
+        description,
+        date,
+        timeStart,
+        timeEnd,
+        location ,
+        bgColor,
+        formState,
+        setFormState, 
+        onInputChange, 
+        onResetForm 
+    } = useForm(initialForm);
 
     const eventToUpdate = useMemo(() => events.find(event => event.id == eventId), [events, eventId]);
 
@@ -27,12 +51,12 @@ export const EventFormPage = () => {
         event.preventDefault()
         if(eventId){
             if (!eventToUpdate) {
-                console.error('El lugar no existe');
+                console.error('El evento no existe');
                 return;
             }
             updateEvent({ id: eventId, ...formState });
         }else{
-            saveEvent({name})
+            saveEvent(formState)
         }
         onResetForm()
     }
@@ -57,12 +81,61 @@ export const EventFormPage = () => {
                     </h3>
 
                     <InputForm 
-                        title='Nombre:'
-                        name='name'
+                        title='Titulo:'
+                        name='title'
                         type='text'
-                        value={name}
+                        value={title}
                         onChange={onInputChange}
                     />
+
+                    <InputForm 
+                        title='Descripcion:'
+                        name='description'
+                        type='text'
+                        value={description}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Lugar:'
+                        name='location'
+                        type='text'
+                        value={location}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Fecha:'
+                        name='date'
+                        type='date'
+                        value={date}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Hora de inicio:'
+                        name='timeStart'
+                        type='time'
+                        value={timeStart}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Hora de fin:'
+                        name='timeEnd'
+                        type='time'
+                        value={timeEnd}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Color:'
+                        name='bgColor'
+                        type='text'
+                        value={bgColor}
+                        onChange={onInputChange}
+                    />
+
 
 
                     <button

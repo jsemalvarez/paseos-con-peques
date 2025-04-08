@@ -14,7 +14,7 @@ export const startGetingEvents = () => {
     return async( dispatch) => {
         dispatch( initProcessingData() )
         const response = await eventService.getEvents();
-        dispatch( setEvents( response.data ) )
+        dispatch( setEvents( response.data ));
     }
 }
 
