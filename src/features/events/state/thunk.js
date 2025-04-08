@@ -1,5 +1,5 @@
 import { eventService } from "../services/eventService"
-import { addNewEvent, deleteEvent, initProcessingData, setEvents, updateEvent } from "./eventSlice";
+import { addNewEvent, closeEventDetail, deleteEvent, initProcessingData, setEvents, updateEvent } from "./eventSlice";
 
 
 export const startSavingNewEvent = (newEvent) => {
@@ -30,6 +30,7 @@ export const startDeletingEvent = (id) => {
     return async(dispatch) => {
         dispatch( initProcessingData() )
         await eventService.deleteEvent(id)
+        dispatch( closeEventDetail())
         dispatch( deleteEvent(id))
     }
 }
