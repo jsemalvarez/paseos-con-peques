@@ -1,5 +1,4 @@
 
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useEvents } from '../hooks/useEvents'
@@ -12,13 +11,9 @@ import { CalendarDayAside } from '../components/CalendarDayAside'
 
 export const EventsPage = () => {
 
-  const { events, getEvents, handleOpenEventDetail, handleOpenCalendarDayAside } = useEvents()
+  const { events, handleOpenEventDetail, handleOpenCalendarDayAside } = useEvents()
 
   const formattedEvents = formatEvents( events );
-
-  useEffect(() => {
-    getEvents()
-  },[])
 
   return (
     <PrivateLoyout>

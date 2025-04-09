@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { usePlaces } from '../hooks/usePlaces'
@@ -8,11 +7,8 @@ import { PlaceCard } from '../components/PlaceCard'
 
 export const PlacesPage = () => {
 
-  const { places, getPlaces } = usePlaces()
+  const { places } = usePlaces()
 
-  useEffect(() => {
-    getPlaces()
-  },[])
 
   return (
     <PrivateLoyout>
