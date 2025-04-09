@@ -23,3 +23,9 @@
     scrollbar-width: thin;
     scrollbar-color: #00b8db #053345;
   }
+
+
+  #map { height: 250px; }
+  .leaflet-container{
+    height: 250px;
+  }

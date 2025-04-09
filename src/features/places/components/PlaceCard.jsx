@@ -79,7 +79,7 @@ export const PlaceCard = ({place}) => {
                             <a
                                 target="_blank"
                                 className='block p-1 flex justify-center bg-blue-600 text-white rounded-full' 
-                                href={`https://www.google.com/maps?q=-34.603684,-58.381559`
+                                href={`https://www.google.com/maps?q=${place.position.lat},${place.position.lng}`
                             }>ver en mapa</a>
                         </>
                     )

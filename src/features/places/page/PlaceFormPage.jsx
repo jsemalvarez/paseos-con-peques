@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useForm } from '../../common/hooks/useForm'
@@ -6,6 +6,9 @@ import { usePlaces } from '../hooks/usePlaces'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../common/components/InputForm'
+import { MapView } from '../../common/components/map/MapView'
+import { DraggableMarker } from '../../common/components/map/DraggableMarker'
+import { initLatLng } from '../../common/components/map/mapConstants'
 
 const initialForm = {
     name: '',
@@ -50,22 +53,35 @@ export const PlaceFormPage = () => {
         onInputChange, 
         onResetForm } = useForm(initialForm);
 
-    const placeToUpdate = useMemo(() => places.find(place => place.id == placeId), [places, placeId]);
+    const [position, setPosition] = useState(null)
+
+
+    const findPlace = (placeId) => {
+        const placeToUpdate = places.find(place => place.id == placeId)
+
+        if(placeToUpdate){
+            setFormState(placeToUpdate)
+            setPosition(placeToUpdate.position)
+        }else{
+            setFormState(formState)
+            setPosition(initLatLng)
+        }
+    }
 
     useEffect(() => {
-        setFormState(placeToUpdate)
-    },[placeToUpdate,setFormState])
+        findPlace(placeId)
+    },[placeId])
 
     const handleNewPlace = ( event ) => {
         event.preventDefault()
         if(placeId){
-            if (!placeToUpdate) {
+            if (!placeId) {
                 console.error('El lugar no existe');
                 return;
             }
-            updatePlace({ id: placeId, ...formState });
+            updatePlace({ id: placeId, ...formState, position: {lat: position.lat, lng: position.lng} });
         }else{
-            savePlace(formState)
+            savePlace({ ...formState, position: {lat: position.lat, lng: position.lng}})
         }
         onResetForm()
     }
@@ -88,6 +104,13 @@ export const PlaceFormPage = () => {
                     <h3 className='text-xl font-bold text-secondary tracking-wide'>
                         {placeId ? 'Editar lugar' : 'Crear un nuevo lugar'}
                     </h3>
+
+                    <MapView>
+                        <DraggableMarker
+                            position={position}
+                            setPosition={setPosition}
+                        />
+                    </MapView>
 
                     <InputForm 
                         title='Nombre:'

@@ -27,7 +27,7 @@ export const PlacesPage = () => {
         <div className='flex flex-wrap justify-center gap-4 p-4'>
           {
             places.map( place => ( 
-             <PlaceCard place={place} />
+             <PlaceCard key={place.id} place={place} />
             ))
           }
 
