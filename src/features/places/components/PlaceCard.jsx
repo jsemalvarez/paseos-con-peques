@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
 
+import { useUserLogin } from '../../auth/hooks/useUserLogin'
 import { usePlaces } from '../hooks/usePlaces'
 import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon } from './Icons'
 
 export const PlaceCard = ({place}) => {
 
+    const { authState } = useUserLogin()
     const { isProcessing, deletePlace } = usePlaces();
+
+    const isAuthenticated = authState == 'authenticated';
+
     const servicesToString = [
         place.hasGames && "Juegos",
         place.hasShow && "Show",
         place.hasFood && "Gastronomía",
         place.hasSupervision && "Profes a cargo"
       ].filter(Boolean).join(" / ");
+
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const handleDelete = (id) => {
@@ -119,19 +125,22 @@ export const PlaceCard = ({place}) => {
                 <p className="text-sm text-gray-600 whitespace-pre-line mt-2">{place.description}</p>
             </div>
   
-            {/* Footer visible solo si es privado */}
-            <div className="flex gap-2 p-2 bg-red-300 border-t text-sm">
-                <Link 
-                    to={`/places/edit/${place.id}`}
-                    className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700'
-                >Editar</Link>
-                {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
-                <button 
-                    className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed'
-                    onClick={ () => handleDelete(place.id) }
-                    disabled={ isProcessing }
-                >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
-            </div>
+            {
+                isAuthenticated && (
+                    <div className="flex gap-2 p-2 bg-red-300 border-t text-sm">
+                        <Link 
+                            to={`/places/edit/${place.id}`}
+                            className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700'
+                        >Editar</Link>
+                        {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
+                        <button 
+                            className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed'
+                            onClick={ () => handleDelete(place.id) }
+                            disabled={ isProcessing }
+                        >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
+                    </div>
+                )
+            }
         </div>
     )
 }

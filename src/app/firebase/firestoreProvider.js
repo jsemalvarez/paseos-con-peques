@@ -27,6 +27,7 @@ export const getData = async(collectionName) => {
             data: data
         }
     } catch (error) {
+        console.log({error})
         return { ok: false, errorMessage: error.message }
     }
 }

@@ -65,7 +65,7 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
   };
 
   return (
-    <div className="w-full border rounded">
+    <div className="w-9/10 border rounded">
       <div className="flex justify-between items-center px-4 py-2">
         <button className="cursor-pointer" onClick={handlePrevMonth}>←</button>
         <h2 className="font-bold text-secondary">

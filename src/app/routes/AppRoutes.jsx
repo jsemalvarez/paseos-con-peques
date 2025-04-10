@@ -12,7 +12,7 @@ export const AppRoutes = () => {
 
     const authState = useCheckAuth();
 
-    const {getEvents} = useEvents();
+    const { getEvents } = useEvents();
     const { getPlaces } = usePlaces()
 
     useEffect(() => {

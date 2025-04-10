@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom"
 import { useEvents } from "../hooks/useEvents"
 import { CalendarIcon, ClockIcon, LocationIcon } from "../../places/components/Icons"
+import { useUserLogin } from "../../auth/hooks/useUserLogin"
 
 export const EventDetail = () => {
 
+    const {authState } = useUserLogin()
+    
     const {  isProcessing, isEventDetailOpen, productDetail, deleteEvent, handleCloseEventDetail } = useEvents()
+
+    const isAuthenticated = authState == 'authenticated';
   
     const handleDelete = (id) => {
         deleteEvent(id)
     }
-
-    // 
 
     return ( 
         <aside 
@@ -66,18 +69,22 @@ export const EventDetail = () => {
                 )}
             </div>
 
-            <footer className="flex flex-col px-6 mb-6">
-                <Link 
-                    to={`/events/edit/${ productDetail.id }`}
-                    className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 mb-2'
-                >Editar</Link>
-                {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
-                <button 
-                    className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed'
-                    onClick={ () => handleDelete( productDetail.id )}
-                    disabled={ isProcessing }
-                >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
-            </footer>
+            {
+                isAuthenticated && (
+                    <footer className="flex flex-col px-6 mb-6">
+                        <Link 
+                            to={`/events/edit/${ productDetail.id }`}
+                            className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 mb-2'
+                        >Editar</Link>
+                        {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
+                        <button 
+                            className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed'
+                            onClick={ () => handleDelete( productDetail.id )}
+                            disabled={ isProcessing }
+                        >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
+                    </footer>
+                )
+            }
         </aside>
     )
 }
