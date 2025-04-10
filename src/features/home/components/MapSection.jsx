@@ -6,7 +6,7 @@ export const MapSection = () => {
   return (
     <div className='min-h-screen bg-secondary py-[100px] flex justify-center items-center'>
 
-      <div className='w-9/10 rounded-xl bg-red-500 overflow-hidden'>
+      <div className='w-9/10 max-w-[1200px] rounded-xl bg-red-500 overflow-hidden'>
         <div className='h-[600px]'>
           <MapView>
             <Markers /> 
