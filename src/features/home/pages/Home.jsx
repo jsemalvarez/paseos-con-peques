@@ -3,8 +3,8 @@ import { Presentations } from '../components/Presentations'
 import { MapSection } from '../components/MapSection'
 import { CalendarSection } from '../components/CalendarSection'
 import { SearchPlaces } from '../components/SearchPlaces'
-import { Contact } from '../components/Contact'
 import { PublicLayout } from '../../common/layouts/PublicLayout'
+import { AboutAs } from '../components/AboutAs'
 
 // TODO: cambiar Home por HomePage
 export const Home = () => {
@@ -14,7 +14,7 @@ export const Home = () => {
         <MapSection />
         <CalendarSection />
         <SearchPlaces />
-        <Contact />
+        <AboutAs />
     </PublicLayout>
   )
 }
