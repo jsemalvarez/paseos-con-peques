@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 export const useForm = ( initialForm = {}) => {
 
     //TODO: implementar useRef
-  
     const [ formState, setFormState ] = useState( initialForm );
 
     useEffect(() => {
@@ -11,10 +10,21 @@ export const useForm = ( initialForm = {}) => {
     }, [ initialForm ])
 
     const onInputChange = ({ target }) => {
-        const { name, type, checked, value } = target
+        const { name, type, checked, value, selectedOptions } = target
+
+        let newValue;
+
+        if (type === 'checkbox') {
+          newValue = checked;
+        } else if (selectedOptions) {
+          newValue = Array.from(selectedOptions).map((option) => option.value);
+        } else {
+          newValue = value;
+        }
+      
         setFormState({
-            ...formState,
-            [name]: type === 'checkbox' ? checked : value,
+          ...formState,
+          [name]: newValue,
         });
     }
 
