@@ -9,6 +9,8 @@ import { InputForm } from '../../common/components/InputForm'
 import { MapView } from '../../common/components/map/MapView'
 import { DraggableMarker } from '../../common/components/map/DraggableMarker'
 import { initLatLng } from '../../common/components/map/mapConstants'
+import { CATEGORIES, COLORS_BY_CATEGORIES } from '../utils/categories'
+import { ICONS_BY_TYPE } from '../utils/iconsByType'
 
 const initialForm = {
     name: '',
@@ -25,10 +27,15 @@ const initialForm = {
     hasShow: false,
     hasGames: false,
     hasSupervision: false,
+    categories:[],
     description: '',
+    iconType:'',
+    bgColor:'',
 }
 
 export const PlaceFormPage = () => {
+
+    const [position, setPosition] = useState(null)
 
     const { placeId } = useParams();
     const { places, isProcessing, updatePlace, savePlace } = usePlaces()
@@ -48,12 +55,14 @@ export const PlaceFormPage = () => {
         hasGames,
         hasSupervision,
         description,
+        iconType,
+        bgColor,
+        categories,
         formState, 
         setFormState, 
         onInputChange, 
         onResetForm } = useForm(initialForm);
 
-    const [position, setPosition] = useState(null)
 
 
     const findPlace = (placeId) => {
@@ -71,7 +80,7 @@ export const PlaceFormPage = () => {
     useEffect(() => {
         findPlace(placeId)
     },[placeId])
-
+    
     const handleNewPlace = ( event ) => {
         event.preventDefault()
         if(placeId){
@@ -79,12 +88,23 @@ export const PlaceFormPage = () => {
                 console.error('El lugar no existe');
                 return;
             }
-            updatePlace({ id: placeId, ...formState, position: {lat: position.lat, lng: position.lng} });
+            updatePlace({ 
+                ...formState, 
+                position: {lat: position.lat, lng: position.lng},
+                id: placeId, 
+            });
         }else{
-            savePlace({ ...formState, position: {lat: position.lat, lng: position.lng}})
+            savePlace({ 
+                ...formState, 
+                position: {lat: position.lat, lng: position.lng},
+            })
+            onResetForm()
         }
-        onResetForm()
     }
+
+    const formatedCategoies = Object.keys(CATEGORIES) 
+    const formatedBgColors = Object.keys(COLORS_BY_CATEGORIES) 
+    const formatedIconsTypes = Object.keys(ICONS_BY_TYPE)
 
     const renderButtonLabel = () => {
         const textLabel = placeId ? 'Actualizar' : 'Guardar'; 
@@ -105,12 +125,14 @@ export const PlaceFormPage = () => {
                         {placeId ? 'Editar lugar' : 'Crear un nuevo lugar'}
                     </h3>
 
-                    <MapView>
-                        <DraggableMarker
-                            position={position}
-                            setPosition={setPosition}
-                        />
-                    </MapView>
+                    <div className='h-[300px]'>
+                        <MapView>
+                            <DraggableMarker
+                                position={position}
+                                setPosition={setPosition}
+                            />
+                        </MapView>
+                    </div>
 
                     <InputForm 
                         title='Nombre:'
@@ -239,6 +261,74 @@ export const PlaceFormPage = () => {
                             />
                             Profes a cargo
                         </label>
+                    </div>
+
+                    <div className='pt-2'>
+                        <label htmlFor="categorias" class="block font-medium text-gray-700">
+                            Categorías:
+                        </label>
+                        <select
+                            id="categorias"
+                            name='categories'
+                            multiple
+                            value={categories}
+                            onChange={onInputChange}
+                            class="w-full h-35 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                        >
+                            {formatedCategoies.map((category) => (
+                            <option 
+                                key={category} 
+                                value={CATEGORIES[category]}
+                            >
+                                {category}
+                            </option>
+                            ))}
+                        </select>
+                        <p class="text-sm text-gray-500 mt-1">Usá Ctrl para seleccionar varias</p>
+                    </div>
+
+                    <div className='pt-2'>
+                        <label htmlFor="bgColor" class="block font-medium text-gray-700">
+                            Color del icono:
+                        </label>
+                        <select
+                            id="bgColor"
+                            name='bgColor'
+                            value={bgColor}
+                            onChange={onInputChange}
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                        >
+                            {formatedBgColors.map((bgColor) => (
+                            <option 
+                                key={bgColor} 
+                                value={COLORS_BY_CATEGORIES[bgColor]}
+                            >
+                                {bgColor}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className='pt-2'>
+                        <label htmlFor="iconType" class="block font-medium text-gray-700">
+                            Tipo de icono:
+                        </label>
+                        <select
+                            id="iconType"
+                            name='iconType'
+                            value={iconType}
+                            onChange={onInputChange}
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                        >
+                            {formatedIconsTypes.map((iconType) => (
+                            <option 
+                                key={iconType} 
+                                value={iconType}
+                            >
+                                {iconType}
+                            </option>
+                            ))}
+                        </select>
                     </div>
 
 
