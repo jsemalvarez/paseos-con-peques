@@ -19,7 +19,7 @@ export const getData = async(collectionName) => {
 
         const data = querySnapshot.docs.map(doc => ({
             id: doc.id, // ID del documento
-            ...doc.data() // Datos
+            ...doc.data(), // Datos
           }));
 
         return {

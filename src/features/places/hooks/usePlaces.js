@@ -12,7 +12,6 @@ export const usePlaces = () => {
     }
 
     const getPlaces = () => {
-        console.log({places})
         dispatch( startGetingPlaces() )
     }
 
