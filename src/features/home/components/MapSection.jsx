@@ -30,48 +30,48 @@ export const MapSection = () => {
           </MapView>
         </div>
 
-        <div class="bg-blue-600 text-white px-4 py-2 flex flex-wrap gap-2 items-center justify-center">
+        <div className="bg-blue-600 text-white px-4 py-2 flex flex-wrap gap-2 items-center justify-center">
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('all')}
           >
-             <span class="text-sm">Todos</span>
+             <span className="text-sm">Todos</span>
           </button>
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('entertime')}
           >
-             <span class="text-sm">Entretenimiento</span>
+             <span className="text-sm">Entretenimiento</span>
           </button>
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('food')}
           >
-             <span class="text-sm">Gastronomía</span>
+             <span claclassNamess="text-sm">Gastronomía</span>
           </button>
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('outdoors')}
           >
-             <span class="text-sm">Al aire libre</span>
+             <span className="text-sm">Al aire libre</span>
           </button>
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('allDay')}
           >
-             <span class="text-sm">Pasar el Dia</span>
+             <span className="text-sm">Pasar el Dia</span>
           </button>
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('culture')}
           >
-             <span class="text-sm">Cultura</span>
+             <span className="text-sm">Cultura</span>
           </button>
           <button
-           class="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
+           className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('supervision')}
           >
-             <span class="text-sm">Con profes</span>
+             <span className="text-sm">Con profes</span>
           </button>
         </div>
 

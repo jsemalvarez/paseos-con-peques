@@ -141,7 +141,7 @@ export const EventFormPage = () => {
                     />
 
                     <div className='pt-2'>
-                        <label htmlFor="placeId" class="block font-medium text-gray-700">
+                        <label htmlFor="placeId" className="block font-medium text-gray-700">
                             Lugares:
                         </label>
                         <select
@@ -149,7 +149,7 @@ export const EventFormPage = () => {
                             name='placeId'
                             value={placeId}
                             onChange={onInputChange}
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
                         >
                             {places.map((place) => (
                                 <option 
