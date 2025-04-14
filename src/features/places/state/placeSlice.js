@@ -6,6 +6,8 @@ export const placeSlice = createSlice({
     initialState: {
         isProcessing : false,
         places:[],
+        placeDetail: {},
+        isPlaceDetailOpen: false,
     },
     reducers:{
         initProcessingData: (state) => {
@@ -37,8 +39,17 @@ export const placeSlice = createSlice({
         setPlaces:(state, action) => {
             state.places = action.payload
             state.isProcessing = false;
-        }
+        },
+        openPlaceDetail:(state, action) => {
+            console.log(action.payload)
+            state.placeDetail = action.payload
+            state.isPlaceDetailOpen = true
+        },
+        closePlaceDetail:(state) => {
+            state.isPlaceDetailOpen = false
+            state.placeDetail = {}
+        },
     }
 })
 
-export const { initProcessingData, addNewPlace, updatePlace, deletePlace, setPlaces } = placeSlice.actions;
+export const { initProcessingData, addNewPlace, updatePlace, deletePlace, setPlaces, openPlaceDetail, closePlaceDetail } = placeSlice.actions;

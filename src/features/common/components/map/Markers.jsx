@@ -7,13 +7,13 @@ import { COLORS_BY_CATEGORIES } from '../../../places/utils/categories'
 
 
 
-export const Markers = ({ places }) => {
+export const Markers = ({ places, handleClick }) => {
 
 
     const eventHandler = (place) => {      
       return {
         click() {
-          console.log(place)
+          handleClick(place)
         },
     }}
 

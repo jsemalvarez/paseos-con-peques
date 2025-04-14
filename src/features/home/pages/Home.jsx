@@ -5,6 +5,7 @@ import { CalendarSection } from '../components/CalendarSection'
 import { SearchPlaces } from '../components/SearchPlaces'
 import { PublicLayout } from '../../common/layouts/PublicLayout'
 import { AboutAs } from '../components/AboutAs'
+import { PlaceDetail } from '../../places/components/PlaceDetail'
 
 // TODO: cambiar Home por HomePage
 export const Home = () => {
@@ -15,6 +16,7 @@ export const Home = () => {
         <CalendarSection />
         <SearchPlaces />
         <AboutAs />
+        <PlaceDetail /> 
     </PublicLayout>
   )
 }

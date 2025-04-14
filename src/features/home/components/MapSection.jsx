@@ -7,13 +7,12 @@ export const MapSection = () => {
 
   const [category, setCategory] = useState('all')
   const [filteredPlaces, setFilteredPlaces] = useState([])
-  const { places } = usePlaces();
+  const { places, handleOpenPlaceDetail } = usePlaces();
 
   useEffect(() => {
     setFilteredPlaces( places )
   },[])
 
-  console.log( places )
 
   useEffect(() => {
     const filteredPlaces = places.filter(place => place.categories.includes(category))
@@ -27,7 +26,7 @@ export const MapSection = () => {
       <div className='w-8/10 max-w-[1200px] rounded-xl bg-red-500 overflow-hidden'>
         <div className='h-[600px]'>
           <MapView>
-            <Markers places={filteredPlaces} /> 
+            <Markers places={filteredPlaces} handleClick={handleOpenPlaceDetail} /> 
           </MapView>
         </div>
 
