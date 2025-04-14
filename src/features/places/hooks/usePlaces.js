@@ -25,12 +25,15 @@ export const usePlaces = () => {
     }
 
     const handleOpenPlaceDetail = ( place ) => {
-        console.log(place)
         dispatch( openPlaceDetail( place ) )
     }
 
     const handleClosePlaceDetail = () => {
         dispatch( closePlaceDetail() )
+    }
+
+    const handleFindPlaceById = (placeId) => {
+        return places.find( place => place.id == placeId);
     }
 
 
@@ -46,6 +49,7 @@ export const usePlaces = () => {
             deletePlace,
             handleOpenPlaceDetail,
             handleClosePlaceDetail,
+            handleFindPlaceById
         }
     )
 }

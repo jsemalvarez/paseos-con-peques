@@ -41,7 +41,6 @@ export const placeSlice = createSlice({
             state.isProcessing = false;
         },
         openPlaceDetail:(state, action) => {
-            console.log(action.payload)
             state.placeDetail = action.payload
             state.isPlaceDetailOpen = true
         },

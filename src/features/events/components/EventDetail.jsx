@@ -1,23 +1,31 @@
 import { Link } from "react-router-dom"
+
 import { useEvents } from "../hooks/useEvents"
-import { CalendarIcon, ClockIcon, LocationIcon } from "../../places/components/Icons"
+import { usePlaces } from "../../places/hooks/usePlaces";
 import { useUserLogin } from "../../auth/hooks/useUserLogin"
+
+import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon } from "../../places/components/Icons"
+
 
 export const EventDetail = () => {
 
-    const {authState } = useUserLogin()
-    
+    const {authState } = useUserLogin()    
     const {  isProcessing, isEventDetailOpen, productDetail, deleteEvent, handleCloseEventDetail } = useEvents()
-
+    const { handleFindPlaceById } = usePlaces();
+    
     const isAuthenticated = authState == 'authenticated';
+
+    const place = handleFindPlaceById(productDetail.placeId);
   
     const handleDelete = (id) => {
         deleteEvent(id)
     }
 
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
     return ( 
         <aside 
-            className={`${ isEventDetailOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-100 text-primary z-50 transition-all`}
+            className={`${ isEventDetailOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-100 text-primary z-1500 transition-all`}
         >
             <div className="flex justify-between items-center px-6 py-1">
                 <h2 className="font-medium text-xl"></h2>
@@ -48,18 +56,6 @@ export const EventDetail = () => {
                         <ClockIcon />
                         <span className="font-medium">{productDetail.timeStart} hs</span> 
                     </div>
-                    <div className="flex items-center gap-2">
-                        <LocationIcon />
-                        <span className="font-semibold">{productDetail.location}</span> 
-                    </div>
-                    <button 
-                        className='block w-full bg-blue-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full'
-                        onClick={ () => {}}
-                    >Ver en el Mapa</button>
-                    <button 
-                        className='block w-full bg-green-600 flex-1 text-gray-100 cursor-pointer p-1 rounded-full'
-                        onClick={ () => {}}
-                    >Whatsapp</button>
                 </div>
 
                 {productDetail.description && (
@@ -67,6 +63,93 @@ export const EventDetail = () => {
                         {productDetail.description}
                     </p>
                 )}
+
+                {
+                    place && (
+                        <>
+                            <h3 className="mt-6 text-2xl font-bold text-primary capitalize flex items-center border-t border-gray-400"><LocationIcon /> {place.name}</h3>
+                            {
+                                place.phone && (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Telefono: </span>
+                                            {place.phone}
+                                        </p>
+                                        {
+                                            isMobile && (
+                                                <a
+                                                    className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full' 
+                                                    href={`tel:+54223${place.phone}`}
+                                                >Llamar</a>
+                                            )
+                                        }
+                                    </>
+                                )
+                            }
+                            {
+                                place.whatsapp &&  (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Whatsapp: </span>
+                                            {place.whatsapp}
+                                        </p>
+                                        <a
+                                            target="_blank"
+                                            className='block p-1 flex justify-center bg-green-700 text-white rounded-full' 
+                                            href={`https://wa.me/${place.whatsapp}`                                
+                                        }>ir a Whatsapp</a>
+                                    </>
+                                )
+                            }
+                            {
+                                place.address && (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Direccion: </span>
+                                            {place.address}
+                                        </p>
+                                        <a
+                                            target="_blank"
+                                            className='block p-1 flex justify-center bg-blue-600 text-white rounded-full' 
+                                            href={`https://www.google.com/maps?q=${place.position.lat},${place.position.lng}`
+                                        }>ver en mapa</a>
+                                    </>
+                                )
+                            }
+                                            <div className='mt-2 flex justify-center items-center gap-6'>
+                                {
+                                    place.web && (
+                                        <a href={place.web} target='_blank'>
+                                            <WebIcon />
+                                        </a>
+                                    )                    
+                                }
+                                {
+                                    place.instagram && (
+                                        <a href={place.instagram} target='_blank'>
+                                            <InstagramIcon />
+                                        </a>
+                                    )                    
+                                }
+                                {
+                                    place.facebook && (
+                                        <a href={place.facebook} target='_blank'>
+                                            <FacebookIcon />
+                                        </a>
+                                    )                    
+                                }
+                                {
+                                    place.videoLink && (
+                                        <a href={place.videoLink} target='_blank'>
+                                            <VideoIcon />
+                                        </a>
+                                    )                    
+                                }
+                            </div>
+                        </>
+                    )
+                }
+
             </div>
 
             {

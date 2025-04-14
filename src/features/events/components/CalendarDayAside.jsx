@@ -5,7 +5,7 @@ import { useEvents } from "../hooks/useEvents"
 export const CalendarDayAside = () => {
 
     const {  calendarDayEvents, isCalendarDayAsideOpen, handleCloseCalendarDayAside, handleOpenEventDetail } = useEvents()
-  
+    
     return ( 
         <aside 
             className={`${ isCalendarDayAsideOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-200 text-primary overflow-y-auto`}

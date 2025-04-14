@@ -6,6 +6,7 @@ import { useEvents } from '../hooks/useEvents'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../common/components/InputForm'
+import { usePlaces } from '../../places/hooks/usePlaces'
 
 const initialForm = {
     title: "",
@@ -15,6 +16,7 @@ const initialForm = {
     timeEnd: "",
     location: "",
     bgColor:"",
+    placeId:"",
 }
 
 export const EventFormPage = () => {
@@ -26,6 +28,7 @@ export const EventFormPage = () => {
         updateEvent, 
         saveEvent 
     } = useEvents()
+    const { places } = usePlaces()
 
     const { 
         title,
@@ -35,6 +38,7 @@ export const EventFormPage = () => {
         timeEnd,
         location ,
         bgColor,
+        placeId,
         formState,
         setFormState, 
         onInputChange, 
@@ -54,7 +58,7 @@ export const EventFormPage = () => {
                 console.error('El evento no existe');
                 return;
             }
-            updateEvent({ id: eventId, ...formState });
+            updateEvent({ ...formState, id: eventId, });
         }else{
             saveEvent(formState)
         }
@@ -136,7 +140,27 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
-
+                    <div className='pt-2'>
+                        <label htmlFor="placeId" class="block font-medium text-gray-700">
+                            Lugares:
+                        </label>
+                        <select
+                            id="placeId"
+                            name='placeId'
+                            value={placeId}
+                            onChange={onInputChange}
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                        >
+                            {places.map((place) => (
+                                <option 
+                                    key={place.id} 
+                                    value={place.id}
+                                >
+                                    {place.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
                     <button
                         className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
