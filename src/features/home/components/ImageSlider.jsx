@@ -7,7 +7,7 @@ const images = [
       subTitle: "Funciones todos los domingos",
     },
     {
-      src: "https://scontent.fmdq7-1.fna.fbcdn.net/v/t39.30808-6/486332589_1058437949634846_3719912954605366784_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=2hVn4dpm79gQ7kNvwEBVqpx&_nc_oc=AdlNmCWGto7WKWJo6xP828E-0LVaT_R2mFVAThMdXBOzrayuEW8oZ26DhOz0TUP5XH8&_nc_zt=23&_nc_ht=scontent.fmdq7-1.fna&_nc_gid=flwxUacIqGtUQYYEg_SEgQ&oh=00_AfHO-fCB2FkpTzfyxsWSymcktKczoXLS3QuNNIrK1mMwIg&oe=67FDD171",
+      src: "https://scontent.fmdq7-1.fna.fbcdn.net/v/t39.30808-6/489927137_122150227682485886_3014562694252326727_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=hx-sehpxO3EQ7kNvwFxg0lK&_nc_oc=AdkZ1RHlcrcHPk06-Uspxu-4_OEbrCchKNfXFLCEpeM0xNECPOTv-WPynD05RtEQWRI&_nc_zt=23&_nc_ht=scontent.fmdq7-1.fna&_nc_gid=1Pj1NNrf0w45_eLPvzM4Wg&oh=00_AfFwdBqQ288mwFmIUqAY0mXh1fCnznEB8c90035xhK02XA&oe=6804C466",
       title: "Circo HAZME REIR",
       subTitle: "Plaza del agua",
     },
