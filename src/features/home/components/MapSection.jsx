@@ -21,7 +21,7 @@ export const MapSection = () => {
 
 
   return (
-    <div className='min-h-screen bg-secondary py-[100px] flex justify-center items-center'>
+    <div id='mapSection' className='min-h-screen bg-secondary py-[100px] flex justify-center items-center'>
 
       <div className='w-8/10 max-w-[1200px] rounded-xl bg-red-500 overflow-hidden'>
         <div className='h-[600px]'>
@@ -47,7 +47,7 @@ export const MapSection = () => {
            className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"
            onClick={() => setCategory('food')}
           >
-             <span claclassNamess="text-sm">Gastronomía</span>
+             <span className="text-sm">Gastronomía</span>
           </button>
           <button
            className="flex items-center gap-1 bg-white text-blue-600 px-3 py-1 rounded-full hover:bg-blue-100 transition cursor-pointer"

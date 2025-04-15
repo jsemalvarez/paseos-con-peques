@@ -12,8 +12,8 @@ export const CalendarSection = () => {
   const formattedEvents = formatEvents( events );
 
   return (
-    <div className='min-h-screen py-[100px]'>
-      <div className='flex flex-wrap justify-center gap-4 p-4'>
+    <div id='calendarSection' className='min-h-screen py-[100px] flex justify-center'>
+      <div className='w-full md:w-8/10 max-w-[1200px]'>
 
         <Calendar   
           events={formattedEvents} 

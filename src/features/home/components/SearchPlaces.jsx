@@ -8,7 +8,7 @@ export const SearchPlaces = () => {
     const { places } = usePlaces()
 
   return (
-    <div className='min-h-screen bg-secondary py-[100px]'>
+    <div id='searchSection' className='min-h-screen bg-secondary py-[100px]'>
 
       <div className='flex justify-center'>
         <Link 

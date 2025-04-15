@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* Scrollbar para toda la app */
 ::-webkit-scrollbar {
     width: 8px;

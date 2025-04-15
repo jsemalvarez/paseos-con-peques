@@ -1,22 +1,47 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CalendarIcon, LocationIcon, SearchIcon, UsersIcon } from '../../places/components/Icons'
 
 export const PublicNavbar = () => {
   return (
     <nav className='fixed top-0 w-full flex justify-between items-center px-4 py-2 bg-primary text-indigo-100 border-b-4 border-solid border-secondary z-1500'>
-        <Link 
-          to='/'
-          className='text-xl text-secondary cursor-pointer hover:text-indigo-100'
-        >PcP</Link>
-        <ul className='flex gap-3'>
-            <li><button className='border border-secondary px-3 rounded-sm cursor-pointer text-primary bg-secondary hover:text-indigo-100'>Mapa</button></li>
-            <li><button className='border border-secondary px-3 rounded-sm cursor-pointer text-primary bg-secondary hover:text-indigo-100'>Calendario</button></li>
-            <li><button className='border border-secondary px-3 rounded-sm cursor-pointer text-primary bg-secondary hover:text-indigo-100'>Buscador</button></li>
-        </ul>
-        <Link
-          to='/public/login'
-          className='btn-primary'
-        >Ingresar</Link>
+      <h3 className='w-[35px] h-[35px] bg-secondary rounded-full flex justify-center items-center  text-primary'>PcP</h3>
+      <ul className='flex gap-3'>
+          <li>
+            <a 
+              href='#mapSection'              
+              className='flex items-center gap-1 border border-secondary px-3 py-1 rounded-sm cursor-pointer text-primary bg-secondary hover:text-indigo-100'
+            >
+              <span><LocationIcon style="text-primary" /></span>
+              <span className='sr-only sm:not-sr-only'>Mapa</span>              
+            </a>
+            </li>
+          <li>
+            <a
+              href='#calendarSection'  
+              className='flex items-center gap-1  border border-secondary px-3 py-1 rounded-sm cursor-pointer text-primary bg-secondary hover:text-indigo-100'
+            >
+              <span><CalendarIcon style="text-primary" /></span>
+              <span className='sr-only sm:not-sr-only'>Calendario</span>              
+            </a>
+            </li>
+          <li>
+            <a 
+              href='#searchSection' 
+              className='flex items-center gap-1  border border-secondary px-3 py-1 rounded-sm cursor-pointer text-primary bg-secondary hover:text-indigo-100'
+            >
+              <span><SearchIcon style="text-primary" /></span>
+              <span className='sr-only sm:not-sr-only'>Buscador</span>              
+            </a>
+          </li>
+      </ul>
+      <Link
+        to='/public/login'
+        className='flex items-center gap-1 border border-secondary px-3 py-1 rounded-sm cursor-pointer text-secondary bg-primary hover:text-indigo-100'
+      >
+        <span><UsersIcon style="text-secondary" /></span>
+        <span className='sr-only sm:not-sr-only'>Ingresar</span>       
+      </Link>
     </nav>
   )
 }

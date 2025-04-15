@@ -46,8 +46,8 @@ export const Presentations = () => {
       </div>
 
       {/* Frase destacada */}
-      <div className="mt-6 px-8 py-4 text-4xl font-bold text-center tracking-widest max-w-3xl w-full text-pink-200">
-        ¡Acá te podemos ayudar!
+      <div className="mt-6 py-4 text-4xl font-bold text-center tracking-widest max-w-3xl w-full text-pink-200">
+        Acá te podemos ayudar!!!
       </div>
     </div>
 
