@@ -6,6 +6,8 @@ import { SearchPlaces } from '../components/SearchPlaces'
 import { PublicLayout } from '../../common/layouts/PublicLayout'
 import { AboutAs } from '../components/AboutAs'
 import { PlaceDetail } from '../../places/components/PlaceDetail'
+import { FloatingWhatsAppButton } from '../../common/components/FloatingWhatsAppButton'
+import { FloatingBotButton } from '../../common/components/FloatingBotButton'
 
 // TODO: cambiar Home por HomePage
 export const Home = () => {
@@ -17,6 +19,8 @@ export const Home = () => {
         <SearchPlaces />
         <AboutAs />
         <PlaceDetail /> 
+        <FloatingBotButton />
+        <FloatingWhatsAppButton />
     </PublicLayout>
   )
 }
