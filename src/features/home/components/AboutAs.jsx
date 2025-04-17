@@ -18,7 +18,7 @@ export const AboutAs = () => {
 
       <div className="w-full md:w-1/2 max-w-[600px]">
         <img 
-          src="https://scontent.fmdq7-1.fna.fbcdn.net/v/t51.75761-15/488579906_17886573183246857_8034194247477906525_n.jpg?stp=dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=070lNfl48zYQ7kNvwENvx4o&_nc_oc=AdlqT5DdEcvIC-uoY6YZl7Jk7vHCoZELB1D9kYI8uTMdrVmbU93ZRoRzgMe8iK7sjKY&_nc_zt=23&_nc_ht=scontent.fmdq7-1.fna&_nc_gid=4wF17GMH6sxfRhlXRzCBVQ&oh=00_AfEYjWrvBuW-WGlGlCWU66cfukNcQVfE1DkQF5zIzcrObg&oe=67FE2C78" 
+          src="https://res.cloudinary.com/dwhdla1b4/image/upload/q_auto,f_auto/v1744895457/pcp-images/home_famila_eq3mae.jpg" 
           alt="Familia disfrutando de una salida" 
           className="w-full h-auto rounded-2xl shadow-lg"
         />

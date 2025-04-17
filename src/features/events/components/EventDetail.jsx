@@ -39,8 +39,8 @@ export const EventDetail = () => {
             <figure>
                 <img 
                     className="mx-auto w-[150px] h-[150px] rounded-full"
-                    src="https://scontent.fmdq7-1.fna.fbcdn.net/v/t39.30808-6/457247061_2233053043716147_5622555891439792087_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=vvmPuLIPO2sQ7kNvwG7qtji&_nc_oc=AdkGCEA9WpkKKgO-divqOhTqMtjGm2aMeBVN4Z9aKvlly928mQgoOO9PKq-Fm4A2Puo&_nc_zt=23&_nc_ht=scontent.fmdq7-1.fna&_nc_gid=Jwzzm1Iew5qJ5htM-w-W7g&oh=00_AfFBIDXaFTKbX1Hk93agECzB2sO0npE6lltZ8RtKw6SiQA&oe=67FB6777" 
-                    alt="iamgen" 
+                    src={ place.photoUrl }
+                    alt={ place.name }
                 />
             </figure>
 
