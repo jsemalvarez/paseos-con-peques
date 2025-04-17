@@ -5,6 +5,7 @@ import { usePlaces } from "../../places/hooks/usePlaces";
 import { useUserLogin } from "../../auth/hooks/useUserLogin"
 
 import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon } from "../../places/components/Icons"
+import dayjs from "dayjs";
 
 
 export const EventDetail = () => {
@@ -50,7 +51,7 @@ export const EventDetail = () => {
                 <div className="text-sm text-gray-600 space-y-1">
                     <div className="flex items-center gap-2">
                         <CalendarIcon />
-                        <span className="font-medium">{productDetail.date}</span> 
+                        <span className="font-medium">{ dayjs(productDetail.date).format('D [de] MMMM') }</span> 
                     </div>
                     <div className="flex items-center gap-2">
                         <ClockIcon />
@@ -61,6 +62,12 @@ export const EventDetail = () => {
                 {productDetail.description && (
                     <p className="mt-4 text-gray-700 text-sm leading-relaxed">
                         {productDetail.description}
+                    </p>
+                )}
+
+                {productDetail.artists && (
+                    <p className="mt-4 font-semibold text-gray-800 leading-relaxed">
+                        {productDetail.artists}
                     </p>
                 )}
 
@@ -116,7 +123,7 @@ export const EventDetail = () => {
                                     </>
                                 )
                             }
-                                            <div className='mt-2 flex justify-center items-center gap-6'>
+                            <div className='mt-2 flex justify-center items-center gap-6'>
                                 {
                                     place.web && (
                                         <a href={place.web} target='_blank'>

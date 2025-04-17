@@ -11,6 +11,7 @@ import { usePlaces } from '../../places/hooks/usePlaces'
 const initialForm = {
     title: "",
     description: "",
+    artists:"",
     date: "",
     timeStart: "",
     timeEnd: "",
@@ -33,6 +34,7 @@ export const EventFormPage = () => {
     const { 
         title,
         description,
+        artists,
         date,
         timeStart,
         timeEnd,
@@ -97,6 +99,14 @@ export const EventFormPage = () => {
                         name='description'
                         type='text'
                         value={description}
+                        onChange={onInputChange}
+                    />
+
+                    <InputForm 
+                        title='Artistas:'
+                        name='artists'
+                        type='text'
+                        value={artists}
                         onChange={onInputChange}
                     />
 
