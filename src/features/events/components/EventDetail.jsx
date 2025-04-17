@@ -39,8 +39,8 @@ export const EventDetail = () => {
             <figure>
                 <img 
                     className="mx-auto w-[150px] h-[150px] rounded-full"
-                    src={ place.photoUrl }
-                    alt={ place.name }
+                    src={ place?.photoUrl }
+                    alt={ place?.name }
                 />
             </figure>
 

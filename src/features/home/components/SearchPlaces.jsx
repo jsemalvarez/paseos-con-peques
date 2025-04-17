@@ -45,7 +45,7 @@ export const SearchPlaces = () => {
         placeholder="Buscar lugar..."
         value={searchingPlace}
         onChange={(e) => setSearchingPlace(e.target.value)}
-        className="w-full max-w-md p-2 border-2 border-primary rounded-lg focus:outline-hidden"
+        className="w-full max-w-md mx-6 p-2 border-2 border-primary rounded-lg focus:outline-hidden"
       />
     </div>
 
