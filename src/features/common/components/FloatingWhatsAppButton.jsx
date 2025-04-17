@@ -1,5 +1,5 @@
 export const FloatingWhatsAppButton = () => {
-    const phoneNumber = '5492233443589'; // reemplazá con tu número (con código de país, sin + ni espacios)
+    const phoneNumber = '5492233443659';
     const message = 'Hola! Quería hacerte una consulta';
   
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

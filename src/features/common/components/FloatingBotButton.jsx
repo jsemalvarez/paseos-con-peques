@@ -1,5 +1,5 @@
 export const FloatingBotButton = () => {
-    const phoneNumber = '5492233443659';
+    const phoneNumber = '5492233443589';
     const message = 'Hola';
   
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
