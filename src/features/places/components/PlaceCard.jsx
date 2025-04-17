@@ -25,15 +25,15 @@ export const PlaceCard = ({place}) => {
     }
 
     return (
-        <div className="flex flex-col w-full max-w-sm h-[400px] rounded-lg shadow-md overflow-hidden">
+        <div className="flex flex-col w-full max-w-sm h-[250px] rounded-lg shadow-md overflow-hidden">
 
-            <div className="h-1/3 w-full">
+            {/* <div className="h-1/3 w-full">
                 <img
                     src={place.photoUrl}
                     alt={place.name}
                     className="object-cover w-full h-full"
                 />
-            </div>
+            </div> */}
   
             {/* Contenido scrollable */}
             <div className="flex-1 overflow-y-auto p-4 bg-gray-100 text-gray-700">
@@ -41,6 +41,9 @@ export const PlaceCard = ({place}) => {
                 <p className='font-bold text-gray-700 -mt-1'>{place.schedules}</p>
                 <div className='-mt-1 text-gray-600 text-sm'>
                     <p>{servicesToString}</p>
+
+                <p className="text-sm text-gray-600 whitespace-pre-line mt-2">{place.description}</p>
+
                 </div>
                 {
                     place.phone && (
@@ -122,7 +125,6 @@ export const PlaceCard = ({place}) => {
                     }
                 </div>
 
-                <p className="text-sm text-gray-600 whitespace-pre-line mt-2">{place.description}</p>
             </div>
   
             {
