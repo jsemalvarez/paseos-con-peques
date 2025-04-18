@@ -49,7 +49,7 @@ export const SearchPlaces = () => {
       />
     </div>
 
-    <div className='flex flex-wrap justify-center gap-4 p-4'>
+    <div className='mx-auto flex flex-wrap justify-center gap-4 p-4 max-w-[1300px]'>
       {
         currentPlaces.map( place => ( 
           <PlaceCard key={place.id} place={place} />

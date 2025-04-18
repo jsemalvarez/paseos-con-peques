@@ -25,7 +25,8 @@ export const Markers = ({ places, handleClick }) => {
               const placeType = place.iconType || ICONS_BY_TYPE.PLAY_ROOM;
               const svgIconType = ICONS_BY_TYPE[ placeType ] || {};
 
-              const bgColor = COLORS_BY_CATEGORIES[ place.bgColor] || COLORS_BY_CATEGORIES.ENTERTIME; 
+              //TODO: guardar el nombre del color en la DB, y no el color en si
+              const bgColor = place.bgColor || COLORS_BY_CATEGORIES.ENTERTIME; 
               const icon = createSvgIcon({ bgColor, svgIconType });
 
               return (

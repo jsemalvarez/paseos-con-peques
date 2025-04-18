@@ -26,7 +26,7 @@ export const EventDetail = () => {
 
     return ( 
         <aside 
-            className={`${ isEventDetailOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-100 text-primary z-1500 transition-all`}
+            className={`${ isEventDetailOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-100 text-primary z-1700 transition-all`}
         >
             <div className="flex justify-between items-center px-6 py-1">
                 <h2 className="font-medium text-xl"></h2>
