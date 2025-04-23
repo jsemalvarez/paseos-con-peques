@@ -38,7 +38,6 @@ export const EventFormPage = () => {
         date,
         timeStart,
         timeEnd,
-        location ,
         bgColor,
         placeId,
         formState,
@@ -109,14 +108,6 @@ export const EventFormPage = () => {
                         name='artists'
                         type='text'
                         value={artists}
-                        onChange={onInputChange}
-                    />
-
-                    <InputForm 
-                        title='Lugar:'
-                        name='location'
-                        type='text'
-                        value={location}
                         onChange={onInputChange}
                     />
 
