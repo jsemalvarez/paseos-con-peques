@@ -6,7 +6,7 @@ export const startSavingNewEvent = (newEvent) => {
     return async( dispatch ) => {
         dispatch( initProcessingData() )
         const response = await eventService.saveNewEvent(newEvent);
-        dispatch( addNewEvent({id:response.id, newEvent}) )    
+        dispatch( addNewEvent({id:response.id, ...newEvent}) )    
     }
 }
 
