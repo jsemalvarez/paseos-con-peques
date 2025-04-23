@@ -82,7 +82,7 @@ export const EventFormPage = () => {
                     onSubmit={ handleNewEvent }
                 >
                     <h3 className='text-xl font-bold text-secondary tracking-wide'>
-                        {eventId ? 'Editar lugar' : 'Crear un nuevo lugar'}
+                        {eventId ? 'Editar evento' : 'Crear un nuevo evento'}
                     </h3>
 
                     <InputForm 
