@@ -94,13 +94,15 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    <InputForm 
-                        title='Descripcion:'
-                        name='description'
-                        type='text'
+                    <textarea
+                        className='mt-4 w-full border border-gray-400 hover:border-secondary focus:border-secondary p-2 rounded-xl focus:bg-secondary focus:outline-none'
+                        name="description" 
+                        rows="6" 
                         value={description}
                         onChange={onInputChange}
-                    />
+                        placeholder='descripcion del evento ....'
+                    >
+                    </textarea>
 
                     <InputForm 
                         title='Artistas:'
