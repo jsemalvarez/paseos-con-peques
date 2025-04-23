@@ -6,7 +6,7 @@ export const startSavingNewPlace = (newPlace) => {
     return async( dispatch ) => {
         dispatch( initProcessingData() )
         const response = await placeService.saveNewPlace(newPlace);
-        dispatch( addNewPlace({id:response.id, newPlace}) )    
+        dispatch( addNewPlace({id:response.id, ...newPlace}) )    
     }
 }
 
