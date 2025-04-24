@@ -37,7 +37,7 @@ export const SearchPlaces = () => {
   
 
   return (
-    <div id='searchSection' className='min-h-screen bg-secondary py-[100px]'>
+    <div id='searchSection' className='min-h-screen py-[100px]'>
 
     <div className="flex justify-center mb-6">
       <input
@@ -45,7 +45,7 @@ export const SearchPlaces = () => {
         placeholder="Buscar lugar..."
         value={searchingPlace}
         onChange={(e) => setSearchingPlace(e.target.value)}
-        className="w-full max-w-md mx-6 p-2 border-2 border-primary rounded-lg focus:outline-hidden"
+        className="w-full max-w-md mx-6 bg-secondary p-2 border-2 border-primary rounded-lg focus:outline-hidden"
       />
     </div>
 
@@ -63,7 +63,7 @@ export const SearchPlaces = () => {
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 1}
-          className="px-4 py-2 rounded-full bg-primary cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+          className="px-4 py-2 rounded-full bg-primary cursor-pointer hover:bg-indigo-900 transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Anterior
         </button>
@@ -73,7 +73,7 @@ export const SearchPlaces = () => {
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className="px-4 py-2 rounded-full bg-primary cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+          className="px-4 py-2 rounded-full bg-primary cursor-pointer hover:bg-indigo-900 transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Siguiente
         </button>

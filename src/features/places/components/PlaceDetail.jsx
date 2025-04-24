@@ -22,7 +22,7 @@ export const PlaceDetail = () => {
             <div className="flex justify-between items-center px-6 py-1 mb-2">
                 <h2 className="font-medium text-xl"></h2>
                 <span
-                    className='cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold' 
+                    className='cursor-pointer text-gray-600 text-lg font-bold transition-all duration-300 hover:text-red-500' 
                     onClick={ () => handleClosePlaceDetail() }
                 >X</span>
             </div>
@@ -71,7 +71,7 @@ export const PlaceDetail = () => {
                             </p>
                             <a
                                 target="_blank"
-                                className='block p-1 flex justify-center bg-green-700 text-white rounded-full' 
+                                className='block p-1 flex justify-center bg-green-700 text-white rounded-full transition-all duration-300 hover:bg-green-600' 
                                 href={`https://wa.me/${placeDetail.whatsapp}`                                
                             }>ir a Whatsapp</a>
                         </>
@@ -86,7 +86,7 @@ export const PlaceDetail = () => {
                             </p>
                             <a
                                 target="_blank"
-                                className='block p-1 flex justify-center bg-blue-600 text-white rounded-full' 
+                                className='block p-1 flex justify-center bg-blue-600 text-white rounded-full transition-all duration-300 hover:bg-blue-500' 
                                 href={`https://www.google.com/maps?q=${placeDetail.position.lat},${placeDetail.position.lng}`
                             }>ver en mapa</a>
                         </>

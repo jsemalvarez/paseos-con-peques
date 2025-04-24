@@ -30,7 +30,7 @@ export const CalendarSection = () => {
           placeholder="Buscar evento..."
           value={searchingEvent}
           onChange={(e) => setSearchingEvent(e.target.value)}
-          className="w-full max-w-md mx-6 p-2 border-2 border-secondary rounded-lg focus:outline-hidden"
+          className="w-full max-w-md mx-6 bg-primary p-2 border-2 border-secondary rounded-lg focus:outline-hidden"
         />
       </div>
 
