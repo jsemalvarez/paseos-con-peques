@@ -57,7 +57,7 @@ export const MapSection = () => {
           </button>
           <button
            className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('allDay')}
+           onClick={() => setCategory('all_day')}
           >
              <span className="text-sm">Pasar el Dia</span>
           </button>
