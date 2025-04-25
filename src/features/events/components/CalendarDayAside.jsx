@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { ClockIcon, LocationIcon } from "../../places/components/Icons"
+import { ClockIcon, LocationIcon, XMarkIcon } from "../../places/components/Icons"
 import { useEvents } from "../hooks/useEvents"
 
 export const CalendarDayAside = () => {
@@ -15,7 +15,7 @@ export const CalendarDayAside = () => {
                 <span
                     className='cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold' 
                     onClick={ () => handleCloseCalendarDayAside() }
-                    >X</span>
+                    ><XMarkIcon style='transition-all duration-300 hover:text-red-600' /></span>
             </div>
             <div className="flex-1 p-4 space-y-4 overflow-y-auto">
                 {

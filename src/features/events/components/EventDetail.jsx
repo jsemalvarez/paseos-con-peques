@@ -4,7 +4,7 @@ import { useEvents } from "../hooks/useEvents"
 import { usePlaces } from "../../places/hooks/usePlaces";
 import { useUserLogin } from "../../auth/hooks/useUserLogin"
 
-import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon } from "../../places/components/Icons"
+import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
 import dayjs from "dayjs";
 
 
@@ -33,7 +33,7 @@ export const EventDetail = () => {
                 <span
                     className='cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold' 
                     onClick={ () => handleCloseEventDetail() }
-                >X</span>
+                ><XMarkIcon style='transition-all duration-300 hover:text-red-600' /></span>
             </div>
 
             <figure>
@@ -85,7 +85,7 @@ export const EventDetail = () => {
                                         {
                                             isMobile && (
                                                 <a
-                                                    className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full' 
+                                                    className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full transition-all duration-300 hover:bg-indigo-700'
                                                     href={`tel:+54223${place.phone}`}
                                                 >Llamar</a>
                                             )
@@ -102,7 +102,7 @@ export const EventDetail = () => {
                                         </p>
                                         <a
                                             target="_blank"
-                                            className='block p-1 flex justify-center bg-green-700 text-white rounded-full' 
+                                            className='block p-1 flex justify-center bg-green-700 text-white rounded-full transition-all duration-300 hover:bg-green-600' 
                                             href={`https://wa.me/${place.whatsapp}`                                
                                         }>ir a Whatsapp</a>
                                     </>
@@ -117,7 +117,7 @@ export const EventDetail = () => {
                                         </p>
                                         <a
                                             target="_blank"
-                                            className='block p-1 flex justify-center bg-blue-600 text-white rounded-full' 
+                                            className='block p-1 flex justify-center bg-blue-600 text-white rounded-full transition-all duration-300 hover:bg-blue-500' 
                                             href={`https://www.google.com/maps?q=${place.position.lat},${place.position.lng}`
                                         }>ver en mapa</a>
                                     </>

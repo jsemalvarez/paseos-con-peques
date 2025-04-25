@@ -1,4 +1,4 @@
-import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon } from "../../places/components/Icons"
+import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
 import { usePlaces } from "../hooks/usePlaces"
 
 
@@ -22,9 +22,9 @@ export const PlaceDetail = () => {
             <div className="flex justify-between items-center px-6 py-1 mb-2">
                 <h2 className="font-medium text-xl"></h2>
                 <span
-                    className='cursor-pointer text-gray-600 text-lg font-bold transition-all duration-300 hover:text-red-500' 
+                    className='cursor-pointer text-gray-600 text-lg font-bold' 
                     onClick={ () => handleClosePlaceDetail() }
-                >X</span>
+                ><XMarkIcon style='transition-all duration-300 hover:text-red-600' /></span>
             </div>
 
             <figure className="w-full mb-2">

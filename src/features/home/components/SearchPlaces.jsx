@@ -67,7 +67,7 @@ export const SearchPlaces = () => {
         >
           Anterior
         </button>
-        <span className="text-sm text-gray-700">
+        <span className="text-sm text-indigo-100">
           Página {currentPage} de {totalPages}
         </span>
         <button
