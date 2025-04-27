@@ -264,7 +264,7 @@ export const PlaceFormPage = () => {
                     </div>
 
                     <div className='pt-2'>
-                        <label htmlFor="categorias" class="block font-medium text-gray-700">
+                        <label htmlFor="categorias" className="block font-medium text-gray-700">
                             Categorías:
                         </label>
                         <select
@@ -273,7 +273,7 @@ export const PlaceFormPage = () => {
                             multiple
                             value={categories}
                             onChange={onInputChange}
-                            class="w-full h-35 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                            className="w-full h-35 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
                         >
                             {formatedCategoies.map((category) => (
                             <option 
@@ -284,11 +284,11 @@ export const PlaceFormPage = () => {
                             </option>
                             ))}
                         </select>
-                        <p class="text-sm text-gray-500 mt-1">Usá Ctrl para seleccionar varias</p>
+                        <p className="text-sm text-gray-500 mt-1">Usá Ctrl para seleccionar varias</p>
                     </div>
 
                     <div className='pt-2'>
-                        <label htmlFor="bgColor" class="block font-medium text-gray-700">
+                        <label htmlFor="bgColor" className="block font-medium text-gray-700">
                             Color del icono:
                         </label>
                         <select
@@ -296,7 +296,7 @@ export const PlaceFormPage = () => {
                             name='bgColor'
                             value={bgColor}
                             onChange={onInputChange}
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
                         >
                             {formatedBgColors.map((bgColor) => (
                             <option 
@@ -310,7 +310,7 @@ export const PlaceFormPage = () => {
                     </div>
 
                     <div className='pt-2'>
-                        <label htmlFor="iconType" class="block font-medium text-gray-700">
+                        <label htmlFor="iconType" className="block font-medium text-gray-700">
                             Tipo de icono:
                         </label>
                         <select
@@ -318,7 +318,7 @@ export const PlaceFormPage = () => {
                             name='iconType'
                             value={iconType}
                             onChange={onInputChange}
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
                         >
                             {formatedIconsTypes.map((iconType) => (
                             <option 
@@ -331,14 +331,15 @@ export const PlaceFormPage = () => {
                         </select>
                     </div>
 
-
-                    <InputForm 
-                        title='Descripción:'
-                        name='description'
-                        type='text'
+                    <textarea
+                        className='mt-4 w-full border border-gray-400 hover:border-secondary focus:border-secondary p-2 rounded-xl focus:bg-secondary focus:outline-none'
+                        name="description" 
+                        rows="6" 
                         value={description}
                         onChange={onInputChange}
-                    />
+                        placeholder='descripcion de lugar ....'
+                    >
+                    </textarea>
 
                     <button
                         className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'

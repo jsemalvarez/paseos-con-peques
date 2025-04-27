@@ -11,6 +11,7 @@ import { usePlaces } from '../../places/hooks/usePlaces'
 const initialForm = {
     title: "",
     description: "",
+    artists:"",
     date: "",
     timeStart: "",
     timeEnd: "",
@@ -33,10 +34,10 @@ export const EventFormPage = () => {
     const { 
         title,
         description,
+        artists,
         date,
         timeStart,
         timeEnd,
-        location ,
         bgColor,
         placeId,
         formState,
@@ -81,7 +82,7 @@ export const EventFormPage = () => {
                     onSubmit={ handleNewEvent }
                 >
                     <h3 className='text-xl font-bold text-secondary tracking-wide'>
-                        {eventId ? 'Editar lugar' : 'Crear un nuevo lugar'}
+                        {eventId ? 'Editar evento' : 'Crear un nuevo evento'}
                     </h3>
 
                     <InputForm 
@@ -92,19 +93,21 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    <InputForm 
-                        title='Descripcion:'
-                        name='description'
-                        type='text'
+                    <textarea
+                        className='mt-4 w-full border border-gray-400 hover:border-secondary focus:border-secondary p-2 rounded-xl focus:bg-secondary focus:outline-none'
+                        name="description" 
+                        rows="6" 
                         value={description}
                         onChange={onInputChange}
-                    />
+                        placeholder='descripcion del evento ....'
+                    >
+                    </textarea>
 
                     <InputForm 
-                        title='Lugar:'
-                        name='location'
+                        title='Artistas:'
+                        name='artists'
                         type='text'
-                        value={location}
+                        value={artists}
                         onChange={onInputChange}
                     />
 
@@ -141,7 +144,7 @@ export const EventFormPage = () => {
                     />
 
                     <div className='pt-2'>
-                        <label htmlFor="placeId" class="block font-medium text-gray-700">
+                        <label htmlFor="placeId" className="block font-medium text-gray-700">
                             Lugares:
                         </label>
                         <select
@@ -149,7 +152,7 @@ export const EventFormPage = () => {
                             name='placeId'
                             value={placeId}
                             onChange={onInputChange}
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
                         >
                             {places.map((place) => (
                                 <option 

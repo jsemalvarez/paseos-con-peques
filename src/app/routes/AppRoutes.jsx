@@ -6,6 +6,7 @@ import { useCheckAuth } from '../../features/auth/hooks/useCheckAuth';
 import { useEvents } from '../../features/events/hooks/useEvents';
 import { usePlaces } from '../../features/places/hooks/usePlaces';
 import { useEffect } from 'react';
+import { Loader } from '../../features/common/components/Loader';
 
 
 export const AppRoutes = () => {
@@ -21,6 +22,14 @@ export const AppRoutes = () => {
     },[])
 
     const isAuthenticated = authState == 'authenticated';
+
+    const isChecking = authState == 'checking';
+
+    if( isChecking ){
+        return(
+            < Loader />
+        )
+    }
 
     return (
         <Routes>

@@ -4,7 +4,8 @@ import { useEvents } from "../hooks/useEvents"
 import { usePlaces } from "../../places/hooks/usePlaces";
 import { useUserLogin } from "../../auth/hooks/useUserLogin"
 
-import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon } from "../../places/components/Icons"
+import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
+import dayjs from "dayjs";
 
 
 export const EventDetail = () => {
@@ -25,21 +26,21 @@ export const EventDetail = () => {
 
     return ( 
         <aside 
-            className={`${ isEventDetailOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-100 text-primary z-1500 transition-all`}
+            className={`${ isEventDetailOpen? 'flex' : 'hidden'} top-0 w-[360px] h-full flex-col fixed right-0 border-l-4 border-secondary bg-gray-100 text-primary z-1700 transition-all`}
         >
             <div className="flex justify-between items-center px-6 py-1">
                 <h2 className="font-medium text-xl"></h2>
                 <span
                     className='cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold' 
                     onClick={ () => handleCloseEventDetail() }
-                >X</span>
+                ><XMarkIcon style='transition-all duration-300 hover:text-red-600' /></span>
             </div>
 
             <figure>
                 <img 
                     className="mx-auto w-[150px] h-[150px] rounded-full"
-                    src="https://scontent.fmdq7-1.fna.fbcdn.net/v/t39.30808-6/457247061_2233053043716147_5622555891439792087_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=vvmPuLIPO2sQ7kNvwG7qtji&_nc_oc=AdkGCEA9WpkKKgO-divqOhTqMtjGm2aMeBVN4Z9aKvlly928mQgoOO9PKq-Fm4A2Puo&_nc_zt=23&_nc_ht=scontent.fmdq7-1.fna&_nc_gid=Jwzzm1Iew5qJ5htM-w-W7g&oh=00_AfFBIDXaFTKbX1Hk93agECzB2sO0npE6lltZ8RtKw6SiQA&oe=67FB6777" 
-                    alt="iamgen" 
+                    src={ place?.photoUrl }
+                    alt={ place?.name }
                 />
             </figure>
 
@@ -50,7 +51,7 @@ export const EventDetail = () => {
                 <div className="text-sm text-gray-600 space-y-1">
                     <div className="flex items-center gap-2">
                         <CalendarIcon />
-                        <span className="font-medium">{productDetail.date}</span> 
+                        <span className="font-medium">{ dayjs(productDetail.date).format('D [de] MMMM') }</span> 
                     </div>
                     <div className="flex items-center gap-2">
                         <ClockIcon />
@@ -61,6 +62,12 @@ export const EventDetail = () => {
                 {productDetail.description && (
                     <p className="mt-4 text-gray-700 text-sm leading-relaxed">
                         {productDetail.description}
+                    </p>
+                )}
+
+                {productDetail.artists && (
+                    <p className="mt-4 font-semibold text-gray-800 leading-relaxed">
+                        {productDetail.artists}
                     </p>
                 )}
 
@@ -78,7 +85,7 @@ export const EventDetail = () => {
                                         {
                                             isMobile && (
                                                 <a
-                                                    className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full' 
+                                                    className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full transition-all duration-300 hover:bg-indigo-700'
                                                     href={`tel:+54223${place.phone}`}
                                                 >Llamar</a>
                                             )
@@ -95,7 +102,7 @@ export const EventDetail = () => {
                                         </p>
                                         <a
                                             target="_blank"
-                                            className='block p-1 flex justify-center bg-green-700 text-white rounded-full' 
+                                            className='block p-1 flex justify-center bg-green-700 text-white rounded-full transition-all duration-300 hover:bg-green-600' 
                                             href={`https://wa.me/${place.whatsapp}`                                
                                         }>ir a Whatsapp</a>
                                     </>
@@ -110,13 +117,13 @@ export const EventDetail = () => {
                                         </p>
                                         <a
                                             target="_blank"
-                                            className='block p-1 flex justify-center bg-blue-600 text-white rounded-full' 
+                                            className='block p-1 flex justify-center bg-blue-600 text-white rounded-full transition-all duration-300 hover:bg-blue-500' 
                                             href={`https://www.google.com/maps?q=${place.position.lat},${place.position.lng}`
                                         }>ver en mapa</a>
                                     </>
                                 )
                             }
-                                            <div className='mt-2 flex justify-center items-center gap-6'>
+                            <div className='mt-2 flex justify-center items-center gap-6'>
                                 {
                                     place.web && (
                                         <a href={place.web} target='_blank'>

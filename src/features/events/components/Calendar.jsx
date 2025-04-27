@@ -1,6 +1,7 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 import 'dayjs/locale/es'; // importa el idioma
+import { ChevronLeftIcon, ChevronRightIcon } from "../../places/components/Icons";
 dayjs.locale('es'); // lo setea como predeterminado
 
 export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAside}) => {
@@ -65,13 +66,17 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
   };
 
   return (
-    <div className="w-9/10 border rounded">
+    <div className="w-full border rounded bg-primary">
       <div className="flex justify-between items-center px-4 py-2">
-        <button className="cursor-pointer" onClick={handlePrevMonth}>←</button>
+        <button className="cursor-pointer" onClick={handlePrevMonth}>
+          <ChevronLeftIcon />
+        </button>
         <h2 className="font-bold text-secondary">
           {currentDate.format("MMMM YYYY")}
         </h2>
-        <button className="cursor-pointer" onClick={handleNextMonth}>→</button>
+        <button className="cursor-pointer" onClick={handleNextMonth}> 
+          <ChevronRightIcon />
+        </button>
       </div>
 
       <div className="grid grid-cols-7 text-center text-sm text-secondary">
