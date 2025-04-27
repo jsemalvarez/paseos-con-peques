@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: oklch(0.257 0.09 281.288); /*indigo-950*/
+    --color-secondary: oklch(0.712 0.194 13.428); /*rose-400*/
+}
+
+.btn-primary {
+    @apply border border-secondary px-3 text-secondary rounded-sm cursor-pointer hover:text-primary hover:bg-secondary;
+}
