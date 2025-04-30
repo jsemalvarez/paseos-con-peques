@@ -60,7 +60,7 @@ export const EventDetail = () => {
                 </div>
 
                 {eventDetail.description && (
-                    <p className="mt-4 text-gray-700 text-sm leading-relaxed">
+                    <p className="mt-4 text-gray-700 text-sm leading-relaxed whitespace-pre-line">
                         {eventDetail.description}
                     </p>
                 )}
