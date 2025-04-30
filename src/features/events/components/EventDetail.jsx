@@ -11,12 +11,12 @@ import dayjs from "dayjs";
 export const EventDetail = () => {
 
     const {authState } = useUserLogin()    
-    const {  isProcessing, isEventDetailOpen, productDetail, deleteEvent, handleCloseEventDetail } = useEvents()
+    const {  isProcessing, isEventDetailOpen, eventDetail, deleteEvent, handleCloseEventDetail } = useEvents()
     const { handleFindPlaceById } = usePlaces();
     
     const isAuthenticated = authState == 'authenticated';
 
-    const place = handleFindPlaceById(productDetail.placeId);
+    const place = handleFindPlaceById(eventDetail.placeId);
   
     const handleDelete = (id) => {
         deleteEvent(id)
@@ -46,28 +46,28 @@ export const EventDetail = () => {
 
 
             <div className="p-6 space-y-3 flex-1 overflow-y-auto">
-                <h3 className="text-2xl font-bold text-primary capitalize">{productDetail.title}</h3>
+                <h3 className="text-2xl font-bold text-primary capitalize">{eventDetail.title}</h3>
                 
                 <div className="text-sm text-gray-600 space-y-1">
                     <div className="flex items-center gap-2">
                         <CalendarIcon />
-                        <span className="font-medium">{ dayjs(productDetail.date).format('D [de] MMMM') }</span> 
+                        <span className="font-medium">{ dayjs(eventDetail.date).format('D [de] MMMM') }</span> 
                     </div>
                     <div className="flex items-center gap-2">
                         <ClockIcon />
-                        <span className="font-medium">{productDetail.timeStart} hs</span> 
+                        <span className="font-medium">{eventDetail.timeStart} hs</span> 
                     </div>
                 </div>
 
-                {productDetail.description && (
+                {eventDetail.description && (
                     <p className="mt-4 text-gray-700 text-sm leading-relaxed">
-                        {productDetail.description}
+                        {eventDetail.description}
                     </p>
                 )}
 
-                {productDetail.artists && (
+                {eventDetail.artists && (
                     <p className="mt-4 font-semibold text-gray-800 leading-relaxed">
-                        {productDetail.artists}
+                        {eventDetail.artists}
                     </p>
                 )}
 
@@ -163,13 +163,13 @@ export const EventDetail = () => {
                 isAuthenticated && (
                     <footer className="flex flex-col px-6 mb-6">
                         <Link 
-                            to={`/events/edit/${ productDetail.id }`}
+                            to={`/events/edit/${ eventDetail.id }`}
                             className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 mb-2'
                         >Editar</Link>
                         {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
                         <button 
                             className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed'
-                            onClick={ () => handleDelete( productDetail.id )}
+                            onClick={ () => handleDelete( eventDetail.id )}
                             disabled={ isProcessing }
                         >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
                     </footer>

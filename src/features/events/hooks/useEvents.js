@@ -7,7 +7,7 @@ export const useEvents = () => {
     const dispatch = useDispatch();
     const { 
         events, 
-        productDetail, 
+        eventDetail, 
         isProcessing, 
         isEventDetailOpen, 
         isCalendarDayAsideOpen, 
@@ -52,7 +52,7 @@ export const useEvents = () => {
             isProcessing,
             isEventDetailOpen,
             isCalendarDayAsideOpen,
-            productDetail,
+            eventDetail,
             calendarDayEvents,
             saveEvent,
             getEvents,

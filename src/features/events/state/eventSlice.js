@@ -6,7 +6,7 @@ export const eventSlice = createSlice({
     initialState: {
         isProcessing : false,
         events:[],
-        productDetail:{},
+        eventDetail:{},
         calendarDayEvents:[],
         isEventDetailOpen: false,
         isCalendarDayAsideOpen: false
@@ -43,12 +43,12 @@ export const eventSlice = createSlice({
             state.isProcessing = false;
         },
         openEventDetail:(state, action) => {
-            state.productDetail = action.payload
+            state.eventDetail = action.payload
             state.isEventDetailOpen = true
         },
         closeEventDetail:(state) => {
             state.isEventDetailOpen = false
-            state.productDetail = {}
+            state.eventDetail = {}
         },
         openCalendarDayAside:(state, action) => {
             state.calendarDayEvents = action.payload
