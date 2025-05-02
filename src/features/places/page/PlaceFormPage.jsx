@@ -5,7 +5,7 @@ import { useForm } from '../../common/hooks/useForm'
 import { usePlaces } from '../hooks/usePlaces'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
-import { InputForm } from '../../common/components/InputForm'
+import { InputForm } from '../../common/components/form/InputForm'
 import { MapView } from '../../common/components/map/MapView'
 import { DraggableMarker } from '../../common/components/map/DraggableMarker'
 import { initLatLng } from '../../common/components/map/mapConstants'

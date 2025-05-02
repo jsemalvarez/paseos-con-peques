@@ -5,8 +5,9 @@ import { useForm } from '../../common/hooks/useForm'
 import { useEvents } from '../hooks/useEvents'
 
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
-import { InputForm } from '../../common/components/InputForm'
+import { InputForm } from '../../common/components/form/InputForm'
 import { usePlaces } from '../../places/hooks/usePlaces'
+import { TextareaField } from '../../common/components/form/TextareaField'
 
 const initialForm = {
     title: "",
@@ -93,7 +94,7 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    <textarea
+                    {/* <textarea
                         className='mt-4 w-full border border-gray-400 hover:border-secondary focus:border-secondary p-2 rounded-xl focus:bg-secondary focus:outline-none'
                         name="description" 
                         rows="6" 
@@ -101,7 +102,14 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                         placeholder='descripcion del evento ....'
                     >
-                    </textarea>
+                    </textarea> */}
+                    <TextareaField 
+                        name="description" 
+                        rows="6" 
+                        value={description}
+                        onChange={onInputChange}
+                        placeholder='descripcion del evento ....'
+                    />
 
                     <InputForm 
                         title='Artistas:'

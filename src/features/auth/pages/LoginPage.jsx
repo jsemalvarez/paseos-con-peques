@@ -4,7 +4,7 @@ import { useForm } from '../../common/hooks/useForm'
 import { useUserLogin } from '../hooks/useUserLogin'
 
 import { Layout } from '../layout/Layout'
-import { InputForm } from '../../common/components/InputForm'
+import { InputForm } from '../../common/components/form/InputForm'
 
 const initialForm  = {
   email:'email@gmail.com',
