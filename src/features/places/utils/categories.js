@@ -1,18 +1,18 @@
 
 export const CATEGORIES = {
-    ENTERTIME:'entertime',
-    OUTDOORS:'outdoors',
-    CULTURE:'culture',
-    FOOD:'food',
     ALL_DAY:'all_day',
+    CULTURE:'culture',
+    ENTERTIME:'entertime',
+    FOOD:'food',
+    OUTDOORS:'outdoors',
     SUPERVISION:'supervision',
 }
 
 export const COLORS_BY_CATEGORIES = {
-  ENTERTIME:'#FFA500',
-  OUTDOORS:'#00BCD4',
+  // ALL_DAY:'all_day',
   CULTURE:'#9575CD',
+  ENTERTIME:'#FFA500',
   FOOD:'#8BC34A',
-  ALL_DAY:'all_day',
+  OUTDOORS:'#00BCD4',
   SUPERVISION:'#F48FB1',
 }
