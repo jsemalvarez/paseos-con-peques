@@ -10,7 +10,7 @@ export const CheckboxField = ({ label, name, checked, onChange, className = '' }
                 onChange={onChange}
                 className="accent-indigo-600 w-4 h-4"
             />
-            {label}
+                {label}
             </label>
         </div>
     );

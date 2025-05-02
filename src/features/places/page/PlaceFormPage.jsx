@@ -11,6 +11,8 @@ import { DraggableMarker } from '../../common/components/map/DraggableMarker'
 import { initLatLng } from '../../common/components/map/mapConstants'
 import { CATEGORIES, COLORS_BY_CATEGORIES } from '../utils/categories'
 import { ICONS_BY_TYPE } from '../utils/iconsByType'
+import { TextareaField } from '../../common/components/form/TextareaField'
+import { CheckboxField } from '../../common/components/form/CheckboxField'
 
 const initialForm = {
     name: '',
@@ -206,7 +208,6 @@ export const PlaceFormPage = () => {
                         onChange={onInputChange}
                     />
 
-
                     <InputForm 
                         title='Link de video'
                         name='videoLink'
@@ -215,54 +216,35 @@ export const PlaceFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    <div className='pt-2'>
-                        <label>
-                            <input 
-                                type="checkbox" 
-                                name='hasFood'
-                                checked={hasFood}
-                                onChange={onInputChange}
-                            />
-                            Gastronomia
-                        </label>
-                    </div>
+                    <CheckboxField 
+                        label='Gastronomía'
+                        name='hasFood'
+                        checked={hasFood}
+                        onChange={onInputChange}
+                    />
 
-                    <div className='pt-2'>
-                        <label>
-                            <input 
-                                type="checkbox" 
-                                name='hasShow'
-                                checked={hasShow}
-                                onChange={onInputChange}
-                            />
-                            Show
-                        </label>
-                    </div>
+                    <CheckboxField 
+                        label='Show'
+                        name='hasShow'
+                        checked={hasShow}
+                        onChange={onInputChange}
+                    />
 
-                    <div className='pt-2'>
-                        <label>
-                            <input 
-                                type="checkbox" 
-                                name='hasGames'
-                                checked={hasGames}
-                                onChange={onInputChange}
-                            />
-                            Juegos
-                        </label>
-                    </div>
+                    <CheckboxField 
+                        label='Juegos'
+                        name='hasGames'
+                        checked={hasGames}
+                        onChange={onInputChange}
+                    />
 
-                    <div className='pt-2'>
-                        <label>
-                            <input 
-                                type="checkbox" 
-                                name='hasSupervision'
-                                checked={hasSupervision}
-                                onChange={onInputChange}
-                            />
-                            Profes a cargo
-                        </label>
-                    </div>
+                    <CheckboxField 
+                        label='Profes a cargo'
+                        name='hasSupervision'
+                        checked={hasSupervision}
+                        onChange={onInputChange}
+                    />
 
+                    {/* TODO: pasar a un componente */}
                     <div className='pt-2'>
                         <label htmlFor="categorias" className="block font-medium text-gray-700">
                             Categorías:
@@ -287,6 +269,7 @@ export const PlaceFormPage = () => {
                         <p className="text-sm text-gray-500 mt-1">Usá Ctrl para seleccionar varias</p>
                     </div>
 
+                    {/* TODO: pasar a un componente */}
                     <div className='pt-2'>
                         <label htmlFor="bgColor" className="block font-medium text-gray-700">
                             Color del icono:
@@ -309,6 +292,7 @@ export const PlaceFormPage = () => {
                         </select>
                     </div>
 
+                    {/* TODO: pasar a un componente */}
                     <div className='pt-2'>
                         <label htmlFor="iconType" className="block font-medium text-gray-700">
                             Tipo de icono:
@@ -331,15 +315,12 @@ export const PlaceFormPage = () => {
                         </select>
                     </div>
 
-                    <textarea
-                        className='mt-4 w-full border border-gray-400 hover:border-secondary focus:border-secondary p-2 rounded-xl focus:bg-secondary focus:outline-none'
-                        name="description" 
-                        rows="6" 
+                    <TextareaField 
+                        name="description"
                         value={description}
                         onChange={onInputChange}
                         placeholder='descripcion de lugar ....'
-                    >
-                    </textarea>
+                    />
 
                     <button
                         className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
