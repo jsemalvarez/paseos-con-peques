@@ -1,3 +1,5 @@
+//TODO: los iconos tienen que estar en a carpeta de common
+
 export const WebIcon = () => {
     return (
         <svg 

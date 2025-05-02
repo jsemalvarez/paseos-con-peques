@@ -27,6 +27,7 @@ export const Markers = ({ places, handleClick }) => {
 
               //TODO: guardar el nombre del color en la DB, y no el color en si
               const bgColor = place.bgColor || COLORS_BY_CATEGORIES.ENTERTIME; 
+              //TODO: createSvgIcon tiene que estar en este directorio
               const icon = createSvgIcon({ bgColor, svgIconType });
 
               return (
