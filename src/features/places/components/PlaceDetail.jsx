@@ -53,10 +53,7 @@ export const PlaceDetail = () => {
                             </p>
                             {
                                 isMobile && (
-                                    <a
-                                        className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full' 
-                                        href={`tel:+54223${placeDetail.phone}`}
-                                    >Llamar</a>
+                                    <CallButton phone={placeDetail.phone} />
                                 )
                             }
                         </>

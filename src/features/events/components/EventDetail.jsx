@@ -6,6 +6,7 @@ import { useUserLogin } from "../../auth/hooks/useUserLogin"
 
 import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
 import dayjs from "dayjs";
+import { CallButton } from "../../common/components/buttons/CallButton";
 
 
 export const EventDetail = () => {
@@ -84,10 +85,7 @@ export const EventDetail = () => {
                                         </p>
                                         {
                                             isMobile && (
-                                                <a
-                                                    className='block p-1 flex justify-center bg-indigo-800 text-white rounded-full transition-all duration-300 hover:bg-indigo-700'
-                                                    href={`tel:+54223${place.phone}`}
-                                                >Llamar</a>
+                                                <CallButton phone={place.phone} />
                                             )
                                         }
                                     </>
