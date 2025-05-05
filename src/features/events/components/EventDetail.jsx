@@ -7,6 +7,7 @@ import { useUserLogin } from "../../auth/hooks/useUserLogin"
 import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
 import dayjs from "dayjs";
 import { CallButton } from "../../common/components/buttons/CallButton";
+import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
 
 
 export const EventDetail = () => {
@@ -113,11 +114,7 @@ export const EventDetail = () => {
                                             <span className='text-gray-500'>Direccion: </span>
                                             {place.address}
                                         </p>
-                                        <a
-                                            target="_blank"
-                                            className='block p-1 flex justify-center bg-blue-600 text-white rounded-full transition-all duration-300 hover:bg-blue-500' 
-                                            href={`https://www.google.com/maps?q=${place.position.lat},${place.position.lng}`
-                                        }>ver en mapa</a>
+                                        <ViewOnMapButton position={ place.position } />
                                     </>
                                 )
                             }

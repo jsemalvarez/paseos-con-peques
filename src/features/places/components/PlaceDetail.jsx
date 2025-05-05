@@ -1,3 +1,4 @@
+import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
 import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
 import { usePlaces } from "../hooks/usePlaces"
 
@@ -81,11 +82,7 @@ export const PlaceDetail = () => {
                                 <span className='text-gray-500'>Direccion: </span>
                                 {placeDetail.address}
                             </p>
-                            <a
-                                target="_blank"
-                                className='block p-1 flex justify-center bg-blue-600 text-white rounded-full transition-all duration-300 hover:bg-blue-500' 
-                                href={`https://www.google.com/maps?q=${placeDetail.position.lat},${placeDetail.position.lng}`
-                            }>ver en mapa</a>
+                            <ViewOnMapButton position={ placeDetail.position } />
                         </>
                     )
                 }

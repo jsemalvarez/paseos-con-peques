@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useUserLogin } from '../../auth/hooks/useUserLogin'
 import { usePlaces } from '../hooks/usePlaces'
 import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon } from './Icons'
+import { ViewOnMapButton } from '../../common/components/buttons/ViewOnMapButton'
 
 export const PlaceCard = ({place}) => {
 
@@ -82,11 +83,7 @@ export const PlaceCard = ({place}) => {
                                 <span className='text-gray-500'>Direccion: </span>
                                 {place.address}
                             </p>
-                            <a
-                                target="_blank"
-                                className='block p-1 flex justify-center bg-blue-600 text-white rounded-full' 
-                                href={`https://www.google.com/maps?q=${place.position.lat},${place.position.lng}`
-                            }>ver en mapa</a>
+                            <ViewOnMapButton position={ place.position } />
                         </>
                     )
                 }
