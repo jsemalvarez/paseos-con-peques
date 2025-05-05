@@ -1,4 +1,5 @@
 import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
+import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
 import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
 import { usePlaces } from "../hooks/usePlaces"
 
@@ -67,11 +68,7 @@ export const PlaceDetail = () => {
                                 <span className='text-gray-500'>Whatsapp: </span>
                                 {placeDetail.whatsapp}
                             </p>
-                            <a
-                                target="_blank"
-                                className='block p-1 flex justify-center bg-green-700 text-white rounded-full transition-all duration-300 hover:bg-green-600' 
-                                href={`https://wa.me/${placeDetail.whatsapp}`                                
-                            }>ir a Whatsapp</a>
+                            <WhatsappButton whatsapp={ placeDetail.whatsapp } />
                         </>
                     )
                 }

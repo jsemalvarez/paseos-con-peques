@@ -4,6 +4,7 @@ import { useUserLogin } from '../../auth/hooks/useUserLogin'
 import { usePlaces } from '../hooks/usePlaces'
 import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon } from './Icons'
 import { ViewOnMapButton } from '../../common/components/buttons/ViewOnMapButton'
+import { WhatsappButton } from '../../common/components/buttons/WhatsappButton'
 
 export const PlaceCard = ({place}) => {
 
@@ -68,11 +69,7 @@ export const PlaceCard = ({place}) => {
                                 <span className='text-gray-500'>Whatsapp: </span>
                                 {place.whatsapp}
                             </p>
-                            <a
-                                target="_blank"
-                                className='block p-1 flex justify-center bg-green-700 text-white rounded-full' 
-                                href={`https://wa.me/${place.whatsapp}`                                
-                            }>ir a Whatsapp</a>
+                            <WhatsappButton whatsapp={ place.whatsapp } />
                         </>
                     )
                 }

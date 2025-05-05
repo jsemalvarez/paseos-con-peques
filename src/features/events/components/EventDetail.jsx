@@ -99,11 +99,7 @@ export const EventDetail = () => {
                                             <span className='text-gray-500'>Whatsapp: </span>
                                             {place.whatsapp}
                                         </p>
-                                        <a
-                                            target="_blank"
-                                            className='block p-1 flex justify-center bg-green-700 text-white rounded-full transition-all duration-300 hover:bg-green-600' 
-                                            href={`https://wa.me/${place.whatsapp}`                                
-                                        }>ir a Whatsapp</a>
+                                        <WhatsappButton whatsapp={ place.whatsapp } />
                                     </>
                                 )
                             }
