@@ -8,6 +8,7 @@ import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, Vid
 import dayjs from "dayjs";
 import { CallButton } from "../../common/components/buttons/CallButton";
 import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
+import { useIsMobile } from "../../common/hooks/useIsMobile";
 
 
 export const EventDetail = () => {
@@ -24,7 +25,7 @@ export const EventDetail = () => {
         deleteEvent(id)
     }
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isMobile = useIsMobile();
 
     return ( 
         <aside 

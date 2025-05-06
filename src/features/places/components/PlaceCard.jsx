@@ -6,6 +6,7 @@ import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon } from './Icons'
 import { ViewOnMapButton } from '../../common/components/buttons/ViewOnMapButton'
 import { WhatsappButton } from '../../common/components/buttons/WhatsappButton'
 import { CallButton } from '../../common/components/buttons/CallButton'
+import { useIsMobile } from '../../common/hooks/useIsMobile'
 
 export const PlaceCard = ({place}) => {
 
@@ -21,7 +22,7 @@ export const PlaceCard = ({place}) => {
         place.hasSupervision && "Profes a cargo"
       ].filter(Boolean).join(" / ");
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isMobile = useIsMobile();
 
     const handleDelete = (id) => {
         deletePlace(id)
