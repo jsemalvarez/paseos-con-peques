@@ -129,7 +129,7 @@ export const PlaceCard = ({place}) => {
                         >Editar</Link>
                         {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
                         <button 
-                            className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed'
+                            className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed hover:bg-red-400'
                             onClick={ () => handleDelete(place.id) }
                             disabled={ isProcessing }
                         >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
