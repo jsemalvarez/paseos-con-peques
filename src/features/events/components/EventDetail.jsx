@@ -156,7 +156,7 @@ export const EventDetail = () => {
                     <footer className="flex flex-col px-6 mb-6">
                         <Link 
                             to={`/events/edit/${ eventDetail.id }`}
-                            className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 mb-2'
+                            className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 mb-2 hover:bg-yellow-400'
                         >Editar</Link>
                         {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
                         <button 

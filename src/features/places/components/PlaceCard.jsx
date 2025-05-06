@@ -125,7 +125,7 @@ export const PlaceCard = ({place}) => {
                     <div className="flex gap-2 p-2 bg-red-300 border-t text-sm">
                         <Link 
                             to={`/places/edit/${place.id}`}
-                            className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700'
+                            className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 hover:bg-yellow-400'
                         >Editar</Link>
                         {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
                         <button 
