@@ -1,7 +1,7 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 import 'dayjs/locale/es'; // importa el idioma
-import { ChevronLeftIcon, ChevronRightIcon } from "../../places/components/Icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../common/components/Icons";
 dayjs.locale('es'); // lo setea como predeterminado
 
 export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAside}) => {

@@ -4,11 +4,12 @@ import { useEvents } from "../hooks/useEvents"
 import { usePlaces } from "../../places/hooks/usePlaces";
 import { useUserLogin } from "../../auth/hooks/useUserLogin"
 
-import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
+import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../common/components/Icons"
 import dayjs from "dayjs";
 import { CallButton } from "../../common/components/buttons/CallButton";
 import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
 import { useIsMobile } from "../../common/hooks/useIsMobile";
+import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
 
 
 export const EventDetail = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { CalendarIcon, LocationIcon, SearchIcon, UsersIcon } from '../../places/components/Icons'
+import { CalendarIcon, LocationIcon, SearchIcon, UsersIcon } from '../../common/components/Icons'
 
 export const PublicNavbar = () => {
   return (

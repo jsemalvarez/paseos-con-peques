@@ -2,7 +2,7 @@ import { CallButton } from "../../common/components/buttons/CallButton";
 import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
 import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
 import { useIsMobile } from "../../common/hooks/useIsMobile";
-import { CalendarIcon, ClockIcon, FacebookIcon, InstagramIcon, LocationIcon, VideoIcon, WebIcon, XMarkIcon } from "../../places/components/Icons"
+import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon, XMarkIcon } from "../../common/components/Icons"
 import { usePlaces } from "../hooks/usePlaces"
 
 

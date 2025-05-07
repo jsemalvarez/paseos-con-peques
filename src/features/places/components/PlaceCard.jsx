@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { useUserLogin } from '../../auth/hooks/useUserLogin'
 import { usePlaces } from '../hooks/usePlaces'
-import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon } from './Icons'
+import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon } from '../../common/components/Icons'
 import { ViewOnMapButton } from '../../common/components/buttons/ViewOnMapButton'
 import { WhatsappButton } from '../../common/components/buttons/WhatsappButton'
 import { CallButton } from '../../common/components/buttons/CallButton'

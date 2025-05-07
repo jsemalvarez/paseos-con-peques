@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Marker } from 'react-leaflet'
 
+//TODO: pensar nombres que dejen claro que esto pertenece a place
 import { createSvgIcon } from '../../../places/utils/createSvgIcon'
 import { ICONS_BY_TYPE } from '../../../places/utils/iconsByType'
 import { COLORS_BY_CATEGORIES } from '../../../places/utils/categories'

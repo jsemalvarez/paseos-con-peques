@@ -1,6 +1,6 @@
 import React from 'react'
 import { ImageSlider } from './ImageSlider'
-import { CalendarIcon, LocationIcon, SearchIcon, WebIcon } from '../../places/components/Icons';
+import { CalendarIcon, LocationIcon, SearchIcon } from '../../common/components/Icons';
 
 const presentationCards = [
   {

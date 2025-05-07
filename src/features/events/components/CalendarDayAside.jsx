@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { ClockIcon, LocationIcon, XMarkIcon } from "../../places/components/Icons"
+import { ClockIcon, XMarkIcon } from "../../common/components/Icons"
 import { useEvents } from "../hooks/useEvents"
 
 export const CalendarDayAside = () => {
