@@ -63,8 +63,8 @@ export const EventFormPage = () => {
             updateEvent({ ...formState, id: eventId, });
         }else{
             saveEvent(formState)
+            onResetForm()
         }
-        onResetForm()
     }
 
     const renderButtonLabel = () => {
@@ -94,15 +94,6 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    {/* <textarea
-                        className='mt-4 w-full border border-gray-400 hover:border-secondary focus:border-secondary p-2 rounded-xl focus:bg-secondary focus:outline-none'
-                        name="description" 
-                        rows="6" 
-                        value={description}
-                        onChange={onInputChange}
-                        placeholder='descripcion del evento ....'
-                    >
-                    </textarea> */}
                     <TextareaField 
                         name="description" 
                         rows="6" 
