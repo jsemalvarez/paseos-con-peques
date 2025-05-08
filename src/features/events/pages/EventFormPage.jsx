@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useForm } from '../../common/hooks/useForm'
@@ -8,20 +8,22 @@ import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../common/components/form/InputForm'
 import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
+import dayjs from 'dayjs'
 
 const initialForm = {
     title: "",
     description: "",
     artists:"",
-    date: "",
-    timeStart: "",
-    timeEnd: "",
-    location: "",
+    date: dayjs(new Date()).format('YYYY-MM-DD'),
+    timeStart: dayjs(new Date()).format('HH:mm'),
+    timeEnd: dayjs(new Date()).add(2, 'hour').format('HH:mm'),
     bgColor:"",
     placeId:"",
 }
 
 export const EventFormPage = () => {
+
+    const [inputErrors, setInputErrors] = useState({})
 
     const { eventId } = useParams();
     const { 
@@ -50,11 +52,59 @@ export const EventFormPage = () => {
     const eventToUpdate = useMemo(() => events.find(event => event.id == eventId), [events, eventId]);
 
     useEffect(() => {
-        setFormState(eventToUpdate)
+        if(eventToUpdate) {
+            setFormState(eventToUpdate)
+        }
     },[eventToUpdate,setFormState])
 
-    const handleNewEvent = ( event ) => {
-        event.preventDefault()
+    const validateForm = (form) => {
+
+        const errors = {};
+
+        const isTitleEmpty = form.title.trim().length === 0;
+        if ( isTitleEmpty ) {
+            errors.title = '*El titulo es obligatorio';
+        }
+
+        const isDateEmpty = !form.date;
+        if ( isDateEmpty ) {
+            errors.date = '*La fecha es obligatoria';
+        }
+    
+        const isTimeStartEmpty = !form.timeStart;
+        if (isTimeStartEmpty) {
+            errors.timeStart = '*La hora de inicio es obligatoria';
+        }
+    
+        const isTimeEndEmpty = !form.timeEnd;
+        if (isTimeEndEmpty) {
+            errors.timeEnd = '*La hora de fin es obligatoria';
+        }
+
+        if (form.date && form.timeStart && form.timeEnd) {
+            const start = dayjs(`${form.date}T${form.timeStart}`);
+            const end = dayjs(`${form.date}T${form.timeEnd}`);
+    
+            const isTimeStartBeforeTimeEnd = end.isBefore(start);
+            if (isTimeStartBeforeTimeEnd) {
+                errors.timeEnd = '*La hora de fin debe ser posterior a la hora de inicio';
+            }
+        }
+
+        return errors;
+    }
+
+    const handleNewEvent = ( e ) => {
+        e.preventDefault()
+
+        const inputErrors = validateForm(formState);
+
+        const hasInputErros = Object.keys(inputErrors).length > 0;
+        if (hasInputErros){
+            setInputErrors(inputErrors)
+            return;
+        } 
+
         if(eventId){
             if (!eventToUpdate) {
                 console.error('El evento no existe');
@@ -65,6 +115,8 @@ export const EventFormPage = () => {
             saveEvent(formState)
             onResetForm()
         }
+
+        setInputErrors({})
     }
 
     const renderButtonLabel = () => {
@@ -92,6 +144,7 @@ export const EventFormPage = () => {
                         type='text'
                         value={title}
                         onChange={onInputChange}
+                        error={ inputErrors.title }
                     />
 
                     <TextareaField 
@@ -116,6 +169,7 @@ export const EventFormPage = () => {
                         type='date'
                         value={date}
                         onChange={onInputChange}
+                        error={ inputErrors.date }
                     />
 
                     <InputForm 
@@ -124,6 +178,7 @@ export const EventFormPage = () => {
                         type='time'
                         value={timeStart}
                         onChange={onInputChange}
+                        error={ inputErrors.timeStart }
                     />
 
                     <InputForm 
@@ -132,6 +187,7 @@ export const EventFormPage = () => {
                         type='time'
                         value={timeEnd}
                         onChange={onInputChange}
+                        error={ inputErrors.timeEnd }
                     />
 
                     <InputForm 
@@ -142,6 +198,7 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
+                    {/* TODO: crear un SelectField  */}
                     <div className='pt-2'>
                         <label htmlFor="placeId" className="block font-medium text-gray-700">
                             Lugares:
@@ -149,7 +206,7 @@ export const EventFormPage = () => {
                         <select
                             id="placeId"
                             name='placeId'
-                            value={placeId}
+                            value={ placeId || (places.length > 0 ? places[0].id : '') }
                             onChange={onInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
                         >
