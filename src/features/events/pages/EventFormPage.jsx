@@ -9,6 +9,7 @@ import { InputForm } from '../../common/components/form/InputForm'
 import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
 import dayjs from 'dayjs'
+import { SelectField } from '../../common/components/form/SelectField'
 
 const initialForm = {
     title: "",
@@ -198,28 +199,13 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    {/* TODO: crear un SelectField  */}
-                    <div className='pt-2'>
-                        <label htmlFor="placeId" className="block font-medium text-gray-700">
-                            Lugares:
-                        </label>
-                        <select
-                            id="placeId"
-                            name='placeId'
-                            value={ placeId || (places.length > 0 ? places[0].id : '') }
-                            onChange={onInputChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
-                        >
-                            {places.map((place) => (
-                                <option 
-                                    key={place.id} 
-                                    value={place.id}
-                                >
-                                    {place.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <SelectField 
+                        title='Lugares:'
+                        name='placeId'
+                        value={ placeId || (places.length > 0 ? places[0].id : '') }
+                        onChange={onInputChange}
+                        options={ places }
+                    />
 
                     <button
                         className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
