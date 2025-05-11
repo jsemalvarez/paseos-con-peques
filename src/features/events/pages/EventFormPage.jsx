@@ -146,6 +146,7 @@ export const EventFormPage = () => {
                         value={title}
                         onChange={onInputChange}
                         error={ inputErrors.title }
+                        disabled={ isProcessing }
                     />
 
                     <TextareaField 
@@ -162,6 +163,7 @@ export const EventFormPage = () => {
                         type='text'
                         value={artists}
                         onChange={onInputChange}
+                        disabled={ isProcessing }
                     />
 
                     <InputForm 
@@ -171,6 +173,7 @@ export const EventFormPage = () => {
                         value={date}
                         onChange={onInputChange}
                         error={ inputErrors.date }
+                        disabled={ isProcessing }
                     />
 
                     <InputForm 
@@ -180,6 +183,7 @@ export const EventFormPage = () => {
                         value={timeStart}
                         onChange={onInputChange}
                         error={ inputErrors.timeStart }
+                        disabled={ isProcessing }
                     />
 
                     <InputForm 
@@ -189,6 +193,7 @@ export const EventFormPage = () => {
                         value={timeEnd}
                         onChange={onInputChange}
                         error={ inputErrors.timeEnd }
+                        disabled={ isProcessing }
                     />
 
                     <InputForm 
@@ -197,6 +202,7 @@ export const EventFormPage = () => {
                         type='text'
                         value={bgColor}
                         onChange={onInputChange}
+                        disabled={ isProcessing }
                     />
 
                     <SelectField 
@@ -208,7 +214,7 @@ export const EventFormPage = () => {
                     />
 
                     <button
-                        className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
+                        className='mt-5 w-full border-2 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
                         type='submit'
                         disabled={ isProcessing } 
                     >

@@ -33,7 +33,7 @@ export const InputForm = ({
   const inputId = id || name;
 
   const baseClass =
-    'w-full border p-2 rounded-xl focus:outline-none transition-colors duration-200';
+    'w-full border p-2 rounded-xl focus:outline-none transition-colors duration-200 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed';
   const borderColor = error
     ? 'border-red-500 focus:border-red-500'
     : 'border-gray-400 hover:border-secondary focus:border-secondary';
