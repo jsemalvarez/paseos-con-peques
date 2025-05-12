@@ -12,6 +12,8 @@ import { useIsMobile } from "../../common/hooks/useIsMobile";
 import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
 
 
+const DAFEAUL_PLACE_PHOTO_URL = 'https://res.cloudinary.com/dwhdla1b4/image/upload/v1744900287/pcp-images/home_logo.png';
+
 export const EventDetail = () => {
 
     const {authState } = useUserLogin()    
@@ -43,7 +45,7 @@ export const EventDetail = () => {
             <figure>
                 <img 
                     className="mx-auto w-[150px] h-[150px] rounded-full"
-                    src={ place?.photoUrl }
+                    src={ place?.photoUrl || DAFEAUL_PLACE_PHOTO_URL }
                     alt={ place?.name }
                 />
             </figure>
