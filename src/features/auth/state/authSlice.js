@@ -10,6 +10,7 @@ export const authSlice = createSlice({
         userName: null,
         photoURL: null,
         errorMessage: null,
+        isProcessing: false
     },
     reducers: {
         login: (state, { payload }) => {
@@ -33,7 +34,13 @@ export const authSlice = createSlice({
         checkingCredentials: (state) => {
             state.status = 'checking'
         },
+        initProcessingData: (state) => {
+            state.isProcessing  = true;
+        },
+        endProcessingData: (state) => {
+            state.isProcessing  = false;
+        },
     }
 })
 
-export const { login, logout, checkingCredentials } = authSlice.actions;
+export const { login, logout, checkingCredentials, initProcessingData, endProcessingData } = authSlice.actions;

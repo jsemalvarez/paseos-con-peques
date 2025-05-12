@@ -8,6 +8,7 @@ export const useUserLogin = () => {
     const { 
         status:authState, 
         errorMessage,
+        isProcessing,
         ...user 
     } = useSelector( state => state.auth )
     
@@ -24,6 +25,7 @@ export const useUserLogin = () => {
     return { 
         user,
         authState, 
+        isProcessing,
         errorMessage, 
         loginWithEmailPassword,
         logout 

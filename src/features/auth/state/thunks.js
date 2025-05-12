@@ -1,7 +1,7 @@
 import { authService } from "../services/authServeice"
-import { checkingCredentials, login, logout } from "./authSlice"
+import { checkingCredentials, endProcessingData, initProcessingData, login, logout } from "./authSlice"
 
-
+//TODO: ver si usamos esta funcion
 export const checkingAuthentication = ( ) => {
     return (dispatch) => {
 
@@ -13,11 +13,12 @@ export const checkingAuthentication = ( ) => {
 export const startLoginWithEmailPassword = ({email, password}) => {
     return async( dispatch ) => {
 
-        dispatch( checkingCredentials() );
+        dispatch( initProcessingData() );
 
         const result = await authService.loginWithEmailPassword({ email, password });
-        if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
 
+        dispatch( endProcessingData() )
+        if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
         dispatch( login( result ))
 
     }
