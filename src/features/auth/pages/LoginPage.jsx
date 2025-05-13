@@ -6,6 +6,7 @@ import { useUserLogin } from '../hooks/useUserLogin'
 import { Layout } from '../layout/Layout'
 import { InputForm } from '../../common/components/form/InputForm'
 import { useState } from 'react'
+import { AlertNotification } from '../../common/components/AlertNotification'
 
 const initialForm  = {
   email:'email@gmail.com',
@@ -110,10 +111,20 @@ export const LoginPage = () => {
               />
   
               <button
-                className='mt-5 w-full border-2 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
+                className='mt-5 w-full border-2 transition-all duration-300 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
                 type='submit'
                 disabled={ isProcessing }
               >{ isProcessing ? 'Ingresando...': 'Ingresar'}</button>
+
+              {
+                errorMessage && (
+                  <AlertNotification
+                    type='error' 
+                    message='Credenciales invalidas'
+                    onClose={()=>{}}
+                  />
+                )
+              }
   
             </form>
   
