@@ -21,8 +21,9 @@ export const MapSection = () => {
 
 
   return (
-    <div id='mapSection' className='min-h-screen py-[100px] flex justify-center items-center'>
+    <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
 
+      <p className='text-secondary'>*Click en los iconos para mas info</p>
       <div className='w-8/10 max-w-[1200px] rounded-xl bg-red-500 overflow-hidden'>
         <div className='h-[600px]'>
           <MapView>
