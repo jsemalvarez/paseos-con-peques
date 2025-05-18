@@ -1,4 +1,4 @@
-import { saveNewData, deleteData, getData, updateData } from "../../../app/firebase/firestoreProvider";
+import { saveNewData, deleteData, updateData, getEventsOrderByTimeStart } from "../../../app/firebase/firestoreProvider";
 
 const collectionName = "events";
 
@@ -31,7 +31,7 @@ export const formatEvents = (events) => {
 
 export const eventService = {
     saveNewEvent: (newEvent)=> saveNewData(collectionName, newEvent),
-    getEvents: ()=> getData(collectionName),
+    getEvents: ()=> getEventsOrderByTimeStart(collectionName),
     updateEvent: (id, updatedData) => updateData(collectionName, id, updatedData),
     deleteEvent: (id) => deleteData(collectionName, id)
 }

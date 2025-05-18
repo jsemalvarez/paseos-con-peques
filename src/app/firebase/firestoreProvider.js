@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore';
 import { FirebaseDB } from './firebase';
 
 export const saveNewData = async( collectionName, dataToSave ) => {
@@ -57,3 +57,30 @@ export const deleteData = async (collectionName, id) => {
         return { ok: false, errorMessage: error.message }
     }
 };
+
+export const getEventsOrderByTimeStart = async(collectionName) => {
+    try {
+
+        const eventsRef = collection(FirebaseDB, collectionName);
+        const q = query(
+            eventsRef, 
+            orderBy("timeStart", "asc"),
+            orderBy("timeEnd", "asc")
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        const data = querySnapshot.docs.map(doc => ({
+            id: doc.id, // ID del documento
+            ...doc.data(), // Datos del evento
+        }));
+
+        return {
+            ok: true,
+            data: data
+        }
+    } catch (error) {
+        console.log({error})
+        return { ok: false, errorMessage: error.message }
+    }
+}
