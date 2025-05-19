@@ -58,6 +58,32 @@ export const deleteData = async (collectionName, id) => {
     }
 };
 
+export const getPlacesOrderByName = async(collectionName) => {
+    try {
+
+        const placesRef = collection(FirebaseDB, collectionName);
+        const q = query(
+            placesRef, 
+            orderBy("name", "asc")
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        const data = querySnapshot.docs.map(doc => ({
+            id: doc.id, // ID del documento
+            ...doc.data(), // Datos
+        }));
+
+        return {
+            ok: true,
+            data: data
+        }
+    } catch (error) {
+        console.log({error})
+        return { ok: false, errorMessage: error.message }
+    }
+}
+
 export const getEventsOrderByTimeStart = async(collectionName) => {
     try {
 
