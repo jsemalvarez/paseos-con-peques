@@ -1,14 +1,27 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { XMarkIcon } from './Icons';
 
-export const PrivateAside = () => {
+
+export const PrivateAside = ({isOpen, setIsOpen }) => {
 
     const itemClass = "w-full border-l-6 border-secondary mb-2 p-1 cursor-pointer flex justify-center hover:bg-secondary hover:text-primary hover:border-secondary";
     const activeItemClass = "bg-secondary text-primary border-l-6 border-secondary";
 
     return (
         <aside
-            className="fixed bottom-0 left-0 h-9/10 w-[200px] border-r-2 border-secondary p-4"
+            // className="fixed top-[10vh] left-0 h-8/10 w-[200px] border-t-2 border-r-2 border-b-2 border-secondary rounded-tr-xl rounded-br-xl p-4 bg-primary z-40 transition-transform duration-300 z-1500"
+            // fixed top-0 left-0 h-full w-64 bg-primary shadow-lg z-1600 p-4 
+                className={`
+                    fixed top-[10vh] left-0 h-8/10 w-[200px] border-t-2 border-r-2 border-b-2 border-secondary rounded-tr-xl rounded-br-xl p-4 bg-primary z-40 transition-transform duration-300 z-1500
+                    transform transition-transform duration-300 ease-in-out
+                    ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+                `}
         >
+            <div
+                className='cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold mb-2 flex flex-row-reverse' 
+                onClick={ () => setIsOpen(false) }
+                ><XMarkIcon style='transition-all duration-300 hover:text-gray-200' />
+            </div>
             <ul className="flex flex-col items-center">
                 <li className="w-9/10">
                     <NavLink 
