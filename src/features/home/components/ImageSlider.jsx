@@ -31,12 +31,12 @@ export const ImageSlider = () => {
   }, [])
 
   return (
-    <div className="w-9/10 max-w-[1200px] h-64 overflow-hidden relative rounded-lg shadow-md">
+    <div className="w-9/10 max-w-[1200px] aspect-[10/4] md:aspect-[9/3] overflow-hidden relative rounded-lg shadow-md">
       {images.map((img, index) => (
         <div
-        key={index}
-        className={`w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${ index === current ? "opacity-100 z-10" : "opacity-0 z-0" }`}
-      >
+          key={index}
+          className={`w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${ index === current ? "opacity-100 z-10" : "opacity-0 z-0" }`}
+        >
         <img
           src={img.src}
           alt={`Banner ${index + 1}`}
