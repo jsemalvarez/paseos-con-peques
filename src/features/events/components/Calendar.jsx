@@ -51,7 +51,7 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
 
           {events.length > 2 && (
             <button
-              className="block mx-auto w-9/10 bg-gray-200 text-blue-500 font-semibold text-center rounded-full text-red-500 cursor-pointer"
+              className="block mx-auto w-9/10 bg-gray-200 text-blue-500 font-semibold text-center rounded-full text-red-500 cursor-pointer truncate"
               onClick={() => openCalendarDayAside( events )}
             >
               +{events.length - 2} más
