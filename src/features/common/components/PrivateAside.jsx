@@ -9,42 +9,41 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
 
     return (
         <aside
-            // className="fixed top-[10vh] left-0 h-8/10 w-[200px] border-t-2 border-r-2 border-b-2 border-secondary rounded-tr-xl rounded-br-xl p-4 bg-primary z-40 transition-transform duration-300 z-1500"
-            // fixed top-0 left-0 h-full w-64 bg-primary shadow-lg z-1600 p-4 
-                className={`
-                    fixed top-[10vh] left-0 h-8/10 w-[200px] border-t-2 border-r-2 border-b-2 border-secondary rounded-tr-xl rounded-br-xl p-4 bg-primary z-40 transition-transform duration-300 z-1500
-                    transform transition-transform duration-300 ease-in-out
-                    ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-                `}
+            className={`
+                fixed top-0 left-0 md:relative h-screen w-[300px] border-r-2 border-secondary p-4 bg-primary
+                transform transition-transform duration-300 ease-in-out
+                ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+            `}
         >
             <div
-                className='cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold mb-2 flex flex-row-reverse' 
+                className='block md:hidden cursor-pointer text-gray-600 hover:text-red-500 text-lg font-bold mb-2 flex flex-row-reverse' 
                 onClick={ () => setIsOpen(false) }
-                ><XMarkIcon style='transition-all duration-300 hover:text-gray-200' />
+            >
+                <XMarkIcon style='transition-all duration-300 hover:text-gray-200' />
             </div>
             <ul className="flex flex-col items-center">
                 <li className="w-9/10">
                     <NavLink 
-                    to='/'
-                    className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
+                        to='/'
+                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
                     >
-                    Panel
+                        Panel
                     </NavLink>
                 </li>
                 <li className="w-9/10">
                     <NavLink 
-                    to='/places'
-                    className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
+                        to='/places'
+                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
                     >
-                    Lugares
+                        Lugares
                     </NavLink>
                 </li>
                 <li className="w-9/10">
                     <NavLink 
-                    to='/events'
-                    className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
+                        to='/events'
+                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
                     >
-                    Eventos
+                        Eventos
                     </NavLink>
                 </li>
             </ul>
