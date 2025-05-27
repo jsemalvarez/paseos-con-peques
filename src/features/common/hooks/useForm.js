@@ -15,7 +15,13 @@ export const useForm = ( initialForm = {}) => {
         let newValue;
 
         if (type === 'checkbox') {
-          newValue = checked;
+          if (Array.isArray(formState[name])) {
+            newValue = checked
+              ? [...formState[name], value]
+              : formState[name].filter((item) => item !== value);
+          } else {
+            newValue = checked;
+          }
         } else if (selectedOptions) {
           newValue = Array.from(selectedOptions).map((option) => option.value);
         } else {
