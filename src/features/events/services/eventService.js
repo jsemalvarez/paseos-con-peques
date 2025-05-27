@@ -16,6 +16,8 @@ const collectionName = "events";
 //     },
 //   ],
 // }
+
+//TODO: renombrar esta funcion a groupEventsByDate 
 export const formatEvents = (events) => {
     const eventsByDay = {};
 

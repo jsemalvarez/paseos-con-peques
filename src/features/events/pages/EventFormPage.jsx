@@ -10,6 +10,7 @@ import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
 import dayjs from 'dayjs'
 import { SelectField } from '../../common/components/form/SelectField'
+import { AGE_RANGES } from '../../common/utils/constants'
 
 const initialForm = {
     title: "",
@@ -20,6 +21,7 @@ const initialForm = {
     timeEnd: dayjs(new Date()).add(2, 'hour').format('HH:mm'),
     bgColor:"",
     placeId:"",
+    ageRanges:[]
 }
 
 export const EventFormPage = () => {
@@ -44,6 +46,7 @@ export const EventFormPage = () => {
         timeEnd,
         bgColor,
         placeId,
+        ageRanges,
         formState,
         setFormState, 
         onInputChange, 
@@ -204,6 +207,21 @@ export const EventFormPage = () => {
                         onChange={onInputChange}
                         disabled={ isProcessing }
                     />
+
+                    <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-6 bg-primary mt-5 p-2 border-2 border-gray-300 rounded-lg">
+                        {AGE_RANGES.map(({ id, label }) => (
+                            <label key={id} className="flex items-center gap-2 text-sm">
+                            <input
+                                type="checkbox"
+                                name="ageRanges"
+                                value={ id }
+                                checked={ ageRanges.includes(id) }
+                                onChange={ onInputChange }
+                            />
+                            { label }
+                            </label>
+                        ))}
+                    </div>
 
                     <SelectField 
                         title='Lugares:'

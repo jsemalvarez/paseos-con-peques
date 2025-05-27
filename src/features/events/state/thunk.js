@@ -1,4 +1,5 @@
 import { eventService } from "../services/eventService"
+import { formatEvent } from "../utils/formatEvent";
 import { addNewEvent, closeEventDetail, deleteEvent, initProcessingData, setEvents, updateEvent } from "./eventSlice";
 
 
@@ -14,7 +15,14 @@ export const startGetingEvents = () => {
     return async( dispatch) => {
         dispatch( initProcessingData() )
         const response = await eventService.getEvents();
-        dispatch( setEvents( response.data ));
+        
+        if(response.ok){
+            const eventsFormatted = response.data.map( formatEvent );
+            dispatch( setEvents( eventsFormatted ));
+        }else{
+            console.log(response.errorMessage)
+            //TODO: implementar dispatch(setError(response.errorMessage));
+        }
     }
 }
 
