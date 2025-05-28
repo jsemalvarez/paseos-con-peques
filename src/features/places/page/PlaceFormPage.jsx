@@ -13,6 +13,7 @@ import { CATEGORIES, COLORS_BY_CATEGORIES } from '../utils/categories'
 import { ICONS_BY_TYPE } from '../utils/iconsByType'
 import { TextareaField } from '../../common/components/form/TextareaField'
 import { CheckboxField } from '../../common/components/form/CheckboxField'
+import { AGE_RANGES } from '../../common/utils/constants'
 
 const initialForm = {
     name: '',
@@ -30,6 +31,7 @@ const initialForm = {
     hasGames: false,
     hasSupervision: false,
     categories:[],
+    ageRanges:[],
     description: '',
     iconType:'',
     bgColor:'',
@@ -60,6 +62,7 @@ export const PlaceFormPage = () => {
         iconType,
         bgColor,
         categories,
+        ageRanges,
         formState, 
         setFormState, 
         onInputChange, 
@@ -71,6 +74,7 @@ export const PlaceFormPage = () => {
         const placeToUpdate = places.find(place => place.id == placeId)
 
         if(placeToUpdate){
+            console.log(placeToUpdate)
             setFormState(placeToUpdate)
             setPosition(placeToUpdate.position)
         }else{
@@ -313,6 +317,21 @@ export const PlaceFormPage = () => {
                             </option>
                             ))}
                         </select>
+                    </div>
+
+                    <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-6 bg-primary mt-5 p-2 border-2 border-gray-300 rounded-lg">
+                        {AGE_RANGES.map(({ id, label }) => (
+                            <label key={id} className="flex items-center gap-2 text-sm">
+                            <input
+                                type="checkbox"
+                                name="ageRanges"
+                                value={ id }
+                                checked={ ageRanges.includes(id) }
+                                onChange={ onInputChange }
+                            />
+                            { label }
+                            </label>
+                        ))}
                     </div>
 
                     <TextareaField 

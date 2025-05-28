@@ -1,4 +1,5 @@
 import { placeService } from "../services/placeService"
+import { formatPlace } from "../utils/formatPlace";
 import { addNewPlace, deletePlace, initProcessingData, setPlaces, updatePlace } from "./placeSlice";
 
 
@@ -14,7 +15,14 @@ export const startGetingPlaces = () => {
     return async( dispatch) => {
         dispatch( initProcessingData() )
         const response = await placeService.getPlaces();
-        dispatch( setPlaces( response.data ) )
+
+        if(response.ok){
+            const placesFormatted = response.data.map( formatPlace );
+            dispatch( setPlaces( placesFormatted ));
+        }else{
+            console.log(response.errorMessage)
+            //TODO: implementar dispatch(setError(response.errorMessage));
+        }
     }
 }
 
