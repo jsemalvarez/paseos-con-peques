@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useEvents } from '../../events/hooks/useEvents';
 import { formatEvents } from '../../events/services/eventService';
 import { Calendar } from '../../events/components/Calendar';
@@ -26,14 +26,12 @@ export const CalendarSection = () => {
     const term = searchingEvent.trim().toLowerCase();
     return events.filter((event) => {
       const matchesSearch = term.length <= 1 || event.title.toLowerCase().includes(term);
-      const matchesAge =
-        selectedAgeRanges.length === 0 ||
-        event.ageRanges?.some((range) => selectedAgeRanges.includes(range));
+      const matchesAge = selectedAgeRanges.length === 0 || event.ageRanges?.some((range) => selectedAgeRanges.includes(range));
       return matchesSearch && matchesAge;
     });
-
   }, [searchingEvent, selectedAgeRanges, events]);
 
+  //TODO: mejorar este rendimiento, se ejecuta cada vez que dibuja el componente
   const formattedEvents = formatEvents( filteredEvents );  
 
   return (
