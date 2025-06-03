@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MapView } from '../../common/components/map/MapView'
 import { Markers } from '../../common/components/map/Markers'
 import { usePlaces } from '../../places/hooks/usePlaces'
@@ -10,6 +10,17 @@ export const MapSection = () => {
   // const [filteredPlaces, setFilteredPlaces] = useState([])
   const { places, handleOpenPlaceDetail } = usePlaces();
   const [selectedAgeRanges, setSelectedAgeRanges] = useState([]);
+  const [isOnline, setIsOnline] = useState(navigator.onLine)
+
+  useEffect(() => {
+    const updateOnlineStatus = () => setIsOnline(navigator.onLine)
+    window.addEventListener('online', updateOnlineStatus)
+    window.addEventListener('offline', updateOnlineStatus)
+    return () => {
+      window.removeEventListener('online', updateOnlineStatus)
+      window.removeEventListener('offline', updateOnlineStatus)
+    }
+  }, [])
 
   // useEffect(() => {
   //   setFilteredPlaces( places )
@@ -36,6 +47,15 @@ export const MapSection = () => {
     })
   },[category, selectedAgeRanges, places])
 
+  if (isOnline) {
+    return (
+      <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
+        <p className="text-red-500 text-center mt-4">
+          Mapa no disponible sin conexión
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
