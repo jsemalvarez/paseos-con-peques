@@ -47,12 +47,15 @@ export const MapSection = () => {
     })
   },[category, selectedAgeRanges, places])
 
-  if (isOnline) {
+  if (!isOnline) {
     return (
-      <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
-        <p className="text-red-500 text-center mt-4">
-          Mapa no disponible sin conexión
-        </p>
+      <div 
+        id='mapSection' 
+        className='min-h-screen py-[100px] flex flex-col justify-center items-center'
+      >
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center mt-4">
+          <p className="font-semibold">Mapa no disponible sin conexión</p>
+        </div>
       </div>
     );
   }
