@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ImageSlider } from './ImageSlider'
 import { CalendarIcon, LocationIcon, SearchIcon } from '../../common/components/Icons';
+import { useIsMobile } from '../../common/hooks/useIsMobile';
 
 const presentationCards = [
   {
@@ -36,6 +37,8 @@ export const Presentations = () => {
     }
   }
 
+  const isMobile = useIsMobile();
+
   return (
     <div id="presentation" className='min-h-screen pt-[100px] pb-16 flex flex-col items-center'>
 
@@ -70,13 +73,15 @@ export const Presentations = () => {
       </div>
 
       {
-        deferredPrompt && (
+        (deferredPrompt && isMobile) && (
           <div className="flex flex-col items-center mt-4">
-            <p className="text-center text-sm text-pink-200 mt-2">
-              ¡Instalá la app para tener acceso más rápido desde tu pantalla de inicio!
-            </p>
+            <div className="bg-blue-100 border border-blue-300 text-blue-800 px-4 py-3 rounded text-center mt-4 text-sm">
+              <p className="font-medium">
+                ¡Instalá nuestra app para tener acceso más rápido desde tu pantalla de inicio!
+              </p>
+            </div>
             <button 
-              className='border-2 transition-all duration-300 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
+              className="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out cursor-pointer disabled:bg-blue-200 disabled:text-blue-400 disabled:cursor-not-allowed"
               onClick={handleInstallClick} 
               disabled={!deferredPrompt}
             >
