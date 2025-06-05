@@ -22,7 +22,8 @@ export const useForm = ( initialForm = {}) => {
           } else {
             newValue = checked;
           }
-        } else if (selectedOptions) {
+        } else if (selectedOptions) { 
+          //TODO: implementar (type === 'select-multiple') para que solo sea arrelgo cuando es multiple
           newValue = Array.from(selectedOptions).map((option) => option.value);
         } else {
           newValue = value;

@@ -29,6 +29,7 @@ export const EventDetail = () => {
     }
 
     const isMobile = useIsMobile();
+    const isTempPlace = eventDetail.placeId == 'tempPlace';
 
     return ( 
         <aside 
@@ -148,6 +149,56 @@ export const EventDetail = () => {
                                     )                    
                                 }
                             </div>
+                        </>
+                    )
+                }
+
+
+
+                {
+                    isTempPlace && (
+                        <>
+                            <h3 className="mt-6 text-2xl font-bold text-primary capitalize flex items-center border-t border-gray-400">
+                                <LocationIcon /> { eventDetail.tempPlaceName }
+                            </h3>
+                            {
+                                eventDetail.tempPlacePhone && (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Telefono: </span>
+                                            {eventDetail.tempPlacePhone}
+                                        </p>
+                                        {
+                                            isMobile && (
+                                                <CallButton phone={eventDetail.tempPlacePhone} />
+                                            )
+                                        }
+                                    </>
+                                )
+                            }
+                            {
+                                eventDetail.tempPlaceWhatsapp &&  (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Whatsapp: </span>
+                                            { eventDetail.tempPlaceWhatsapp }
+                                        </p>
+                                        <WhatsappButton whatsapp={ eventDetail.tempPlaceWhatsapp } />
+                                    </>
+                                )
+                            }
+                            {
+                                eventDetail.tempPlaceAddress && (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Direccion: </span>
+                                            {eventDetail.tempPlaceAddress}
+                                        </p>
+                                        <ViewOnMapButton position={ eventDetail.tempPlacePosition } />
+                                    </>
+                                )
+                            }
+
                         </>
                     )
                 }

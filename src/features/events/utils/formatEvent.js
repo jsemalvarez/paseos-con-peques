@@ -12,6 +12,11 @@ export const formatEvent = ( event ) => {
         timeEnd: event.timeEnd || dayjs(new Date()).add(2, 'hour').format('HH:mm'),
         bgColor:event.bgColor || "",
         placeId: event.placeId || null,
-        ageRanges: event.ageRanges || []
+        ageRanges: event.ageRanges || [],
+        tempPlaceName: event.tempPlaceName || null,
+        tempPlaceAddress: event.tempPlaceAddress || null,
+        tempPlacePhone: event.tempPlacePhone || null,
+        tempPlaceWhatsapp: event.tempPlaceWhatsapp || null,
+        tempPlacePosition: event.tempPlacePosition || null,    
     }
 }

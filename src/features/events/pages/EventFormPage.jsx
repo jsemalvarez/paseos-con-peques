@@ -11,6 +11,13 @@ import { TextareaField } from '../../common/components/form/TextareaField'
 import dayjs from 'dayjs'
 import { SelectField } from '../../common/components/form/SelectField'
 import { AGE_RANGES } from '../../common/utils/constants'
+import { MapView } from '../../common/components/map/MapView'
+import { DraggableMarker } from '../../common/components/map/DraggableMarker'
+
+const tempPlace = {
+    id:'tempPlace',
+    name: 'Lugar Temporal',
+}
 
 const initialForm = {
     title: "",
@@ -20,12 +27,17 @@ const initialForm = {
     timeStart: dayjs(new Date()).format('HH:mm'),
     timeEnd: dayjs(new Date()).add(2, 'hour').format('HH:mm'),
     bgColor:"",
-    placeId:"",
+    placeId: [tempPlace.id],
+    tempPlaceName: "",
+    tempPlaceAddress: "",
+    tempPlacePhone: "",
+    tempPlaceWhatsapp: "",
     ageRanges:[]
 }
 
 export const EventFormPage = () => {
 
+    const [position, setPosition] = useState(null);
     const [inputErrors, setInputErrors] = useState({})
 
     const { eventId } = useParams();
@@ -47,6 +59,10 @@ export const EventFormPage = () => {
         bgColor,
         placeId,
         ageRanges,
+        tempPlaceName,
+        tempPlaceAddress,
+        tempPlacePhone,
+        tempPlaceWhatsapp,
         formState,
         setFormState, 
         onInputChange, 
@@ -58,6 +74,7 @@ export const EventFormPage = () => {
     useEffect(() => {
         if(eventToUpdate) {
             setFormState(eventToUpdate)
+            setPosition(eventToUpdate.tempPlacePosition)
         }
     },[eventToUpdate,setFormState])
 
@@ -114,9 +131,9 @@ export const EventFormPage = () => {
                 console.error('El evento no existe');
                 return;
             }
-            updateEvent({ ...formState, id: eventId, });
+            updateEvent({ ...formState, tempPlacePosition: { lat: position.lat, lng: position.lng }, id: eventId, });
         }else{
-            saveEvent(formState)
+            saveEvent({...formState, tempPlacePosition: { lat: position.lat, lng: position.lng } })
             onResetForm()
         }
 
@@ -129,6 +146,8 @@ export const EventFormPage = () => {
 
         return isProcessing ? processingLabel : textLabel;
     }
+
+    const isTempPlace = placeId[0] === tempPlace.id;
 
     return (
         <PrivateLoyout>
@@ -226,10 +245,59 @@ export const EventFormPage = () => {
                     <SelectField 
                         title='Lugares:'
                         name='placeId'
-                        value={ placeId || (places.length > 0 ? places[0].id : '') }
+                        value={ placeId }
                         onChange={onInputChange}
-                        options={ places }
+                        options={ [ tempPlace , ...places] }
                     />
+
+                    {isTempPlace && (
+                        <div className="mt-4 space-y-3">
+                            <InputForm 
+                                title='Nombre del lugar'
+                                name='tempPlaceName'
+                                type='text'
+                                value={ tempPlaceName }
+                                onChange={onInputChange}
+                                disabled={ isProcessing }
+                            />
+
+                            <InputForm 
+                                title='Dirección'
+                                name='tempPlaceAddress'
+                                type='text'
+                                value={ tempPlaceAddress }
+                                onChange={onInputChange}
+                                disabled={ isProcessing }
+                            />
+
+                            <InputForm 
+                                title='Telefono'
+                                name='tempPlacePhone'
+                                type='text'
+                                value={ tempPlacePhone }
+                                onChange={onInputChange}
+                                disabled={ isProcessing }
+                            />
+
+                            <InputForm 
+                                title='WhatsApp'
+                                name='tempPlaceWhatsapp'
+                                type='text'
+                                value={ tempPlaceWhatsapp }
+                                onChange={onInputChange}
+                                disabled={ isProcessing }
+                            />
+
+                            <div className='h-[300px]'>
+                                <MapView>
+                                    <DraggableMarker
+                                        position={position}
+                                        setPosition={setPosition}
+                                    />
+                                </MapView>
+                            </div>
+                        </div>
+                    )}
 
                     <button
                         className='mt-5 w-full border-2 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
