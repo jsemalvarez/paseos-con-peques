@@ -37,29 +37,31 @@ export const CalendarSection = () => {
   return (
     <div id='calendarSection' className='min-h-screen py-[100px]'>
 
-      <div className="flex justify-center mb-6">
+      <div className="flex flex-col justify-center items-center gap-4 m-6">
         <input
           type="text"
           placeholder="Buscar evento..."
           value={searchingEvent}
           onChange={(e) => setSearchingEvent(e.target.value)}
-          className="w-full max-w-md mx-6 bg-primary p-2 border-2 border-secondary rounded-lg focus:outline-hidden"
+          className="w-full max-w-md bg-primary p-2 border-2 border-secondary rounded-lg focus:outline-hidden"
         />
+
+        <div className="w-full max-w-md flex justify-center flex-col md:flex-row items-center gap-4 mb-6 bg-primary p-2 border-2 border-secondary rounded-lg">
+          {AGE_RANGES.map(({ id, label }) => (
+            <label key={id} className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                value={ id }
+                checked={selectedAgeRanges.includes(id)}
+                onChange={() => handleAgeRangeChange(id)}
+              />
+              { label }
+            </label>
+          ))}
+        </div>
+
       </div>
 
-      <div className="w-full max-w-md mx-auto flex justify-center flex-col md:flex-row gap-4 mb-6 bg-primary p-2 border-2 border-secondary rounded-lg">
-        {AGE_RANGES.map(({ id, label }) => (
-          <label key={id} className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              value={ id }
-              checked={selectedAgeRanges.includes(id)}
-              onChange={() => handleAgeRangeChange(id)}
-            />
-            { label }
-          </label>
-        ))}
-      </div>
 
       <div className='w-full md:w-8/10 max-w-[1200px] mx-auto'>
 

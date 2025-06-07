@@ -46,3 +46,12 @@ h4{
   .leaflet-container{
     height: 100%;
   }
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: #ff637e;
+}
+
+label:has(input:checked) {
+    color: #ff637e;
+}
