@@ -126,14 +126,18 @@ export const EventFormPage = () => {
             return;
         } 
 
+        const tempPlacePosition = position 
+            ? { lat: position.lat, lng: position.lng }
+            : null
+
         if(eventId){
             if (!eventToUpdate) {
                 console.error('El evento no existe');
                 return;
             }
-            updateEvent({ ...formState, tempPlacePosition: { lat: position.lat, lng: position.lng }, id: eventId, });
+            updateEvent({ ...formState, tempPlacePosition, id: eventId, });
         }else{
-            saveEvent({...formState, tempPlacePosition: { lat: position.lat, lng: position.lng } })
+            saveEvent({...formState, tempPlacePosition })
             onResetForm()
         }
 
