@@ -2,10 +2,9 @@
 
 export const CloudinaryImage = ({ publicId, alt = "", className = "" }) => {
 
-    
     const baseUrl = 'https://res.cloudinary.com/dwhdla1b4/image/upload';
-    const folder = 'pcp-images';
-    const fallbackImage = `${baseUrl}/w_600,q_auto,f_auto/pcp-images/logo_pcp.png`;
+    const folder = 'v1749595725/pcp-images';
+    const fallbackImage = `${baseUrl}/w_600,q_auto,f_auto/${folder}/logo_pcp_mppj0w.webp`;
 
     if(!publicId){
         return(

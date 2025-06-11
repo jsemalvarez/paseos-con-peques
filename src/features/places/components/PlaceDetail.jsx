@@ -4,6 +4,7 @@ import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
 import { useIsMobile } from "../../common/hooks/useIsMobile";
 import { FacebookIcon, InstagramIcon, VideoIcon, WebIcon, XMarkIcon } from "../../common/components/Icons"
 import { usePlaces } from "../hooks/usePlaces"
+import { CloudinaryImage } from "../../common/components/CloudinaryImage";
 
 const DAFEAUL_PLACE_PHOTO_URL = 'https://res.cloudinary.com/dwhdla1b4/image/upload/v1744900287/pcp-images/home_logo.png';
 
@@ -33,10 +34,10 @@ export const PlaceDetail = () => {
             </div>
 
             <figure className="w-full mb-2">
-                <img
-                    src={placeDetail.photoUrl || DAFEAUL_PLACE_PHOTO_URL}
-                    alt={placeDetail.name}
-                    className="mx-auto object-cover w-[200px] h-[200px] rounded-full"
+                <CloudinaryImage
+                    publicId={ placeDetail?.photoUrl }
+                    alt={ placeDetail?.name } 
+                    className="mx-auto object-cover w-[200px] h-[200px] rounded-full" 
                 />
             </figure>
 

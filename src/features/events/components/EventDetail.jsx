@@ -10,9 +10,10 @@ import { CallButton } from "../../common/components/buttons/CallButton";
 import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
 import { useIsMobile } from "../../common/hooks/useIsMobile";
 import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
+import { CloudinaryImage } from "../../common/components/CloudinaryImage";
 
 
-const DAFEAUL_PLACE_PHOTO_URL = 'https://res.cloudinary.com/dwhdla1b4/image/upload/v1744900287/pcp-images/home_logo.png';
+// const DAFEAUL_PLACE_PHOTO_URL = 'https://res.cloudinary.com/dwhdla1b4/image/upload/v1744900287/pcp-images/home_logo.png';
 
 export const EventDetail = () => {
 
@@ -44,10 +45,10 @@ export const EventDetail = () => {
             </div>
 
             <figure>
-                <img 
-                    className="mx-auto w-[150px] h-[150px] rounded-full"
-                    src={ place?.photoUrl || DAFEAUL_PLACE_PHOTO_URL }
-                    alt={ place?.name }
+                <CloudinaryImage
+                    publicId={ place?.photoUrl }
+                    alt={ place?.name } 
+                    className="mx-auto w-[150px] h-[150px] rounded-full" 
                 />
             </figure>
 
