@@ -8,6 +8,15 @@ export const CATEGORIES = {
     SUPERVISION:'supervision',
 }
 
+export const CATEGORIES_TRANSLATE = {
+    [CATEGORIES.ALL_DAY]: 'Todo el día',
+    [CATEGORIES.CULTURE]: 'Cultura',
+    [CATEGORIES.ENTERTIME]: 'Entretenimiento',
+    [CATEGORIES.FOOD]: 'Gastronomía',
+    [CATEGORIES.OUTDOORS]: 'Al aire libre',
+    [CATEGORIES.SUPERVISION]: 'Con profe',
+}
+
 export const COLORS_BY_CATEGORIES = {
   // ALL_DAY:'all_day',
   CULTURE:'#9575CD',
