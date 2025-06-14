@@ -11,6 +11,7 @@ export const CloudinaryImage = ({ publicId, alt = "", className = "" }) => {
             <img 
                 src={ fallbackImage }
                 alt="logo pcp"
+                className={className}
             />
         )
     }
