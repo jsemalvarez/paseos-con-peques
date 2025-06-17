@@ -1,5 +1,5 @@
 import { Presentations } from '../components/Presentations'
-import { MapSection } from '../components/MapSection/MapSection'
+import { MapSection } from '../components/mapSection/MapSection'
 import { CalendarSection } from '../components/CalendarSection'
 import { SearchPlaces } from '../components/SearchPlaces'
 import { PublicLayout } from '../../common/layouts/PublicLayout'
