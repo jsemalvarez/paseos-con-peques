@@ -60,7 +60,7 @@ export const MapSection = () => {
 
       <p className='text-secondary'>*Click en los iconos para mas info</p>
       <div className='w-8/10 max-w-[1200px] rounded-xl bg-primary overflow-hidden'>
-        <div className='aspect-[1/1] md:aspect-[10/5]'>
+        <div className='aspect-[4/5] md:aspect-[10/5]'>
           <MapView>
             <Markers places={filteredPlaces} handleClick={handleOpenPlaceDetail} /> 
           </MapView>
