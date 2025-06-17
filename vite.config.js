@@ -37,8 +37,8 @@ export default defineConfig({
         name: 'Paseos con Peques',
         short_name: 'PcP',
         description: 'Mapa y eventos para familias con peques',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
+        theme_color: '#332876',
+        background_color: '#332876',
         display: 'standalone',
         start_url: '/',
         icons: [
