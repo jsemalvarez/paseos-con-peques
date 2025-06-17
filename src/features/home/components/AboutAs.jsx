@@ -1,4 +1,5 @@
 import React from 'react'
+import { CloudinaryImage } from '../../common/components/CloudinaryImage'
 
 export const AboutAs = () => {
   return (
@@ -17,10 +18,10 @@ export const AboutAs = () => {
       </div>
 
       <div className="w-full md:w-1/2 max-w-[600px]">
-        <img 
-          src="https://res.cloudinary.com/dwhdla1b4/image/upload/q_auto,f_auto/v1744895457/pcp-images/home_famila_eq3mae.jpg" 
+        <CloudinaryImage
+          publicId="pcp_famila_mnh0rq.webp"
           alt="Familia disfrutando de una salida" 
-          className="w-full h-auto rounded-2xl shadow-lg"
+          className="w-full h-auto rounded-2xl shadow-lg" 
         />
       </div>
     </div>

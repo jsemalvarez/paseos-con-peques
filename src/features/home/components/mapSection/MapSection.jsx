@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
-import { MapView } from '../../common/components/map/MapView'
-import { Markers } from '../../common/components/map/Markers'
-import { usePlaces } from '../../places/hooks/usePlaces'
-import { AGE_RANGES } from '../../common/utils/constants'
+import { MapView } from '../../../common/components/map/MapView'
+import { Markers } from '../../../common/components/map/Markers'
+import { usePlaces } from '../../../places/hooks/usePlaces'
+import { AGE_RANGES } from '../../../common/utils/constants'
+import { CATEGORIES, CATEGORIES_TRANSLATE } from '../../../places/utils/categories'
+import { BtnFilterMap } from './BtnFilterMap'
+
 
 export const MapSection = () => {
 
   const [category, setCategory] = useState('all')
-  // const [filteredPlaces, setFilteredPlaces] = useState([])
   const { places, handleOpenPlaceDetail } = usePlaces();
   const [selectedAgeRanges, setSelectedAgeRanges] = useState([]);
   const [isOnline, setIsOnline] = useState(navigator.onLine)
@@ -21,15 +23,6 @@ export const MapSection = () => {
       window.removeEventListener('offline', updateOnlineStatus)
     }
   }, [])
-
-  // useEffect(() => {
-  //   setFilteredPlaces( places )
-  // },[])
-
-  // useEffect(() => {
-  //   const filteredPlaces = places.filter(place => place.categories.includes(category))
-  //   setFilteredPlaces(( category == 'all' ) ? places : filteredPlaces)
-  // },[category, places])
 
   const handleAgeRangeChange = (rangeId) => {
     setSelectedAgeRanges((prev) =>
@@ -47,6 +40,7 @@ export const MapSection = () => {
     })
   },[category, selectedAgeRanges, places])
 
+
   if (!isOnline) {
     return (
       <div 
@@ -60,6 +54,7 @@ export const MapSection = () => {
     );
   }
 
+
   return (
     <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
 
@@ -72,48 +67,24 @@ export const MapSection = () => {
         </div>
 
         <div className="text-white px-4 py-2 flex flex-wrap gap-2 items-center justify-center">
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('all')}
-          >
-             <span className="text-sm">Todos</span>
-          </button>
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('entertime')}
-          >
-             <span className="text-sm">Entretenimiento</span>
-          </button>
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('food')}
-          >
-             <span className="text-sm">Gastronomía</span>
-          </button>
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('outdoors')}
-          >
-             <span className="text-sm">Al aire libre</span>
-          </button>
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('all_day')}
-          >
-             <span className="text-sm">Pasar el Dia</span>
-          </button>
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('culture')}
-          >
-             <span className="text-sm">Cultura</span>
-          </button>
-          <button
-           className="flex items-center gap-1 bg-secondary text-primary px-3 py-1 rounded-full hover:bg-rose-300 transition-all duration-300 cursor-pointer"
-           onClick={() => setCategory('supervision')}
-          >
-             <span className="text-sm">Con profes</span>
-          </button>
+          <BtnFilterMap
+            key='all'
+            value='all'
+            label={ 'Todos' }
+            handleClick={ setCategory }
+            isActive={ category == 'all'}
+          />
+          {
+            Object.values(CATEGORIES).map( categoryName => (
+              <BtnFilterMap
+                key={ categoryName }
+                value={ categoryName }
+                label={CATEGORIES_TRANSLATE[categoryName]}
+                handleClick={ setCategory }
+                isActive={ category == categoryName}
+              />
+            ))
+          }
         </div>
 
         <div className="w-full max-w-md mx-auto flex justify-center items-center flex-col md:flex-row gap-4 p-2 border-t-1 border-secondary">
@@ -129,6 +100,7 @@ export const MapSection = () => {
             </label>
           ))}
         </div>
+        
       </div>
     </div>
   )

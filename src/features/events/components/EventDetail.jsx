@@ -10,9 +10,10 @@ import { CallButton } from "../../common/components/buttons/CallButton";
 import { ViewOnMapButton } from "../../common/components/buttons/ViewOnMapButton";
 import { useIsMobile } from "../../common/hooks/useIsMobile";
 import { WhatsappButton } from "../../common/components/buttons/WhatsappButton";
+import { CloudinaryImage } from "../../common/components/CloudinaryImage";
 
 
-const DAFEAUL_PLACE_PHOTO_URL = 'https://res.cloudinary.com/dwhdla1b4/image/upload/v1744900287/pcp-images/home_logo.png';
+// const DAFEAUL_PLACE_PHOTO_URL = 'https://res.cloudinary.com/dwhdla1b4/image/upload/v1744900287/pcp-images/home_logo.png';
 
 export const EventDetail = () => {
 
@@ -29,6 +30,7 @@ export const EventDetail = () => {
     }
 
     const isMobile = useIsMobile();
+    const isTempPlace = eventDetail.placeId == 'tempPlace';
 
     return ( 
         <aside 
@@ -43,10 +45,10 @@ export const EventDetail = () => {
             </div>
 
             <figure>
-                <img 
-                    className="mx-auto w-[150px] h-[150px] rounded-full"
-                    src={ place?.photoUrl || DAFEAUL_PLACE_PHOTO_URL }
-                    alt={ place?.name }
+                <CloudinaryImage
+                    publicId={ place?.photoUrl }
+                    alt={ place?.name } 
+                    className="mx-auto w-[150px] h-[150px] rounded-full" 
                 />
             </figure>
 
@@ -148,6 +150,56 @@ export const EventDetail = () => {
                                     )                    
                                 }
                             </div>
+                        </>
+                    )
+                }
+
+
+
+                {
+                    isTempPlace && (
+                        <>
+                            <h3 className="mt-6 text-2xl font-bold text-primary capitalize flex items-center border-t border-gray-400">
+                                <LocationIcon /> { eventDetail.tempPlaceName }
+                            </h3>
+                            {
+                                eventDetail.tempPlacePhone && (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Telefono: </span>
+                                            {eventDetail.tempPlacePhone}
+                                        </p>
+                                        {
+                                            isMobile && (
+                                                <CallButton phone={eventDetail.tempPlacePhone} />
+                                            )
+                                        }
+                                    </>
+                                )
+                            }
+                            {
+                                eventDetail.tempPlaceWhatsapp &&  (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Whatsapp: </span>
+                                            { eventDetail.tempPlaceWhatsapp }
+                                        </p>
+                                        <WhatsappButton whatsapp={ eventDetail.tempPlaceWhatsapp } />
+                                    </>
+                                )
+                            }
+                            {
+                                eventDetail.tempPlaceAddress && (
+                                    <>
+                                        <p className='mt-2 font-semibold text-gray-700'>
+                                            <span className='text-gray-500'>Direccion: </span>
+                                            {eventDetail.tempPlaceAddress}
+                                        </p>
+                                        <ViewOnMapButton position={ eventDetail.tempPlacePosition } />
+                                    </>
+                                )
+                            }
+
                         </>
                     )
                 }

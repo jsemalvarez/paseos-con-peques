@@ -1,6 +1,5 @@
-import React from 'react'
 import { Presentations } from '../components/Presentations'
-import { MapSection } from '../components/MapSection'
+import { MapSection } from '../components/MapSection/MapSection'
 import { CalendarSection } from '../components/CalendarSection'
 import { SearchPlaces } from '../components/SearchPlaces'
 import { PublicLayout } from '../../common/layouts/PublicLayout'
