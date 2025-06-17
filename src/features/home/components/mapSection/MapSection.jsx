@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MapView } from '../../../common/components/map/MapView'
 import { Markers } from '../../../common/components/map/Markers'
 import { usePlaces } from '../../../places/hooks/usePlaces'
@@ -12,6 +12,17 @@ export const MapSection = () => {
   const [category, setCategory] = useState('all')
   const { places, handleOpenPlaceDetail } = usePlaces();
   const [selectedAgeRanges, setSelectedAgeRanges] = useState([]);
+  const [isOnline, setIsOnline] = useState(navigator.onLine)
+
+  useEffect(() => {
+    const updateOnlineStatus = () => setIsOnline(navigator.onLine)
+    window.addEventListener('online', updateOnlineStatus)
+    window.addEventListener('offline', updateOnlineStatus)
+    return () => {
+      window.removeEventListener('online', updateOnlineStatus)
+      window.removeEventListener('offline', updateOnlineStatus)
+    }
+  }, [])
 
   const handleAgeRangeChange = (rangeId) => {
     setSelectedAgeRanges((prev) =>
@@ -28,6 +39,20 @@ export const MapSection = () => {
       return hasPlaceCategory && hasPlaceAgeRange;
     })
   },[category, selectedAgeRanges, places])
+
+
+  if (!isOnline) {
+    return (
+      <div 
+        id='mapSection' 
+        className='min-h-screen py-[100px] flex flex-col justify-center items-center'
+      >
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center mt-4">
+          <p className="font-semibold">Mapa no disponible sin conexión</p>
+        </div>
+      </div>
+    );
+  }
 
 
   return (

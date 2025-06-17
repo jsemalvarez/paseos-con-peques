@@ -1,9 +1,17 @@
+### Instalá el plugin PWA
+
+```
+npm install vite-plugin-pwa --save-dev
+```
+
+### Editá tu vite.config.js
+
+```
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -37,8 +45,8 @@ export default defineConfig({
         name: 'Paseos con Peques',
         short_name: 'PcP',
         description: 'Mapa y eventos para familias con peques',
-        theme_color: '#332876',
-        background_color: '#332876',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',
         icons: [
@@ -63,3 +71,46 @@ export default defineConfig({
     })
   ],
 })
+
+```
+
+### Compilar y probar
+
+```
+npm run build
+npx serve dist
+```
+
+npx serve dist abre un puerto en local para probar la PWA
+
+### Extra: Agregar el botón de instalación en React
+
+```
+import { useEffect, useState } from 'react'
+
+function InstallButton() {
+  const [deferredPrompt, setDeferredPrompt] = useState(null)
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault()
+      setDeferredPrompt(e)
+    }
+    window.addEventListener('beforeinstallprompt', handler)
+    return () => window.removeEventListener('beforeinstallprompt', handler)
+  }, [])
+
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt()
+    }
+  }
+
+  return (
+    <button onClick={handleInstallClick} disabled={!deferredPrompt}>
+      Instalar App
+    </button>
+  )
+}
+
+```
