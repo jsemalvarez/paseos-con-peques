@@ -74,8 +74,11 @@ export const Presentations = () => {
 
       {
         (deferredPrompt && isMobile) && (
-          <div className="flex flex-col items-center mt-4">
-            <div className="bg-blue-100 border border-blue-300 text-blue-800 px-4 py-3 rounded text-center mt-4 text-sm">
+          <></>
+        )
+      }
+          <div className="flex flex-col items-center mx-6 mt-4">
+            <div className="bg-blue-100 border border-blue-300 text-blue-800 px-4 py-3 rounded text-center text-sm">
               <p className="font-medium">
                 ¡Instalá nuestra app para tener acceso más rápido desde tu pantalla de inicio!
               </p>
@@ -88,8 +91,6 @@ export const Presentations = () => {
               Instalar App
             </button>
           </div>
-        )
-      }
 
 
     </div>
