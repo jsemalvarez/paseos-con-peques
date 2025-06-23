@@ -7,7 +7,14 @@ export const startSavingNewEvent = (newEvent) => {
     return async( dispatch ) => {
         dispatch( initProcessingData() )
         const response = await eventService.saveNewEvent(newEvent);
-        dispatch( addNewEvent({id:response.id, ...newEvent}) )    
+
+        if(response.ok){
+            dispatch( addNewEvent({id:response.id, ...newEvent}) )   
+        }else{
+            console.log(response.errorMessage)
+            //TODO: implementar dispatch(setError(response.errorMessage));
+        }
+
     }
 }
 
@@ -29,17 +36,29 @@ export const startGetingEvents = () => {
 export const startUpdatingEvent = (updatedData) => {
     return async( dispatch ) => {
         dispatch( initProcessingData() )
-        await eventService.updateEvent(updatedData.id, updatedData);
-        dispatch( updateEvent(updatedData) )
+        const response = await eventService.updateEvent(updatedData.id, updatedData);
+
+        if(response.ok){
+            dispatch( updateEvent(updatedData) )
+        }else{
+            console.log(response.errorMessage)
+            //TODO: implementar dispatch(setError(response.errorMessage));
+        }
     }
 }
 
 export const startDeletingEvent = (id) => {
     return async(dispatch) => {
         dispatch( initProcessingData() )
-        await eventService.deleteEvent(id)
-        dispatch( closeEventDetail())
-        dispatch( deleteEvent(id))
+        const response = await eventService.deleteEvent(id)
+
+        if(response.ok){
+            dispatch( closeEventDetail())
+            dispatch( deleteEvent(id))
+        }else{
+            console.log(response.errorMessage)
+            //TODO: implementar dispatch(setError(response.errorMessage));
+        }
     }
 }
 
