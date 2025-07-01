@@ -18,7 +18,7 @@ export const Home = () => {
         <SearchPlaces />
         <AboutAs />
         <PlaceDetail /> 
-        <FloatingBotButton />
+        {/* <FloatingBotButton /> */}
         <FloatingWhatsAppButton />
     </PublicLayout>
   )
