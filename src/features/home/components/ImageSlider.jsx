@@ -43,9 +43,9 @@ export const ImageSlider = () => {
             alt={`Banner ${index + 1}`} 
             className="w-full h-full object-cover"
         />
-        <div className="absolute bottom-6 left-6 bg-primary px-6 py-1 rounded-md shadow-lg">
+        <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 bg-primary px-6 py-1 rounded-md shadow-lg">
           <h3 className="text-lg text-secondary font-semibold">{img.title}</h3>
-          <p className="-mt-2 font-light">{img.subTitle}</p>
+          <p className="hidden sm:block -mt-2 font-light">{img.subTitle}</p>
         </div>
       </div>
       ))}
