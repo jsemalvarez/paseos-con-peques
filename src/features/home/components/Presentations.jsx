@@ -58,9 +58,9 @@ export const Presentations = () => {
           {presentationCards.map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center justify-center bg-pink-200 text-pink-900 rounded-2xl shadow-md p-6 w-full sm:w-[300px]"
+              className="flex md:flex-col items-center justify-center bg-pink-200 text-pink-900 rounded-2xl shadow-md p-4 md:p-6 w-full sm:w-[300px]"
             >
-              <div className="mb-4">{item.icon}</div>
+              <div className="md:mb-4">{item.icon}</div>
               <p className="text-center text-base font-medium">{item.text}</p>
             </div>
           ))}
