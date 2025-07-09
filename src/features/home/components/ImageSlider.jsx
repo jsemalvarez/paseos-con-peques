@@ -32,7 +32,7 @@ export const ImageSlider = () => {
   }, [])
 
   return (
-    <div className="w-9/10 max-w-[1200px] aspect-[10/4] md:aspect-[9/3] overflow-hidden relative rounded-lg shadow-md">
+    <div className="w-9/10 max-w-[1200px] aspect-[7/4] sm:aspect-[8/4] md:aspect-[9/3] overflow-hidden relative rounded-lg shadow-md">
       {images.map((img, index) => (
         <div
           key={index}
