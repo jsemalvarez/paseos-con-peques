@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ImageSlider } from './ImageSlider'
-import { CalendarIcon, LocationIcon, SearchIcon } from '../../common/components/Icons';
-import { useIsMobile } from '../../common/hooks/useIsMobile';
+import { useIsMobile } from '../../../common/hooks/useIsMobile';
+import { PresentationCards } from './PresentationCards';
 
-const presentationCards = [
-  {
-    text: "¿Tenés ganas de salir con los niños y no sabés a dónde ir?",
-    icon: <LocationIcon style="w-10 h-10 text-pink-900" />,
-  },
-  {
-    text: "¿Buscás planes para pasear con tus sobrinos?",
-    icon: <CalendarIcon style="w-10 h-10 text-pink-900" />,
-  },
-  {
-    text: "¿Querés encontrar ese lugar que todos están mencionando?",
-    icon: <SearchIcon style="w-10 h-10 text-pink-900" />,
-  },
-];
 
 export const Presentations = () => {
 
@@ -52,24 +38,10 @@ export const Presentations = () => {
         Paseos con Peques
       </h1>
 
-      <div className="flex flex-col items-center gap-6 px-4 py-8">
-        {/* Tarjetas horizontales */}
-        <div className="flex flex-wrap justify-center gap-6 w-full max-w-5xl">
-          {presentationCards.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex md:flex-col items-center justify-between bg-pink-200 text-pink-900 rounded-2xl shadow-md p-4 md:p-6 w-full sm:w-[300px]"
-            >
-              <div className="md:mb-4">{item.icon}</div>
-              <p className="text-center text-base font-medium grow">{item.text}</p>
-            </div>
-          ))}
-        </div>
+      <PresentationCards />
 
-        {/* Frase destacada */}
-        <div className="mt-6 py-4 text-4xl font-bold text-center tracking-widest max-w-3xl w-full text-pink-200">
-          Acá te podemos ayudar!!!
-        </div>
+      <div className="py-4 text-4xl font-bold text-center tracking-widest max-w-3xl w-full text-pink-200">
+        Acá te podemos ayudar!!!
       </div>
 
       {

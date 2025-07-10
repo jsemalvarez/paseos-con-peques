@@ -1,4 +1,4 @@
-import { Presentations } from '../components/Presentations'
+import { Presentations } from '../components/presetationSection/Presentations'
 import { MapSection } from '../components/mapSection/MapSection'
 import { CalendarSection } from '../components/CalendarSection'
 import { SearchPlaces } from '../components/SearchPlaces'

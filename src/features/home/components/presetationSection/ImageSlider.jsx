@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CloudinaryImage } from "../../common/components/CloudinaryImage";
+import { CloudinaryImage } from "../../../common/components/CloudinaryImage";
 
 const images = [
     {
