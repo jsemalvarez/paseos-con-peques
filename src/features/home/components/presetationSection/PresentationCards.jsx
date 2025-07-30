@@ -5,14 +5,17 @@ const presentationCards = [
   {
     text: "¿Tenés ganas de salir con los niños y no sabés a dónde ir?",
     icon: <LocationIcon style="w-10 h-10 text-pink-900" />,
+    href: "#mapSection"
   },
   {
     text: "¿Buscás planes para pasear con tus sobrinos?",
     icon: <CalendarIcon style="w-10 h-10 text-pink-900" />,
+    href: "#calendarSection"
   },
   {
     text: "¿Querés encontrar ese lugar que todos están mencionando?",
     icon: <SearchIcon style="w-10 h-10 text-pink-900" />,
+    href: "#searchSection"
   },
 ];
 
@@ -24,6 +27,7 @@ export const PresentationCards = () => {
             key={id}
             icon={item.icon}
             text={item.text}
+            href={item.href}
           />
         ))}
       </div>
