@@ -1,6 +1,24 @@
 import { Link } from 'react-router-dom'
 import { CalendarIcon, LocationIcon, SearchIcon, UsersIcon } from '../../common/components/Icons'
 
+const navItems = [
+  {
+    href: "#mapSection",
+    icon: LocationIcon,
+    label: "Mapa"
+  },
+  {
+    href: "#calendarSection",
+    icon: CalendarIcon,
+    label: "Calendario"
+  },
+  {
+    href: "#searchSection",
+    icon: SearchIcon,
+    label: "Buscador"
+  },
+]
+
 //TODO: extraer este componente
 const NavItem = ({ href, icon: Icon, label }) => (
   <li>
@@ -27,9 +45,16 @@ export const PublicNavbar = () => {
       >PcP</a>
 
       <ul className='flex gap-3'>
-        <NavItem href="#mapSection" icon={LocationIcon} label="Mapa" />
-        <NavItem href="#calendarSection" icon={CalendarIcon} label="Calendario" />
-        <NavItem href="#searchSection" icon={SearchIcon} label="Buscador" />
+        {                  
+          navItems.map( item => (            
+            <NavItem 
+              key={ item.label } 
+              href={ item.href } 
+              icon={ item.icon } 
+              label={ item.label } 
+            />
+          ))
+        }
       </ul>
 
       <Link
