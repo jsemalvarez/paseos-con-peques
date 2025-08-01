@@ -27,8 +27,11 @@ export const startLoginWithEmailPassword = ({email, password}) => {
 export const startLogOut = () => {
     return async( dispatch ) => {
         
-        await authService.logout()
+        const response = await authService.logout()
 
-        dispatch( logout({errorMessage: null}) )
+        if(!response.ok) return dispatch( logout(response.errorMessage) )
+        
+        dispatch( logout(null) )
+        
     }
 }
