@@ -3,3 +3,9 @@ export const AGE_RANGES = [
   { id: 'range2', label: '3 a 7 años' },
   { id: 'range3', label: '8 o más' },
 ];
+
+export const PRICE_EVENTS = [
+  { id: 'PAID_TICKET', label: 'con ticket' },
+  { id: 'DONATION_BASED', label: 'a la gorra' },
+  { id: 'FREE_ENTRY', label: 'entrada libre' },
+]

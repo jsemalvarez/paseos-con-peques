@@ -10,7 +10,7 @@ import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
 import dayjs from 'dayjs'
 import { SelectField } from '../../common/components/form/SelectField'
-import { AGE_RANGES } from '../../common/utils/constants'
+import { AGE_RANGES, PRICE_EVENTS } from '../../common/utils/constants'
 import { MapView } from '../../common/components/map/MapView'
 import { DraggableMarker } from '../../common/components/map/DraggableMarker'
 
@@ -32,7 +32,8 @@ const initialForm = {
     tempPlaceAddress: "",
     tempPlacePhone: "",
     tempPlaceWhatsapp: "",
-    ageRanges:[]
+    ageRanges:[],
+    priceType: PRICE_EVENTS[0].id
 }
 
 export const EventFormPage = () => {
@@ -63,6 +64,7 @@ export const EventFormPage = () => {
         tempPlaceAddress,
         tempPlacePhone,
         tempPlaceWhatsapp,
+        priceType,
         formState,
         setFormState, 
         onInputChange, 
@@ -231,7 +233,7 @@ export const EventFormPage = () => {
                         disabled={ isProcessing }
                     />
 
-                    <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-6 bg-primary mt-5 p-2 border-2 border-gray-300 rounded-lg">
+                    <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-2 bg-primary mt-5 p-2 border-1 border-gray-300 rounded-lg">
                         {AGE_RANGES.map(({ id, label }) => (
                             <label key={id} className="flex items-center gap-2 text-sm">
                             <input
@@ -245,6 +247,17 @@ export const EventFormPage = () => {
                             </label>
                         ))}
                     </div>
+
+                    <div className='mt-4'>
+                        <span  className="block font-medium">
+                            Tipo de entrada
+                        </span>
+                        <PriceSelectorRadio 
+                            selected={priceType} 
+                            onChange={onInputChange}
+                        />
+                    </div>
+
 
                     <SelectField 
                         title='Lugares:'
@@ -316,4 +329,25 @@ export const EventFormPage = () => {
             </div>
         </PrivateLoyout>
     )
+}
+
+//TODO: extraer este componente aun archivo cuando se cree la carpeta de EventFormPage
+const PriceSelectorRadio = ({ selected, onChange }) => {
+  return (
+    <div className="flex justify-center p-2 gap-4 border-1 border-gray-300 rounded-lg">
+        {PRICE_EVENTS.map((option) => (
+            <label key={option.id} className="flex items-center gap-2 cursor-pointer">
+                <input
+                    type="radio"
+                    name="priceType"
+                    value={option.id}
+                    checked={selected === option.id}
+                    onChange={onChange}
+                    className=""
+                />
+                <span className="text-sm">{option.label}</span>
+            </label>
+        ))}
+    </div>
+  );
 }

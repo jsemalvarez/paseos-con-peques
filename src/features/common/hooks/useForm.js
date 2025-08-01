@@ -10,29 +10,31 @@ export const useForm = ( initialForm = {}) => {
     }, [ initialForm ])
 
     const onInputChange = ({ target }) => {
-        const { name, type, checked, value, selectedOptions } = target
+      const { name, type, checked, value, selectedOptions } = target
 
-        let newValue;
+      let newValue;
 
-        if (type === 'checkbox') {
-          if (Array.isArray(formState[name])) {
-            newValue = checked
-              ? [...formState[name], value]
-              : formState[name].filter((item) => item !== value);
-          } else {
-            newValue = checked;
-          }
-        } else if (selectedOptions) { 
-          //TODO: implementar (type === 'select-multiple') para que solo sea arrelgo cuando es multiple
-          newValue = Array.from(selectedOptions).map((option) => option.value);
+      if (type === 'checkbox') {
+        if (Array.isArray(formState[name])) {
+          newValue = checked
+            ? [...formState[name], value]
+            : formState[name].filter((item) => item !== value);
         } else {
-          newValue = value;
+          newValue = checked;
         }
+      } else if (type === 'radio') {
+        newValue = value;
+      } else if (selectedOptions) { 
+        //TODO: implementar (type === 'select-multiple') para que solo sea arrelgo cuando es multiple
+        newValue = Array.from(selectedOptions).map((option) => option.value);
+      } else {
+        newValue = value;
+      }
       
-        setFormState({
-          ...formState,
-          [name]: newValue,
-        });
+      setFormState({
+        ...formState,
+        [name]: newValue,
+      });
     }
 
     const onResetForm = () => {
