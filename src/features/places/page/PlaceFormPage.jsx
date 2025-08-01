@@ -74,7 +74,6 @@ export const PlaceFormPage = () => {
         const placeToUpdate = places.find(place => place.id == placeId)
 
         if(placeToUpdate){
-            console.log(placeToUpdate)
             setFormState(placeToUpdate)
             setPosition(placeToUpdate.position)
         }else{

@@ -164,7 +164,6 @@ export const ChevronRightIcon = ({style}) => {
 
 export const MenuIcon = ({style}) => {
 
-    console.log(style)
     return (
         <svg 
             className={`w-5 h-5 text-gray-400 transition duration-300 ${style}`}
