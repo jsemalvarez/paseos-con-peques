@@ -10,7 +10,7 @@ import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
 import dayjs from 'dayjs'
 import { SelectField } from '../../common/components/form/SelectField'
-import { AGE_RANGES, PRICE_EVENTS } from '../../common/utils/constants'
+import { AGE_RANGES, EVENT_TYPES, PRICE_EVENTS } from '../../common/utils/constants'
 import { MapView } from '../../common/components/map/MapView'
 import { DraggableMarker } from '../../common/components/map/DraggableMarker'
 
@@ -33,6 +33,7 @@ const initialForm = {
     tempPlacePhone: "",
     tempPlaceWhatsapp: "",
     ageRanges:[],
+    activityTypes:[],
     priceType: PRICE_EVENTS[0].id
 }
 
@@ -60,6 +61,7 @@ export const EventFormPage = () => {
         bgColor,
         placeId,
         ageRanges,
+        activityTypes,
         tempPlaceName,
         tempPlaceAddress,
         tempPlacePhone,
@@ -248,6 +250,11 @@ export const EventFormPage = () => {
                         ))}
                     </div>
 
+                    <EventTypeSelector 
+                        activityTypes={ activityTypes }
+                        onChange={onInputChange}
+                    />
+
                     <div className='mt-4'>
                         <span  className="block font-medium">
                             Tipo de entrada
@@ -350,4 +357,24 @@ const PriceSelectorRadio = ({ selected, onChange }) => {
         ))}
     </div>
   );
+}
+
+//TODO: extraer este componente aun archivo cuando se cree la carpeta de EventFormPage
+const EventTypeSelector = ({activityTypes, onChange}) => {
+    return(
+        <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-2 bg-primary mt-5 p-2 border-1 border-gray-300 rounded-lg">
+            {EVENT_TYPES.map(({ id, label }) => (
+                <label key={id} className="flex items-center gap-2 text-sm">
+                <input
+                    type="checkbox"
+                    name="activityTypes"
+                    value={ id }
+                    checked={ activityTypes.includes(id) }
+                    onChange={ onChange }
+                />
+                { label }
+                </label>
+            ))}
+        </div>
+    )
 }

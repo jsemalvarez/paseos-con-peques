@@ -5,6 +5,7 @@ import { PRICE_EVENTS } from "../../common/utils/constants"
 const date = dayjs(new Date()).format('YYYY-MM-DD');
 const timeStart = dayjs(new Date()).format('HH:mm');
 const timeEnd = dayjs(new Date()).add(2, 'hour').format('HH:mm');
+const PAID_TICKET = PRICE_EVENTS[0].id;
 
 export const formatEvent = ( event ) => {
     return {
@@ -18,7 +19,8 @@ export const formatEvent = ( event ) => {
         bgColor:event.bgColor || "",
         placeId: event.placeId || null,
         ageRanges: event.ageRanges || [],
-        priceType: event.priceType || PRICE_EVENTS[0].id || '',
+        priceType: event.priceType || PAID_TICKET || '',
+        activityTypes: event.activityTypes || [],
         tempPlaceName: event.tempPlaceName || null,
         tempPlaceAddress: event.tempPlaceAddress || null,
         tempPlacePhone: event.tempPlacePhone || null,

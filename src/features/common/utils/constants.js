@@ -9,3 +9,9 @@ export const PRICE_EVENTS = [
   { id: 'DONATION_BASED', label: 'a la gorra' },
   { id: 'FREE_ENTRY', label: 'entrada libre' },
 ]
+
+export const EVENT_TYPES = [
+  { id: 'circus', label: 'Circo' },
+  { id: 'music', label: 'Música' },
+  { id: 'workshop', label: 'Talleres' },
+];

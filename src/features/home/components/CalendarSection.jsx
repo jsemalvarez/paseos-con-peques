@@ -4,7 +4,7 @@ import { formatEvents } from '../../events/services/eventService';
 import { Calendar } from '../../events/components/Calendar';
 import { CalendarDayAside } from '../../events/components/CalendarDayAside';
 import { EventDetail } from '../../events/components/EventDetail';
-import { AGE_RANGES, PRICE_EVENTS } from '../../common/utils/constants';
+import { AGE_RANGES, EVENT_TYPES, PRICE_EVENTS } from '../../common/utils/constants';
 
 
 export const CalendarSection = () => {
@@ -14,6 +14,7 @@ export const CalendarSection = () => {
   const [searchingEvent, setSearchingEvent] = useState('');
   const [selectedAgeRanges, setSelectedAgeRanges] = useState([]);
   const [selectedPriceEvent, setSelectedPriceEvent] = useState([])
+  const [selectedEventType, setSelectedEventType] = useState([])
 
   const handleAgeRangeChange = (rangeId) => {
     setSelectedAgeRanges((prev) =>
@@ -23,7 +24,15 @@ export const CalendarSection = () => {
     );
   };
 
-  const handlePriceEvent = (priceEventId) => {
+  const handleEventType = (eventTypeId) => {
+    setSelectedEventType((prev) =>
+      prev.includes(eventTypeId)
+        ? prev.filter((id) => id !== eventTypeId)
+        : [...prev, eventTypeId]
+    );
+  }
+
+    const handlePriceEvent = (priceEventId) => {
     setSelectedPriceEvent((prev) =>
       prev.includes(priceEventId)
         ? prev.filter((id) => id !== priceEventId)
@@ -36,10 +45,11 @@ export const CalendarSection = () => {
     return events.filter((event) => {
       const matchesSearch = term.length <= 1 || event.title.toLowerCase().includes(term);
       const matchesAge = selectedAgeRanges.length === 0 || event.ageRanges?.some((range) => selectedAgeRanges.includes(range));
-      const matchesPriceEvent = selectedPriceEvent.length === 0 || selectedPriceEvent.includes(event.priceType) ;
-      return matchesSearch && matchesAge && matchesPriceEvent;
+      const matchesEventType = selectedEventType.length === 0 || event.activityTypes?.some((activityType) => selectedEventType.includes(activityType));
+      const matchesPriceEvent = selectedPriceEvent.length === 0 || selectedPriceEvent.includes(event.priceType);
+      return matchesSearch && matchesAge && matchesPriceEvent && matchesEventType;
     });
-  }, [searchingEvent, selectedAgeRanges, events, selectedPriceEvent]);
+  }, [searchingEvent, selectedAgeRanges, events, selectedPriceEvent, selectedEventType]);
 
   //TODO: mejorar este rendimiento, se ejecuta cada vez que dibuja el componente
   const formattedEvents = formatEvents( filteredEvents );  
@@ -64,6 +74,20 @@ export const CalendarSection = () => {
                 value={ id }
                 checked={selectedAgeRanges.includes(id)}
                 onChange={() => handleAgeRangeChange(id)}
+              />
+              { label }
+            </label>
+          ))}
+        </div>
+
+        <div className="w-full max-w-md flex justify-center flex-col md:flex-row items-center gap-4 bg-primary p-2 border-2 border-secondary rounded-lg">
+          {EVENT_TYPES.map(({ id, label }) => (
+            <label key={id} className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                value={ id }
+                checked={ selectedEventType.includes(id) }
+                onChange={() => handleEventType(id)}
               />
               { label }
             </label>
