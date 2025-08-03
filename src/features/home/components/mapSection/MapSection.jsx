@@ -59,7 +59,7 @@ export const MapSection = () => {
     <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
 
       <p className='text-secondary'>*Click en los iconos para mas info</p>
-      <div className='w-8/10 max-w-[1200px] rounded-xl bg-primary overflow-hidden'>
+      <div className='w-9/10 max-w-[1200px] rounded-xl bg-primary overflow-hidden'>
         <div className='aspect-[4/5] md:aspect-[10/5]'>
           <MapView>
             <Markers places={filteredPlaces} handleClick={handleOpenPlaceDetail} /> 
@@ -87,9 +87,9 @@ export const MapSection = () => {
           }
         </div>
 
-        <div className="w-full max-w-md mx-auto flex justify-center items-center flex-col md:flex-row gap-4 p-2 border-t-1 border-secondary">
+        <div className="w-full flex flex-wrap justify-center items-center flex-row gap-2 p-2 bg-secondary">
           {AGE_RANGES.map(({ id, label }) => (
-            <label key={id} className="flex items-center gap-2 text-sm">
+            <label key={id} className="flex items-center justify-center grow-1 gap-2 text-sm px-2 py-1 bg-primary rounded-md">
               <input
                 type="checkbox"
                 value={ id }
