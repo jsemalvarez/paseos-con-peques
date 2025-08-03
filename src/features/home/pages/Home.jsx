@@ -1,6 +1,6 @@
 import { Presentations } from '../components/presetationSection/Presentations'
 import { MapSection } from '../components/mapSection/MapSection'
-import { CalendarSection } from '../components/CalendarSection'
+import { CalendarSection } from '../components/calendarSection/CalendarSection'
 import { SearchPlaces } from '../components/SearchPlaces'
 import { PublicLayout } from '../../common/layouts/PublicLayout'
 import { AboutAs } from '../components/AboutAs'

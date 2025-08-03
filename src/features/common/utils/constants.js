@@ -7,11 +7,14 @@ export const AGE_RANGES = [
 export const PRICE_EVENTS = [
   { id: 'PAID_TICKET', label: 'con ticket' },
   { id: 'DONATION_BASED', label: 'a la gorra' },
-  { id: 'FREE_ENTRY', label: 'entrada libre' },
+  { id: 'FREE_ENTRY', label: 'gratuita' },
 ]
 
 export const EVENT_TYPES = [
   { id: 'circus', label: 'Circo' },
   { id: 'music', label: 'Música' },
   { id: 'workshop', label: 'Talleres' },
+  { id: 'theater', label: 'Teatro' },
+  { id: 'entertainment', label: 'Entretenimineto' },
+  { id: 'food', label: 'Con algo rico' },
 ];
