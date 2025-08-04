@@ -87,18 +87,20 @@ export const MapSection = () => {
           }
         </div>
 
-        <div className="w-full flex flex-wrap justify-center items-center flex-row gap-2 p-2 bg-secondary">
-          {AGE_RANGES.map(({ id, label }) => (
-            <label key={id} className="flex items-center justify-center grow-1 gap-2 text-sm px-2 py-1 bg-primary rounded-md">
-              <input
-                type="checkbox"
-                value={ id }
-                checked={selectedAgeRanges.includes(id)}
-                onChange={() => handleAgeRangeChange(id)}
-              />
-              { label }
-            </label>
-          ))}
+        <div className="flex justify-center items-center bg-secondary">
+          <div className="w-full max-w-md flex flex-wrap justify-center items-center flex-row gap-2 p-2">
+            {AGE_RANGES.map(({ id, label }) => (
+              <label key={id} className="flex items-center justify-center grow-1 gap-2 text-sm px-2 py-1 bg-primary rounded-md">
+                <input
+                  type="checkbox"
+                  value={ id }
+                  checked={selectedAgeRanges.includes(id)}
+                  onChange={() => handleAgeRangeChange(id)}
+                />
+                { label }
+              </label>
+            ))}
+          </div>
         </div>
         
       </div>
