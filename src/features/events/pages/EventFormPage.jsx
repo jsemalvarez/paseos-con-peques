@@ -362,7 +362,7 @@ const PriceSelectorRadio = ({ selected, onChange }) => {
 //TODO: extraer este componente aun archivo cuando se cree la carpeta de EventFormPage
 const EventTypeSelector = ({activityTypes, onChange}) => {
     return(
-        <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-2 bg-primary mt-5 p-2 border-1 border-gray-300 rounded-lg">
+        <div className="w-full max-w-md mx-auto flex justify-center flex-row flex-wrap gap-4 mb-2 bg-primary mt-5 p-2 border-1 border-gray-300 rounded-lg">
             {EVENT_TYPES.map(({ id, label }) => (
                 <label key={id} className="flex items-center gap-2 text-sm">
                 <input
