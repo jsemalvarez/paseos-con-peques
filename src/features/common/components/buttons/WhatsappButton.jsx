@@ -11,7 +11,7 @@ export const WhatsappButton = ({ whatsapp, className = '' }) => {
             href={ whatsappLink }
             className={`block p-1 flex justify-center bg-green-700 text-white rounded-full transition-all duration-300 hover:bg-green-600 ${className}`}
         >
-            ir a Whatsapp
+            Ir a Whatsapp
         </a>
     );
 };
