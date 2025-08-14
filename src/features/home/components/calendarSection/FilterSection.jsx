@@ -17,11 +17,17 @@ export const FilterSection = ({ setFilteredEvents }) => {
     const filteredEvents = useMemo(() => {
         const term = searchingEvent.trim().toLowerCase();
         return events.filter((event) => {
-            const matchesSearch = term.length <= 1 || event.title.toLowerCase().includes(term);
+            const matchesSearchTitle = term.length <= 1 || event.title.toLowerCase().includes(term);
+            const matchesSearchDescription = term.length <= 1 || event.description.toLowerCase().includes(term);
+            const matchesSearchArtists = term.length <= 1 || event.artists.toLowerCase().includes(term);
+            const matchesSearch = matchesSearchTitle || matchesSearchDescription || matchesSearchArtists;
             const matchesAge = selectedAgeRanges.length === 0 || event.ageRanges?.some((range) => selectedAgeRanges.includes(range));
             const matchesEventType = selectedEventType.length === 0 || event.activityTypes?.some((activityType) => selectedEventType.includes(activityType));
-            const matchesPriceEvent = selectedPriceEvent.length === 0 || selectedPriceEvent.includes(event.priceType);
-        return matchesSearch && matchesAge && matchesPriceEvent && matchesEventType;
+            const matchesPriceEvent = selectedPriceEvent.length === 0 || selectedPriceEvent.includes(event.priceType);            
+        return matchesSearch 
+            && matchesAge 
+            && matchesPriceEvent 
+            && matchesEventType;
         });
     }, [searchingEvent, selectedAgeRanges, events, selectedPriceEvent, selectedEventType]);
 
