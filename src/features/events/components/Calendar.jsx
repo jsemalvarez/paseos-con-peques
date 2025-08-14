@@ -20,7 +20,9 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
 
   const renderDays = () => {
     const days = [];
-    for (let i = 0; i < startDay; i++) {
+    // primero dibujamos los dias vacios del mes
+    // como queres que el almanaque empiece el Lunes, lo igualamos a 1
+    for (let i = 1; i < startDay; i++) {
       days.push(<div key={`empty-${i}`} className="h-[120px]"></div>);
     }
 
@@ -80,7 +82,7 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
       </div>
 
       <div className="grid grid-cols-7 text-center text-sm text-secondary">
-        {["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"].map((d) => (
+        {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d) => (
           <div key={d}>{d}</div>
         ))}
       </div>
