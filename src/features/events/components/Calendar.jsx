@@ -81,10 +81,18 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
         </button>
       </div>
 
-      <div className="grid grid-cols-7 text-center text-sm text-secondary">
-        {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d) => (
-          <div key={d}>{d}</div>
-        ))}
+      <div className="grid grid-cols-7 text-center text-sm">
+        {
+          ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((day) => {
+            const isWeekend = day === "Sáb" || day === "Dom";
+            return (
+              <div 
+                key={day} 
+                className={`${isWeekend ? "text-gray-200" : "text-secondary"}`}
+              >{day}</div>
+            )
+          })
+        }
       </div>
 
       <div className="grid grid-cols-7 mt-2 gap-[1px] bg-gray-300 border-t">
