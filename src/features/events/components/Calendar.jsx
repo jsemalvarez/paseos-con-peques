@@ -9,6 +9,8 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
 
   const [currentDate, setCurrentDate] = useState(dayjs());
 
+  const todayNumber = currentDate.date(); //14
+
   const startOfMonth = currentDate.startOf("month");
   const endOfMonth = currentDate.endOf("month");
 
@@ -32,12 +34,14 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
       const events = eventData[dayKey] || [];
 
       // esto tiene que ser <CalendarDays events={} />
+
+      const isToday = todayNumber == day
       days.push(
         <div
           key={day}
           className="h-[120px] bg-primary"
         >
-          <span className="text-xs text-secondary p-1">
+          <span className={`${isToday ? "text-gray-200" : "text-secondary"} text-xs p-1`}>
               {day}
           </span>
 
