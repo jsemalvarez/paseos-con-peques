@@ -42,6 +42,15 @@ h4{
     scrollbar-color: #1e1a4d #ff637e;
   }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: none;
+}
+
 
   .leaflet-container{
     height: 100%;

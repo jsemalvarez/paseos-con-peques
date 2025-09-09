@@ -9,7 +9,7 @@ export const FloatingWhatsAppButton = () => {
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 right-4 z-1500 bg-green-700 hover:bg-green-600 text-white rounded-full shadow-lg p-2 transition-all duration-300 flex items-center justify-center border-2 border-white"
+        className="fixed bottom-4 right-4 z-1500 bg-green-700 hover:bg-green-600 text-white rounded-full p-2 transition-all duration-300 flex items-center justify-center border-2 border-white shadow-white shadow-sm"
         aria-label="Escribime por WhatsApp"
       >
         <svg

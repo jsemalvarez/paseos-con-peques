@@ -58,8 +58,8 @@ export const MapSection = () => {
   return (
     <div id='mapSection' className='min-h-screen py-[100px] flex flex-col justify-center items-center'>
 
-      <p className='text-secondary'>*Click en los iconos para mas info</p>
-      <div className='w-9/10 max-w-[1200px] rounded-xl bg-primary overflow-hidden'>
+      <p className='text-cian'>*Click en los iconos para mas info</p>
+      <div className='w-9/10 max-w-[1200px] border-cian border-2 shadow-lg shadow-primary rounded-xl bg-primary overflow-hidden'>
         <div className='aspect-[4/5] md:aspect-[10/5]'>
           <MapView>
             <Markers places={filteredPlaces} handleClick={handleOpenPlaceDetail} /> 

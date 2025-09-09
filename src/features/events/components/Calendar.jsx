@@ -72,7 +72,7 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
   };
 
   return (
-    <div className="w-full border rounded bg-primary">
+    <div className="w-full border-cian border-2 shadow-lg shadow-primary rounded bg-primary">
       <div className="flex justify-between items-center px-4 py-2">
         <button className="cursor-pointer" onClick={handlePrevMonth}>
           <ChevronLeftIcon />

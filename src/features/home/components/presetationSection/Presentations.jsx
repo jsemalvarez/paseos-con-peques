@@ -41,7 +41,7 @@ export const Presentations = () => {
 
       <PresentationCards />
 
-      <div className="py-4 text-4xl font-bold text-center tracking-widest max-w-3xl w-full text-pink-200">
+      <div className="py-4 text-4xl font-bold text-center tracking-widest max-w-3xl w-full text-sky-200">
         Acá te podemos ayudar!!!
       </div>
 

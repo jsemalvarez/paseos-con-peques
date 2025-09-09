@@ -44,7 +44,7 @@ export const FilterSection = ({ setFilteredEvents }) => {
                 placeholder="Nombre del artista o evento"
                 value={searchingEvent}
                 onChange={(e) => setSearchingEvent(e.target.value)}
-                className="w-full max-w-md bg-primary p-2 border-2 border-secondary rounded-lg focus:outline-hidden"
+                className="w-full max-w-md bg-primary p-2 border-cian border-2 shadow-lg shadow-primary rounded-lg focus:outline-hidden"
             />
 
             <FilterEventByTag
