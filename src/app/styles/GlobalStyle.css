@@ -3,7 +3,8 @@
 
 @theme {
     --color-primary: oklch(0.257 0.09 281.288); /*indigo-950*/
-    --color-secondary: oklch(0.712 0.194 13.428); /*rose-400*/
+    --color-primary-light: #4a69bd; /* #4a69bd | #6a89cc*/
+    --color-secondary: oklch(0.712 0.194 13.428); /*rose-400*/ 
 }
 
 .btn-primary {
