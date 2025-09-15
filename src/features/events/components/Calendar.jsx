@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import dayjs from "dayjs";
 import 'dayjs/locale/es'; // importa el idioma
 import { ChevronLeftIcon, ChevronRightIcon } from "../../common/components/Icons";
@@ -9,7 +9,9 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
 
   const [currentDate, setCurrentDate] = useState(dayjs());
 
-  const todayNumber = currentDate.date(); //14
+  const currentDayNumber = currentDate.date(); //14
+  const currentMonthNumberRef = useRef(dayjs().month());
+
 
   const startOfMonth = currentDate.startOf("month");
   const endOfMonth = currentDate.endOf("month");
@@ -35,13 +37,13 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
 
       // esto tiene que ser <CalendarDays events={} />
 
-      const isToday = todayNumber == day
+      const isToday = currentDayNumber == day && currentMonthNumberRef.current == currentDate.month();
       days.push(
         <div
           key={day}
-          className="h-[120px] bg-primary"
+          className={`h-[120px] ${isToday ? "bg-secondary" : "bg-primary"}`}
         >
-          <span className={`${isToday ? "text-gray-200" : "text-secondary"} text-xs p-1`}>
+          <span className={`${isToday ? "text-primary" : "text-secondary"} text-xs p-1`}>
               {day}
           </span>
 
