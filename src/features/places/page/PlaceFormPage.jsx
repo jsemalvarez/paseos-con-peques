@@ -123,7 +123,7 @@ export const PlaceFormPage = () => {
             <div className='min-h-screen flex justify-center items-center'>    
 
                 <form 
-                    className='min-w-xs px-4 py-16 border-3 border-secondary rounded-xl'
+                    className='min-w-xs px-4 py-16 border-3 border-secondary rounded-xl bg-primary'
                     onSubmit={ handleNewPlace }
                 >
                     <h3 className='text-xl font-bold text-secondary tracking-wide'>

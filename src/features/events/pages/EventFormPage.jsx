@@ -162,7 +162,7 @@ export const EventFormPage = () => {
             <div className='min-h-screen flex justify-center items-center'>    
 
                 <form 
-                    className='min-w-xs px-4 py-16 border-3 border-secondary rounded-xl'
+                    className='min-w-xs px-4 bg-primary py-16 border-3 border-secondary rounded-xl'
                     onSubmit={ handleNewEvent }
                 >
                     <h3 className='text-xl font-bold text-secondary tracking-wide'>
