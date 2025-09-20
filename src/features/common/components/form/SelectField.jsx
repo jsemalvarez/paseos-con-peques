@@ -8,8 +8,8 @@ export const SelectField = ({
   disabled = false
 }) => {
   return (
-    <div className='pt-2'>
-      <label htmlFor={name} className='block font-medium text-gray-700'>
+    <div className='md:col-span-2'>
+      <label htmlFor={name} className='block font-medium text-gray-300'>
         {title}
       </label>
       <select
@@ -22,7 +22,7 @@ export const SelectField = ({
           error
             ? 'border-red-500 focus:ring-red-500'
             : 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
-        } text-gray-700`}
+        } text-gray-300`}
       >
         {options.map((option) => (
           <option key={option.id} value={option.id}>

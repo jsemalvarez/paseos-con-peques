@@ -40,7 +40,7 @@ export const InputForm = ({
   const bgFocus = error ? '' : 'focus:bg-secondary';
 
   return (
-    <div className="mt-4">
+    <div>
       {title && (
         <label htmlFor={inputId} className="block mb-1 font-medium">
           {title}

@@ -58,7 +58,6 @@ export const EventFormPage = () => {
         date,
         timeStart,
         timeEnd,
-        bgColor,
         placeId,
         ageRanges,
         activityTypes,
@@ -162,10 +161,10 @@ export const EventFormPage = () => {
             <div className='min-h-screen flex justify-center items-center'>    
 
                 <form 
-                    className='min-w-xs px-4 bg-primary py-16 border-3 border-secondary rounded-xl'
+                    className='w-9/10 max-w-[1200px] grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-16 bg-primary border-3 border-secondary rounded-xl'
                     onSubmit={ handleNewEvent }
                 >
-                    <h3 className='text-xl font-bold text-secondary tracking-wide'>
+                    <h3 className='md:col-span-2 text-xl font-bold text-secondary tracking-wide'>
                         {eventId ? 'Editar evento' : 'Crear un nuevo evento'}
                     </h3>
 
@@ -181,7 +180,7 @@ export const EventFormPage = () => {
 
                     <TextareaField 
                         name="description" 
-                        rows="6" 
+                        className='h-full'
                         value={description}
                         onChange={onInputChange}
                         placeholder='descripcion del evento ....'
@@ -226,37 +225,37 @@ export const EventFormPage = () => {
                         disabled={ isProcessing }
                     />
 
-                    <InputForm 
+                    {/* <InputForm 
                         title='Color:'
                         name='bgColor'
                         type='text'
                         value={bgColor}
                         onChange={onInputChange}
                         disabled={ isProcessing }
-                    />
+                    /> */}
 
-                    <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-2 bg-primary mt-5 p-2 border-1 border-gray-300 rounded-lg">
-                        {AGE_RANGES.map(({ id, label }) => (
-                            <label key={id} className="flex items-center gap-2 text-sm">
-                            <input
-                                type="checkbox"
-                                name="ageRanges"
-                                value={ id }
-                                checked={ ageRanges.includes(id) }
-                                onChange={ onInputChange }
-                            />
-                            { label }
-                            </label>
-                        ))}
+                    <div>
+                        <span  className="block font-medium mb-1">
+                            Edad recomendada:
+                        </span>
+                        <div className="w-full min-h-[42px] flex flex-row justify-center flex-wrap gap-2 bg-primary p-2 border-1 border-gray-300 rounded-xl">
+                            {AGE_RANGES.map(({ id, label }) => (
+                                <label key={id} className="flex items-center gap-2 text-sm">
+                                    <input
+                                        type="checkbox"
+                                        name="ageRanges"
+                                        value={ id }
+                                        checked={ ageRanges.includes(id) }
+                                        onChange={ onInputChange }
+                                    />
+                                    { label }
+                                </label>
+                            ))}
+                        </div>
                     </div>
 
-                    <EventTypeSelector 
-                        activityTypes={ activityTypes }
-                        onChange={onInputChange}
-                    />
-
-                    <div className='mt-4'>
-                        <span  className="block font-medium">
+                    <div>
+                        <span className="block font-medium mb-1">
                             Tipo de entrada
                         </span>
                         <PriceSelectorRadio 
@@ -265,6 +264,15 @@ export const EventFormPage = () => {
                         />
                     </div>
 
+                    <div className='md:col-span-2'>
+                        <span  className="block font-medium mb-1">
+                            Tipo de evento
+                        </span>
+                        <EventTypeSelector 
+                            activityTypes={ activityTypes }
+                            onChange={onInputChange}
+                        />
+                    </div>
 
                     <SelectField 
                         title='Lugares:'
@@ -275,7 +283,7 @@ export const EventFormPage = () => {
                     />
 
                     {isTempPlace && (
-                        <div className="mt-4 space-y-3">
+                        <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <InputForm 
                                 title='Nombre del lugar'
                                 name='tempPlaceName'
@@ -312,7 +320,7 @@ export const EventFormPage = () => {
                                 disabled={ isProcessing }
                             />
 
-                            <div className='h-[300px]'>
+                            <div className='h-[300px] md:col-span-2'>
                                 <MapView>
                                     <DraggableMarker
                                         position={position}
@@ -324,7 +332,7 @@ export const EventFormPage = () => {
                     )}
 
                     <button
-                        className='mt-5 w-full border-2 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
+                        className='md:col-span-2 w-full border-2 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed'
                         type='submit'
                         disabled={ isProcessing } 
                     >
@@ -341,7 +349,7 @@ export const EventFormPage = () => {
 //TODO: extraer este componente aun archivo cuando se cree la carpeta de EventFormPage
 const PriceSelectorRadio = ({ selected, onChange }) => {
   return (
-    <div className="flex justify-center p-2 gap-4 border-1 border-gray-300 rounded-lg">
+    <div className="min-h-[42px] flex justify-center flex-wrap p-2 gap-2 border-1 border-gray-300 rounded-xl">
         {PRICE_EVENTS.map((option) => (
             <label key={option.id} className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -362,7 +370,7 @@ const PriceSelectorRadio = ({ selected, onChange }) => {
 //TODO: extraer este componente aun archivo cuando se cree la carpeta de EventFormPage
 const EventTypeSelector = ({activityTypes, onChange}) => {
     return(
-        <div className="w-full max-w-md mx-auto flex justify-center flex-row flex-wrap gap-4 mb-2 bg-primary mt-5 p-2 border-1 border-gray-300 rounded-lg">
+        <div className="w-full min-h-[42px] flex justify-center flex-row flex-wrap gap-2 bg-primary p-2 border-1 border-gray-300 rounded-xl">
             {EVENT_TYPES.map(({ id, label }) => (
                 <label key={id} className="flex items-center gap-2 text-sm">
                 <input

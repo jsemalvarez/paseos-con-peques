@@ -10,7 +10,7 @@ export const PrivateLoyout = ({children}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='h-screen w-full flex bg-gradient-to-bl from-primary via-primary-light to-primary text-indigo-100'>
+    <div className='min-h-screen w-full flex bg-gradient-to-bl from-primary via-primary-light to-primary text-indigo-100'>
 
       <PrivateAside
         isOpen={ isOpen }
@@ -30,7 +30,7 @@ export const PrivateLoyout = ({children}) => {
           </button>
         </div>
 
-        <div className="h-screen md:pt-4 overflow-y-auto">
+        <div className="h-screen md:pt-4 overflow-y-auto p-4">
           {children}
         </div>
 
