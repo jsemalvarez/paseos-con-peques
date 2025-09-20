@@ -1,11 +1,11 @@
 import dayjs from "dayjs"
-import { PRICE_EVENTS } from "../../common/utils/constants"
+import { EVENT_PRICES } from "../../common/utils/constants"
 
 
 const date = dayjs(new Date()).format('YYYY-MM-DD');
 const timeStart = dayjs(new Date()).format('HH:mm');
 const timeEnd = dayjs(new Date()).add(2, 'hour').format('HH:mm');
-const PAID_TICKET = PRICE_EVENTS[0].id;
+const PAID_TICKET = EVENT_PRICES[0].id;
 
 export const formatEvent = ( event ) => {
     return {

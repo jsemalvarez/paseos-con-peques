@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { AGE_RANGES, EVENT_TYPES, PRICE_EVENTS } from '../../../common/utils/constants';
+import { AGE_RANGES, EVENT_TYPES, EVENT_PRICES } from '../../../common/utils/constants';
 import { useEvents } from '../../../events/hooks/useEvents';
 import { formatEvents } from '../../../events/services/eventService';
 import { FilterEventByTag } from './FilterEventByTag';
@@ -57,7 +57,7 @@ export const FilterSection = ({ setFilteredEvents }) => {
 
             <FilterEventByTag
                 labelTag='Tipo de entrada:'
-                elementsTag={ PRICE_EVENTS }
+                elementsTag={ EVENT_PRICES }
                 selectedTag={selectedPriceEvent}
                 setSelectedTag={setSelectedPriceEvent}
             />

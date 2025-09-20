@@ -10,7 +10,7 @@ import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
 import dayjs from 'dayjs'
 import { SelectField } from '../../common/components/form/SelectField'
-import { AGE_RANGES, EVENT_TYPES, PRICE_EVENTS } from '../../common/utils/constants'
+import { AGE_RANGES, EVENT_TYPES, EVENT_PRICES } from '../../common/utils/constants'
 import { MapView } from '../../common/components/map/MapView'
 import { DraggableMarker } from '../../common/components/map/DraggableMarker'
 
@@ -34,7 +34,7 @@ const initialForm = {
     tempPlaceWhatsapp: "",
     ageRanges:[],
     activityTypes:[],
-    priceType: PRICE_EVENTS[0].id
+    priceType: EVENT_PRICES[0].id
 }
 
 export const EventFormPage = () => {
@@ -350,7 +350,7 @@ export const EventFormPage = () => {
 const PriceSelectorRadio = ({ selected, onChange }) => {
   return (
     <div className="min-h-[42px] flex justify-center flex-wrap p-2 gap-2 border-1 border-gray-300 rounded-xl">
-        {PRICE_EVENTS.map((option) => (
+        {EVENT_PRICES.map((option) => (
             <label key={option.id} className="flex items-center gap-2 cursor-pointer">
                 <input
                     type="radio"
