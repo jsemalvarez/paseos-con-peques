@@ -8,6 +8,7 @@ export const EVENT_PRICES = [
   { id: 'PAID_TICKET', label: 'con ticket' },
   { id: 'DONATION_BASED', label: 'a la gorra' },
   { id: 'FREE_ENTRY', label: 'gratuita' },
+  { id: 'WITH_CONSUMPTION', label: 'con consumición' },
 ]
 
 export const EVENT_TYPES = [
