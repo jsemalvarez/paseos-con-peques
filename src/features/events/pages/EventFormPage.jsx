@@ -234,11 +234,11 @@ export const EventFormPage = () => {
                         disabled={ isProcessing }
                     /> */}
 
-                    <div>
+                    <div className='flex flex-col'>
                         <span  className="block font-medium mb-1">
                             Edad recomendada:
                         </span>
-                        <div className="w-full min-h-[42px] flex flex-row justify-center flex-wrap gap-2 bg-primary p-2 border-1 border-gray-300 rounded-xl">
+                        <div className="w-full grow-1 min-h-[42px] flex flex-row justify-center flex-wrap gap-2 bg-primary p-2 border-1 border-gray-300 rounded-xl">
                             {AGE_RANGES.map(({ id, label }) => (
                                 <label key={id} className="flex items-center gap-2 text-sm">
                                     <input
