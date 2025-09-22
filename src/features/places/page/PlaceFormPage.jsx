@@ -123,14 +123,14 @@ export const PlaceFormPage = () => {
             <div className='min-h-screen flex justify-center items-center'>    
 
                 <form 
-                    className='min-w-xs px-4 py-16 border-3 border-secondary rounded-xl bg-primary'
+                    className='w-9/10 max-w-[1200px] grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-16 border-3 border-secondary rounded-xl bg-primary'
                     onSubmit={ handleNewPlace }
                 >
-                    <h3 className='text-xl font-bold text-secondary tracking-wide'>
+                    <h3 className='md:col-span-2 text-xl font-bold text-secondary tracking-wide'>
                         {placeId ? 'Editar lugar' : 'Crear un nuevo lugar'}
                     </h3>
 
-                    <div className='h-[300px]'>
+                    <div className='h-[300px] md:col-span-2'>
                         <MapView>
                             <DraggableMarker
                                 position={position}
@@ -138,7 +138,7 @@ export const PlaceFormPage = () => {
                             />
                         </MapView>
                     </div>
-
+                    
                     <InputForm 
                         title='Nombre:'
                         name='name'
@@ -219,37 +219,74 @@ export const PlaceFormPage = () => {
                         onChange={onInputChange}
                     />
 
-                    <CheckboxField 
-                        label='Gastronomía'
-                        name='hasFood'
-                        checked={hasFood}
-                        onChange={onInputChange}
-                    />
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Servicios:
+                        </span>
 
-                    <CheckboxField 
-                        label='Show'
-                        name='hasShow'
-                        checked={hasShow}
-                        onChange={onInputChange}
-                    />
+                        <div className='h-full grow-1 flex flex-row justify-center flex-wrap gap-2 p-2 border-1 border-gray-300 rounded-xl'>
+                            <CheckboxField 
+                                label='Gastronomía'
+                                name='hasFood'
+                                checked={hasFood}
+                                onChange={onInputChange}
+                            />
 
-                    <CheckboxField 
-                        label='Juegos'
-                        name='hasGames'
-                        checked={hasGames}
-                        onChange={onInputChange}
-                    />
+                            <CheckboxField 
+                                label='Show'
+                                name='hasShow'
+                                checked={hasShow}
+                                onChange={onInputChange}
+                            />
 
-                    <CheckboxField 
-                        label='Profes a cargo'
-                        name='hasSupervision'
-                        checked={hasSupervision}
+                            <CheckboxField 
+                                label='Juegos'
+                                name='hasGames'
+                                checked={hasGames}
+                                onChange={onInputChange}
+                            />
+
+                            <CheckboxField 
+                                label='Profes a cargo'
+                                name='hasSupervision'
+                                checked={hasSupervision}
+                                onChange={onInputChange}
+                            />
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Edad recomendada:
+                        </span>
+                        <div className="w-full h-full grow-1 flex flex-row justify-center flex-wrap gap-2 bg-primary p-2 border-1 border-gray-300 rounded-xl">
+                            {AGE_RANGES.map(({ id, label }) => (
+                                <label key={id} className="flex items-center gap-2">
+                                <input
+                                    type="checkbox"
+                                    name="ageRanges"
+                                    value={ id }
+                                    checked={ ageRanges.includes(id) }
+                                    onChange={ onInputChange }
+                                />
+                                { label }
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+
+                    <TextareaField 
+                        name="description"
+                        className='h-full'
+                        value={description}
                         onChange={onInputChange}
+                        placeholder='descripcion de lugar ....'
                     />
 
                     {/* TODO: pasar a un componente */}
-                    <div className='pt-2'>
-                        <label htmlFor="categorias" className="block font-medium text-gray-700">
+                    <div>
+                        <label htmlFor="categorias" className="block font-medium text-gray-300">
                             Categorías:
                         </label>
                         <select
@@ -258,7 +295,7 @@ export const PlaceFormPage = () => {
                             multiple
                             value={categories}
                             onChange={onInputChange}
-                            className="w-full h-35 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-700"
+                            className="w-full h-35 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-300"
                         >
                             {formatedCategoies.map((category) => (
                             <option 
@@ -273,8 +310,8 @@ export const PlaceFormPage = () => {
                     </div>
 
                     {/* TODO: pasar a un componente */}
-                    <div className='pt-2'>
-                        <label htmlFor="bgColor" className="block font-medium text-gray-700">
+                    <div>
+                        <label htmlFor="bgColor" className="block font-medium text-gray-300">
                             Color del icono:
                         </label>
                         <select
@@ -296,8 +333,8 @@ export const PlaceFormPage = () => {
                     </div>
 
                     {/* TODO: pasar a un componente */}
-                    <div className='pt-2'>
-                        <label htmlFor="iconType" className="block font-medium text-gray-700">
+                    <div>
+                        <label htmlFor="iconType" className="block font-medium text-gray-300">
                             Tipo de icono:
                         </label>
                         <select
@@ -318,30 +355,8 @@ export const PlaceFormPage = () => {
                         </select>
                     </div>
 
-                    <div className="w-full max-w-md mx-auto flex justify-center flex-row gap-4 mb-6 bg-primary mt-5 p-2 border-2 border-gray-300 rounded-lg">
-                        {AGE_RANGES.map(({ id, label }) => (
-                            <label key={id} className="flex items-center gap-2 text-sm">
-                            <input
-                                type="checkbox"
-                                name="ageRanges"
-                                value={ id }
-                                checked={ ageRanges.includes(id) }
-                                onChange={ onInputChange }
-                            />
-                            { label }
-                            </label>
-                        ))}
-                    </div>
-
-                    <TextareaField 
-                        name="description"
-                        value={description}
-                        onChange={onInputChange}
-                        placeholder='descripcion de lugar ....'
-                    />
-
                     <button
-                        className='mt-5 w-full border-2 hover:border-secondary border-indigo-100  p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
+                        className='md:col-span-2 w-full border-2 hover:border-secondary border-indigo-100 p-2 rounded-full hover:bg-secondary hover:text-primary text-indigo-100 tracking-wide font-semibold text-lg cursor-pointer disabled:cursor-not-allowed'
                         type='submit'
                         disabled={ isProcessing } 
                     >

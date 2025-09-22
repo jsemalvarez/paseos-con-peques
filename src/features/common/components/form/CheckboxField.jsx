@@ -1,7 +1,7 @@
 
 export const CheckboxField = ({ label, name, checked, onChange, className = '' }) => {
     return (
-        <div className={`pt-2 ${className}`}>
+        <div className={`${className}`}>
             <label className="flex items-center gap-2 cursor-pointer">
             <input 
                 type="checkbox" 
