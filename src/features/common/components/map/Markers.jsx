@@ -31,14 +31,17 @@ export const Markers = ({ places, handleClick }) => {
               //TODO: createSvgIcon tiene que estar en este directorio
               const icon = createSvgIcon({ bgColor, svgIconType });
 
-              return (
-                < Marker 
-                  key={place.id} 
-                  position={place.position} 
-                  icon={icon}
-                  eventHandlers={ eventHandler(place) }
-                />                
-              )
+              if(place.isPlaceAvtive && place.isShowInMap){
+                return (
+                  < Marker 
+                    key={place.id} 
+                    position={place.position} 
+                    icon={icon}
+                    eventHandlers={ eventHandler(place) }
+                  />                
+                )
+              }
+              return null
             })
         }
     </>

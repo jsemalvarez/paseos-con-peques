@@ -5,6 +5,8 @@ export const formatPlace = (place) => {
         id: place.id,
         name: place.name || 'Sin Nombre',
         address: place.address ||  'Sin Dirección',
+        isPlaceAvtive: place.isPlaceAvtive || false,
+        isShowInMap: place.isShowInMap || false,
         position: place.position || { lat: 0, lng: 0},
         schedules: place.schedules || '',
         phone: place.phone || '',
