@@ -18,6 +18,8 @@ import { AGE_RANGES } from '../../common/utils/constants'
 const initialForm = {
     name: '',
     address: '',
+    isPlaceAvtive: false,
+    isShowInMap: false,
     schedules: '',
     phone: '',
     whatsapp: '',
@@ -45,7 +47,9 @@ export const PlaceFormPage = () => {
     const { places, isProcessing, updatePlace, savePlace } = usePlaces()
     const { 
         name, 
-        address, 
+        address,
+        isPlaceAvtive, 
+        isShowInMap,
         schedules,
         phone,
         whatsapp,
@@ -154,6 +158,68 @@ export const PlaceFormPage = () => {
                         value={address}
                         onChange={onInputChange}
                     />
+                    
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Estado:
+                        </span>
+                        <div className='h-[42px] flex justify-between items-center border border-white rounded-xl px-2 shadow-sm bg-primary'>
+                        
+                            <p
+                                className={`mt-1 font-semibold ${
+                                    isPlaceAvtive ? "text-green-600" : "text-red-600"
+                                }`}
+                                >
+                                {                                    
+                                    isPlaceAvtive ? "Disponible" : "No disponible"                                    
+                                }
+                            </p>
+                            
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="isPlaceAvtive"
+                                    checked={ isPlaceAvtive }
+                                    onChange={onInputChange}
+                                    className="sr-only peer"
+                                    // disabled={!isSharing}
+                                />
+                                <div className={`w-11 h-6 ${isPlaceAvtive?'bg-red-600':'bg-gray-600'} rounded-full peer peer-checked:bg-green-600 transition-colors`}></div>
+                                <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Mostrar en mapa:
+                        </span>
+                        <div className='h-[42px] flex justify-between items-center border border-white rounded-xl px-2 shadow-sm bg-primary'>
+                        
+                            <p
+                                className={`mt-1 font-semibold ${
+                                    isShowInMap ? "text-green-600" : "text-red-600"
+                                }`}
+                                >
+                                {                                    
+                                    isShowInMap ? "Mostrando" : "No visible"                                    
+                                }
+                            </p>
+                            
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="isShowInMap"
+                                    checked={ isShowInMap }
+                                    onChange={onInputChange}
+                                    className="sr-only peer"
+                                    // disabled={!isSharing}
+                                />
+                                <div className={`w-11 h-6 ${isShowInMap?'bg-red-600':'bg-gray-600'} rounded-full peer peer-checked:bg-green-600 transition-colors`}></div>
+                                <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                            </label>
+                        </div>
+                    </div>
 
                     <InputForm 
                         title='Horarios:'
@@ -265,7 +331,7 @@ export const PlaceFormPage = () => {
                                 <input
                                     type="checkbox"
                                     name="ageRanges"
-                                    value={ id }
+                                    value={ id } // TODO: quitar
                                     checked={ ageRanges.includes(id) }
                                     onChange={ onInputChange }
                                 />
