@@ -7,6 +7,8 @@ export const formatPlace = (place) => {
         address: place.address ||  'Sin Dirección',
         isPlaceAvtive: place.isPlaceAvtive || false,
         isShowInMap: place.isShowInMap || false,
+        hasCustomIcon: place.hasCustomIcon || false,
+        customIconName: place.customIconName || '',
         position: place.position || { lat: 0, lng: 0},
         schedules: place.schedules || '',
         phone: place.phone || '',
