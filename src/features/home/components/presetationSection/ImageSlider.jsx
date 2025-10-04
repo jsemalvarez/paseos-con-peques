@@ -3,15 +3,20 @@ import { CloudinaryImage } from "../../../common/components/CloudinaryImage";
 
 const images = [
     {
-      src: "banner_la_audacia_iagg08.webp", 
-      title: "Circo La Audacia",
-      subTitle: "Funciones todos los domingos",
+      src: "banner_techno_kids_avartt.webp",
+      title: "Techno Kids",
+      subTitle: "Primera fiesta electrónica para niños y familias",
     },
     {
-      src: "banner_hazme_reir_lrdzhz.webp",
-      title: "Circo HAZME REIR",
-      subTitle: "Plaza del agua",
+      src: "banner_la_audacia_iagg08.webp", 
+      title: "Circo La Audacia",
+      subTitle: "",
     },
+    // {
+    //   src: "banner_hazme_reir_lrdzhz.webp",
+    //   title: "Circo HAZME REIR",
+    //   subTitle: "Plaza del agua",
+    // },
     {
       src: "banner_las_dos_marias_tvrbmm.webp",
       title: "Granja Las Dos Marias",
