@@ -4,7 +4,7 @@ import { Marker } from 'react-leaflet'
 // import { createSvgIcon } from '../../../places/utils/createSvgIcon'
 import { ICONS_BY_TYPE } from '../../../places/utils/iconsByType'
 import { COLORS_BY_CATEGORIES } from '../../../places/utils/categories'
-import { getCustomIcon } from '../../../places/utils/getCustomIcon'
+import { getCustomSvgIcon } from '../../../places/utils/getCustomSvgIcon'
 import { createSvgIcon } from '../../../places/utils/createSvgIcon'
 
 
@@ -33,7 +33,7 @@ export const Markers = ({ places, handleClick }) => {
               const bgColor = place.bgColor || COLORS_BY_CATEGORIES.ENTERTIME; 
               //TODO: createSvgIcon tiene que estar en este directorio
               icon = (place.hasCustomIcon)
-                ?getCustomIcon(place.customIconName)
+                ?getCustomSvgIcon({imageId: place.photoUrl})
                 :createSvgIcon({ bgColor, svgIconType })
 
               return (
