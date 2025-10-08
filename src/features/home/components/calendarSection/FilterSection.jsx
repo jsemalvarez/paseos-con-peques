@@ -38,7 +38,7 @@ export const FilterSection = ({ setFilteredEvents }) => {
     },[formattedEvents, setFilteredEvents])
 
     return (
-        <div className="flex flex-col justify-center items-center gap-1 mb-6">
+        <div className="flex flex-col justify-center items-center gap-1 mt-6">
             <input
                 type="text"
                 placeholder="Nombre del artista o evento"

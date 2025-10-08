@@ -1,13 +1,16 @@
 
+import { useState } from 'react';
 import { useEvents } from '../../../events/hooks/useEvents';
 import { Calendar } from '../../../events/components/Calendar';
 import { CalendarDayAside } from '../../../events/components/CalendarDayAside';
 import { EventDetail } from '../../../events/components/EventDetail';
 import { FilterSection } from './FilterSection';
-import { useState } from 'react';
+import { FeaturedEvents } from './FeaturedEvents';
 
 
 export const CalendarSection = () => {
+
+  const { events } = useEvents()
 
   const [filteredEvents, setFilteredEvents] = useState([]);
 
@@ -16,8 +19,9 @@ export const CalendarSection = () => {
   return (
     <div id='calendarSection' className='min-h-screen py-[100px]'>
 
-      <FilterSection 
-        setFilteredEvents={ setFilteredEvents }
+      <FeaturedEvents
+        events={events}
+        openEventDetail={handleOpenEventDetail}
       />
 
       <div className='w-full md:w-8/10 max-w-[1200px] mx-auto'>
@@ -28,7 +32,11 @@ export const CalendarSection = () => {
         />
         <CalendarDayAside />
         <EventDetail />
-      </div>       
+      </div>
+
+      <FilterSection 
+        setFilteredEvents={ setFilteredEvents }
+      />       
 
     </div>
   )

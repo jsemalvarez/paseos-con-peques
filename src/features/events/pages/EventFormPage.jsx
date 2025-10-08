@@ -34,7 +34,10 @@ const initialForm = {
     tempPlaceWhatsapp: "",
     ageRanges:[],
     activityTypes:[],
-    priceType: EVENT_PRICES[0].id
+    priceType: EVENT_PRICES[0].id,
+    isFeatured: false,
+    photoId: '',
+
 }
 
 export const EventFormPage = () => {
@@ -60,6 +63,8 @@ export const EventFormPage = () => {
         timeEnd,
         placeId,
         ageRanges,
+        isFeatured,
+        photoId,
         activityTypes,
         tempPlaceName,
         tempPlaceAddress,
@@ -263,6 +268,45 @@ export const EventFormPage = () => {
                             onChange={onInputChange}
                         />
                     </div>
+
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Evento:
+                        </span>
+                        <div className='h-[42px] flex justify-between items-center border border-white rounded-xl px-2 shadow-sm bg-primary'>
+                        
+                            <p
+                                className={`mt-1 font-semibold ${
+                                    isFeatured ? "text-green-600" : "text-red-600"
+                                }`}
+                                >
+                                {                                    
+                                    isFeatured ? "Destacodo" : "No Destacodo"                                    
+                                }
+                            </p>
+                            
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="isFeatured"
+                                    checked={ isFeatured }
+                                    onChange={onInputChange}
+                                    className="sr-only peer"
+                                    // disabled={!isSharing}
+                                />
+                                <div className={`w-11 h-6 ${isFeatured?'bg-red-600':'bg-gray-600'} rounded-full peer peer-checked:bg-green-600 transition-colors`}></div>
+                                <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <InputForm 
+                        title='Foto:'
+                        name='photoId'
+                        type='text'
+                        value={photoId}
+                        onChange={onInputChange}
+                    />
 
                     <div className='md:col-span-2'>
                         <span  className="block font-medium mb-1">
