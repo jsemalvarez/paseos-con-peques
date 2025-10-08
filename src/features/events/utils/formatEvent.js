@@ -26,5 +26,7 @@ export const formatEvent = ( event ) => {
         tempPlacePhone: event.tempPlacePhone || null,
         tempPlaceWhatsapp: event.tempPlaceWhatsapp || null,
         tempPlacePosition: event.tempPlacePosition || null,    
+        isFeatured: event.isFeatured || false,
+        photoId: event.photoId || '',
     }
 }
