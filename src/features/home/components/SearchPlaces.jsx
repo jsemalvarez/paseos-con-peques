@@ -5,19 +5,25 @@ import { Link } from 'react-router-dom'
 
 export const SearchPlaces = () => {
 
-  const { places } = usePlaces()
+  const { places } = usePlaces();
 
-  const [searchingPlace, setSearchingPlace] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
-  const ITEMS_PER_PAGE = 6
+  const [searchingPlace, setSearchingPlace] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
+
+    const activePlaces = useMemo(() => {
+    return places.filter((place) =>
+      place.isPlaceAvtive
+    )
+  }, [places])
     
   const filteredPlaces = useMemo(() => {
     const term = searchingPlace.trim().toLowerCase()
-    if (term.length <= 1) return places
-    return places.filter((place) =>
+    if (term.length <= 1) return activePlaces
+    return activePlaces.filter((place) =>
       place.name.toLowerCase().includes(term)
     )
-  }, [places, searchingPlace])
+  }, [activePlaces, searchingPlace])
 
   useEffect(() => {
     setCurrentPage(1)
