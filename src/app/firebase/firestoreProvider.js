@@ -90,6 +90,7 @@ export const getEventsOrderByTimeStart = async(collectionName) => {
         const eventsRef = collection(FirebaseDB, collectionName);
         const q = query(
             eventsRef, 
+            orderBy("date", "asc"),
             orderBy("timeStart", "asc"),
             orderBy("timeEnd", "asc")
         );
