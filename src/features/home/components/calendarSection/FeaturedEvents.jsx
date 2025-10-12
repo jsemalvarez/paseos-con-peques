@@ -7,8 +7,22 @@ export const FeaturedEvents = ({ events, openEventDetail }) => {
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
 
+    /**
+     * NOTA: new Date("2025-10-11")
+     * javaScript interpreta ese string como una fecha en UTC (zona horaria 0), no como hora local.
+     * "2025-10-11" se interpreta como:
+     *    2025-10-11T00:00:00.000Z (UTC)
+     *   Pero tu zona horaria es GMT-3 (Argentina)
+     *   Entonces se convierte automáticamente a hora local:
+     *    2025-10-10T21:00:00.000-03:00
+     * 
+     *  Como la fecha viene del backend y para mantener consistencia en UTC:
+     *  const eventDate = new Date(`${event.date}T00:00:00`)
+     *  Esto la trata como hora local (sin Z), no como UTC.
+     *  Pero si hacés T00:00:00Z, ahí sí sería UTC y volvería a restar el día.
+     */
     const upcomingEvents = events.filter((event) => {
-        const eventDate = new Date(event.date);
+        const eventDate = new Date(`${event.date}T00:00:00`);
         const isUpcoming = eventDate >= todayStart;
         const isFeatured = event.isFeatured;
 
