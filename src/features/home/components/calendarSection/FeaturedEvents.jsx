@@ -29,9 +29,9 @@ export const FeaturedEvents = ({ events, openEventDetail }) => {
         return isUpcoming && isFeatured;
     });
 
-  if (upcomingEvents.length === 0) {
-    return null
-  }
+  // if (upcomingEvents.length === 0) {
+  //   return null
+  // }
 
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
@@ -63,7 +63,7 @@ export const FeaturedEvents = ({ events, openEventDetail }) => {
         {/* Lista de eventos */}
         <div
           ref={scrollContainerRef}
-          className="mx-auto w-9/10 flex gap-4 overflow-x-auto py-2 px-4 snap-x snap-mandatory scroll-smooth scrollbar-hide"
+          className="mx-auto w-9/10 h-[370px] flex gap-4 overflow-x-auto py-2 px-4 snap-x snap-mandatory scroll-smooth scrollbar-hide"
         >
           {upcomingEvents.map((event) => (
             <div
