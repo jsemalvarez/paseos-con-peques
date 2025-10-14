@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 import { useForm } from '../../common/hooks/useForm'
 import { useEvents } from '../hooks/useEvents'
@@ -8,11 +9,10 @@ import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { InputForm } from '../../common/components/form/InputForm'
 import { usePlaces } from '../../places/hooks/usePlaces'
 import { TextareaField } from '../../common/components/form/TextareaField'
-import dayjs from 'dayjs'
 import { SelectField } from '../../common/components/form/SelectField'
-import { AGE_RANGES, EVENT_TYPES, EVENT_PRICES } from '../../common/utils/constants'
 import { MapView } from '../../common/components/map/MapView'
 import { DraggableMarker } from '../../common/components/map/DraggableMarker'
+import { AGE_RANGES, EVENT_TYPES, EVENT_PRICES } from '../../common/utils/constants'
 
 const tempPlace = {
     id:'tempPlace',
@@ -79,12 +79,40 @@ export const EventFormPage = () => {
 
     const eventToUpdate = useMemo(() => events.find(event => event.id == eventId), [events, eventId]);
 
+    const [newImage, setNewImage] = useState(null);
+
+    const handleUpload = async () => {
+        const data = new FormData();
+        data.append('file', newImage);
+        data.append('upload_preset', 'pcp_images'); // tu preset
+        data.append('folder', 'pcp-images'); // opcional
+
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/dwhdla1b4/image/upload',
+            {   
+                method: 'POST', 
+                body: data 
+            }
+        );
+        const file = await res.json();
+        if (!res.ok) {
+            // throw new Error('Error al subir la imagen');
+            console.log("Error al subir la imagen")
+            return ''
+        }
+        // "pcp-images/publicId"
+        const publicId = file.public_id.split('/')[1]
+
+        return `${publicId}.${file.format}` ;
+    };
+
     useEffect(() => {
         if(eventToUpdate) {
             setFormState(eventToUpdate)
             setPosition(eventToUpdate.tempPlacePosition)
+            setNewImage(photoId)
         }
-    },[eventToUpdate,setFormState])
+    },[eventToUpdate, photoId, setFormState])
 
     const validateForm = (form) => {
 
@@ -123,7 +151,7 @@ export const EventFormPage = () => {
         return errors;
     }
 
-    const handleNewEvent = ( e ) => {
+    const handleNewEvent = async( e ) => {
         e.preventDefault()
 
         const inputErrors = validateForm(formState);
@@ -138,15 +166,29 @@ export const EventFormPage = () => {
             ? { lat: position.lat, lng: position.lng }
             : null
 
+        let updatedPhotoId = formState.photoId;
+
+        //TODO: set isLoading en este punto o un loading de la imagen
+        if(newImage && typeof newImage !== 'string'){
+            updatedPhotoId = await handleUpload()
+        }
+
+        const payload = {
+            ...formState,
+            photoId: updatedPhotoId,
+            tempPlacePosition,
+        };
+
         if(eventId){
             if (!eventToUpdate) {
                 console.error('El evento no existe');
                 return;
             }
-            updateEvent({ ...formState, tempPlacePosition, id: eventId, });
+            updateEvent({ ...payload, id: eventId, });
         }else{
-            saveEvent({...formState, tempPlacePosition })
+            saveEvent(payload)
             onResetForm()
+            setNewImage(null);
         }
 
         setInputErrors({})
@@ -300,13 +342,25 @@ export const EventFormPage = () => {
                         </div>
                     </div>
 
-                    <InputForm 
-                        title='Foto:'
-                        name='photoId'
-                        type='text'
-                        value={photoId}
-                        onChange={onInputChange}
-                    />
+
+                    <div className="flex flex-col">
+                        <span className="block font-medium mb-1">Imagen del evento</span>
+
+                        <label
+                            htmlFor="file-upload"
+                            className="w-full cursor-pointer border-2 border-indigo-100 text-indigo-100 rounded-full py-2 px-4 text-center hover:bg-secondary hover:text-primary transition"
+                        >
+                            {newImage ? 'Actualizar imagen' : 'Subir imagen'}
+                        </label>
+
+                        <input
+                            id="file-upload"
+                            type="file"
+                            onChange={(e) => setNewImage(e.target.files[0])}
+                            accept='image/webp'
+                            className="hidden"
+                        />
+                    </div>
 
                     <div className='md:col-span-2'>
                         <span  className="block font-medium mb-1">
