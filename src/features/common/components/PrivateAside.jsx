@@ -57,6 +57,14 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
                         Eventos
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink 
+                        to='/drivers'
+                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
+                    >
+                        Choferes
+                    </NavLink>
+                </li>
             </ul>
             <button
                 className='bg-secondary p-1 text-white font-bold rounded-sm cursor-pointer hover:bg-primary'
