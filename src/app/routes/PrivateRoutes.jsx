@@ -23,8 +23,9 @@ export const PrivateRoutes = () => {
 
       {/* <Route path="/profile" element={<Profile />} /> */}
 
-      <Route path="/drivers" element={<DriversPage />} />
       <Route path="/drivers/new" element={<DriverFormPage />} />
+      <Route path="/drivers/edit/:driverId" element={<DriverFormPage />} />
+      <Route path="/drivers" element={<DriversPage />} />
 
       {/* Si accede a una ruta no definida en privado, lo llevamos al dashboard */}
       <Route path="*" element={<Navigate to="/" />} />

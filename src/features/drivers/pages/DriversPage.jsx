@@ -1,13 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PrivateLoyout } from '../../common/layouts/PrivateLoyout'
 import { Link } from 'react-router-dom'
+import { useDrivers } from '../hooks/useDrivers'
 
 export const DriversPage = () => {
 
     const [isDriversOn, setIsDriversOn] = useState(false)
 
+    const { 
+        drivers,
+        isProcessing,
+        getDrivers,
+        deleteDriver,
+    } = useDrivers()
+
+    useEffect(()=>{
+        getDrivers()
+    },[])
+
     const handleSetIsDriversOn = () => {
         setIsDriversOn((prev => !prev))
+    }
+    
+    const handleDelete = (id) => {
+        deleteDriver(id)
     }
 
     return (
@@ -57,10 +73,27 @@ export const DriversPage = () => {
                         </span>
                         <div className='border border-white rounded-xl px-2 shadow-sm bg-primary'>
                             <ul>
-                                <li>chofer 1</li>
-                                <li>chofer 2</li>
-                                <li>chofer 3</li>
-                                <li>chofer 4</li>
+                                {
+                                    drivers.map( driver => {
+                                        return(
+                                            <li key={driver.id}>
+                                                {driver.name}
+                                                <div className="flex gap-2 p-2 bg-red-300 border-t text-sm">
+                                                    <Link 
+                                                        to={`/drivers/edit/${driver.id}`}
+                                                        className='bg-yellow-500 flex-1 cursor-pointer p-1 rounded-full flex justify-center text-gray-700 hover:bg-yellow-400'
+                                                    >Editar</Link>
+                                                    {/* TODO: hacer un cartel de confirmacion antes de eliminar */}
+                                                    <button 
+                                                        className='bg-red-500 flex-1 text-gray-100 cursor-pointer p-1 rounded-full disabled:cursor-not-allowed hover:bg-red-400'
+                                                        onClick={ () => handleDelete(driver.id) }
+                                                        disabled={ isProcessing }
+                                                    >{`${ isProcessing ? 'Eliminando...':'Eliminar'}`}</button>
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                }
                             </ul>
                         </div>
                     </div>

@@ -10,6 +10,6 @@ export default configureStore({
     auth: authSlice.reducer,
     places: placeSlice.reducer,
     events: eventSlice.reducer,
-    divers: driverSlice.reducer
+    drivers: driverSlice.reducer
   },
 })
