@@ -6,6 +6,8 @@ import { useDrivers } from '../hooks/useDrivers';
 import { useEffect, useMemo, useState } from 'react';
 
 const initialForm = {
+    email:'',
+    password:'',
     name:'',
     numberId:''
 }
@@ -19,13 +21,15 @@ export const DriverFormPage = () => {
     const { 
         drivers,
         isProcessing,
-        saveDriver, 
-        updateDriver 
+        registerDriver, 
+        updateDriver, 
     } = useDrivers()
 
     const driverToUpdate = useMemo(() => drivers.find(driver => driver.id == driverId), [drivers, driverId]);
 
     const { 
+        email,
+        password,
         name,
         numberId,
         formState,
@@ -44,6 +48,16 @@ export const DriverFormPage = () => {
 
         const errors = {};
 
+        const isEmailEmpty = form.email.trim().length === 0;
+        if ( isEmailEmpty ) {
+            errors.name = '*El email es obligatorio';
+        }
+
+        const isPasswordEmpty = form.password.trim().length === 0;
+        if ( isPasswordEmpty ) {
+            errors.numberId = '*El password es obligatorio';
+        }
+
         const isTitleEmpty = form.name.trim().length === 0;
         if ( isTitleEmpty ) {
             errors.name = '*El nombre es obligatorio';
@@ -53,7 +67,6 @@ export const DriverFormPage = () => {
         if ( isNumberIdEmpty ) {
             errors.numberId = '*El numero de veiculo es obligatorio';
         }
-
 
         return errors;
     }
@@ -71,6 +84,7 @@ export const DriverFormPage = () => {
 
         const payload = {
             ...formState,
+            role: ["user"], // o lo que necesites
         };
 
         if(driverId){
@@ -80,7 +94,7 @@ export const DriverFormPage = () => {
             }
             updateDriver({ ...payload, id: driverId, });
         }else{
-            saveDriver(payload)
+            registerDriver(payload)
             onResetForm()
         }
 
@@ -105,6 +119,26 @@ export const DriverFormPage = () => {
                 <h3 className='md:col-span-2 text-xl font-bold text-secondary tracking-wide'>
                     { driverId ? 'Editar chofer' : 'Crear un nuevo chofer' }
                 </h3>
+
+                <InputForm 
+                    title='Email:'
+                    name='email'
+                    type='text'
+                    value={email}
+                    onChange={onInputChange}
+                    error={ inputErrors.email }
+                    disabled={ isProcessing }
+                />
+
+                <InputForm 
+                    title='Password:'
+                    name='password'
+                    type='text'
+                    value={password}
+                    onChange={onInputChange}
+                    error={ inputErrors.password }
+                    disabled={ isProcessing }
+                />
 
                 <InputForm 
                     title='Nombre:'

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { startDeletingDriver, startGetingDrivers, startSavingNewDriver, startUpdatingDriver } from "../state/thunk";
+import { startDeletingDriver, startGetingDrivers, startRegisterNewDriver, startSavingNewDriver, startUpdatingDriver } from "../state/thunk";
 
 export const useDrivers = () => {
 
@@ -8,6 +8,10 @@ export const useDrivers = () => {
         drivers,
         isProcessing,
     } = useSelector( state => state.drivers );
+
+    const registerDriver = (newDriver) => {
+        dispatch(startRegisterNewDriver(newDriver)) 
+    }
 
     const saveDriver = (newDriver) => {
         dispatch(startSavingNewDriver(newDriver)) 
@@ -28,6 +32,7 @@ export const useDrivers = () => {
     return({
         drivers,
         isProcessing,
+        registerDriver,
         saveDriver,
         updateDriver,
         getDrivers,

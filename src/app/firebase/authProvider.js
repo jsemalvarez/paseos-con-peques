@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, onAuthStateChanged, getAuth } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged, getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseAuth } from './firebase';
 
 
@@ -58,3 +58,21 @@ const onCheckAuthAdapter = () => {
         });
     });
 };
+
+export const startRegisterWithEmailPassword = async({ email, password }) => {
+
+    try {        
+        const resp = await createUserWithEmailAndPassword( FirebaseAuth, email, password );
+        const { uid } = resp.user;
+
+        return{
+            ok: true,
+            uid,
+            email,
+        }
+    } catch (error) {
+        console.log(error)
+        return { ok: false, errorMessage: error.message }
+    }
+    
+}

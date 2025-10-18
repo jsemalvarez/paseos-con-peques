@@ -1,6 +1,37 @@
 import { driverService } from "../services/driverService";
 import { addNewDriver, deleteDriver, initProcessingData, setDrivers, updateDriver } from "./driverSlice";
 
+export const startRegisterNewDriver = (newDriver) => {
+    return async( dispatch ) => {
+        dispatch( initProcessingData() )
+        const responseRegister = await driverService.registerNewDriver({
+            email: newDriver.email,
+            password: newDriver.password
+        });
+
+        if(!responseRegister.ok){
+            //TODO: termina loadin cuando hay error
+            console.log(responseRegister.errorMessage)
+            return
+        }
+
+        const driverToSave = {
+            id: responseRegister.uid,
+            ...newDriver
+        }
+        const response = await driverService.saveNewDriverWithId(driverToSave);
+
+        if(response.ok){
+              dispatch( addNewDriver(driverToSave) ) 
+        }else{
+            console.log(response.errorMessage)
+            //TODO: termina loadin cuando hay error
+            //TODO: implementar dispatch(setError(response.errorMessage));
+        }
+
+    }
+}
+
 export const startSavingNewDriver = (newDriver) => {
     return async( dispatch ) => {
         dispatch( initProcessingData() )

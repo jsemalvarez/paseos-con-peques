@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
 import { FirebaseDB } from './firebase';
 
 export const saveNewData = async( collectionName, dataToSave ) => {
@@ -12,6 +12,26 @@ export const saveNewData = async( collectionName, dataToSave ) => {
         return { ok: false, errorMessage: error.message }
     }
 }
+
+export const saveDocWithId = async (collectionName, docId, data, merge = false) => {
+  try {
+    const docRef = doc(FirebaseDB, collectionName, docId);
+
+    const dataToSave = {
+        ...data,
+        createdAt: new Date(),
+    }
+
+    await setDoc(docRef, dataToSave, { merge });
+
+    return {
+      ok: true,
+      id: docId
+    };
+  } catch (error) {
+    return { ok: false, errorMessage: error.message };
+  }
+};
 
 export const getData = async(collectionName) => {
     try {
