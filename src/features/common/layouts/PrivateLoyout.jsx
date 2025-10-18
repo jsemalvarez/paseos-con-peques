@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PrivateAside } from "../components/PrivateAside"
+import { PrivateAside } from "../components/privateAside/PrivateAside"
 import { PrivateNavbar } from "../components/PrivateNavbar"
 import { MenuIcon } from "../components/Icons";
 
