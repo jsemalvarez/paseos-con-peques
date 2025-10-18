@@ -19,7 +19,6 @@ export const saveDocWithId = async (collectionName, docId, data, merge = false) 
 
     const dataToSave = {
         ...data,
-        createdAt: new Date(),
     }
 
     await setDoc(docRef, dataToSave, { merge });

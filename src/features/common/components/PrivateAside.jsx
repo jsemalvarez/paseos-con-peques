@@ -59,6 +59,14 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
                 </li>
                 <li>
                     <NavLink 
+                        to='/users'
+                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
+                    >
+                        Usuarios
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
                         to='/drivers'
                         className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
                     >

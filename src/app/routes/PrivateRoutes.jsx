@@ -6,6 +6,8 @@ import { PlaceFormPage } from "../../features/places/page/PlaceFormPage";
 import { EventFormPage } from "../../features/events/pages/EventFormPage";
 import { DriversPage } from "../../features/drivers/pages/DriversPage";
 import { DriverFormPage } from "../../features/drivers/pages/DriverFormPage";
+import { UserFormPage } from "../../features/users/pages/UserFormPage";
+import { UsersPage } from "../../features/users/pages/UsersPage";
 
 
 export const PrivateRoutes = () => {
@@ -26,6 +28,10 @@ export const PrivateRoutes = () => {
       <Route path="/drivers/new" element={<DriverFormPage />} />
       <Route path="/drivers/edit/:driverId" element={<DriverFormPage />} />
       <Route path="/drivers" element={<DriversPage />} />
+
+      <Route path="/users/new" element={<UserFormPage />} />
+      <Route path="/users/edit/:userId" element={<UserFormPage />} />
+      <Route path="/users" element={<UsersPage />} />
 
       {/* Si accede a una ruta no definida en privado, lo llevamos al dashboard */}
       <Route path="*" element={<Navigate to="/" />} />
