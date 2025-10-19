@@ -46,7 +46,7 @@ export const UserFormPage = () => {
 
     useEffect(() => {
         if(userToUpdate) {
-            setFormState(userToUpdate)
+            setFormState(prev => ({...prev, ...userToUpdate}))
         }
     },[userToUpdate, setFormState])
 
@@ -64,14 +64,18 @@ export const UserFormPage = () => {
 
         const errors = {};
 
-        const isEmailEmpty = form.email.trim().length === 0;
-        if ( isEmailEmpty ) errors.name = '*El email es obligatorio';
+        if(!isUpdateUser){
+            const isEmailEmpty = form.email.trim().length === 0;
+            if ( isEmailEmpty ) errors.name = '*El email es obligatorio';
+        }
+        
+        if(!isUpdateUser){
+            const isPasswordEmpty = form.password.trim().length === 0;
+            if ( isPasswordEmpty ) errors.numberId = '*El password es obligatorio';
+        }
 
-        const isPasswordEmpty = form.password.trim().length === 0;
-        if ( isPasswordEmpty || hasPasswordCreated ) errors.numberId = '*El password es obligatorio';
-
-        const isTitleEmpty = form.name.trim().length === 0;
-        if ( isTitleEmpty || hasEmailCreated ) errors.name = '*El nombre es obligatorio';
+        const isNameEmpty = form.name.trim().length === 0;
+        if ( isNameEmpty ) errors.name = '*El nombre es obligatorio';
 
         const hasRolesEmpty = form.roles.length === 0
         if ( hasRolesEmpty ) errors.roles = '*Seleccioná al menos un rol';
@@ -139,7 +143,7 @@ export const UserFormPage = () => {
                     value={password}
                     onChange={onInputChange}
                     error={ inputErrors.password }
-                    disabled={ isProcessing || hasPasswordCreated }
+                    disabled={ isProcessing || hasPasswordCreated}
                 />
 
                 <InputForm 
