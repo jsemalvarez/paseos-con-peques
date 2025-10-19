@@ -1,3 +1,5 @@
+import { ROLES } from "../../constants/roles";
+
 export const asideItems = [
     {
         path:'/',
@@ -7,21 +9,21 @@ export const asideItems = [
     {
         path:'/places',
         label:'Lugares',  
-        allowedRoles: [],   
+        allowedRoles: [ROLES.SUPER_ADMIN, ROLES.OWNER],   
     },
     {
         path:'/events',
         label:'Eventos',
-        allowedRoles: [],     
+        allowedRoles: [ROLES.SUPER_ADMIN, ROLES.ARTIST, ROLES.OWNER],     
     },
     {
         path:'/users',
         label:'Usuarios', 
-        allowedRoles: [],    
+        allowedRoles: [ROLES.SUPER_ADMIN],    
     },
     {
         path:'/drivers',
         label:'Choferes', 
-        allowedRoles: [],    
+        allowedRoles: [ROLES.SUPER_ADMIN, ROLES.DRIVER],    
     },
 ]

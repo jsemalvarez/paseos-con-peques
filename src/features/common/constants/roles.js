@@ -1,7 +1,16 @@
 
+export const ROLES = {
+  USER: 'user',
+  ARTIST: 'artist',
+  OWNER: 'owner',
+  DRIVER: 'driver',
+  SUPER_ADMIN: 'super_admin',
+};
+
 export const rolesOptions = [
-  { label: 'Usuario', value: 'user' },
-  { label: 'Artista', value: 'artist' },
-  { label: 'Dueño / Encargado', value: 'owner' },
-  { label: 'Super Admin', value: 'super_admin' },
+  { label: 'Usuario', value: ROLES.USER },
+  { label: 'Artista', value: ROLES.ARTIST },
+  { label: 'Dueño / Encargado', value: ROLES.OWNER },
+  { label: 'Super Admin', value: ROLES.SUPER_ADMIN },
+  { label: 'Conductor', value: ROLES.DRIVER },
 ];

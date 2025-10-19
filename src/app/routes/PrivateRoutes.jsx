@@ -8,9 +8,11 @@ import { DriversPage } from "../../features/drivers/pages/DriversPage";
 import { DriverFormPage } from "../../features/drivers/pages/DriverFormPage";
 import { UserFormPage } from "../../features/users/pages/UserFormPage";
 import { UsersPage } from "../../features/users/pages/UsersPage";
+import { ROLES } from "../../features/common/constants/roles";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 
-export const PrivateRoutes = () => {
+export const PrivateRoutes = ({userAuth}) => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
@@ -29,9 +31,23 @@ export const PrivateRoutes = () => {
       <Route path="/drivers/edit/:driverId" element={<DriverFormPage />} />
       <Route path="/drivers" element={<DriversPage />} />
 
-      <Route path="/users/new" element={<UserFormPage />} />
+      <Route 
+        path="/users/new" 
+        element={
+          <ProtectedRoute user={userAuth} allowedRoles={[ROLES.SUPER_ADMIN]}>
+            <UserFormPage />
+          </ProtectedRoute>
+        } 
+      />
       <Route path="/users/edit/:userId" element={<UserFormPage />} />
-      <Route path="/users" element={<UsersPage />} />
+      <Route 
+        path="/users" 
+        element={
+          <ProtectedRoute user={userAuth} allowedRoles={[ROLES.SUPER_ADMIN]}>
+            <UsersPage />
+          </ProtectedRoute>
+        } 
+      />
 
       {/* Si accede a una ruta no definida en privado, lo llevamos al dashboard */}
       <Route path="*" element={<Navigate to="/" />} />

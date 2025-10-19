@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
 import { FirebaseDB } from './firebase';
 
 export const saveNewData = async( collectionName, dataToSave ) => {
@@ -41,6 +41,21 @@ export const getData = async(collectionName) => {
             ...doc.data(), // Datos
           }));
 
+        return {
+            ok: true,
+            data: data
+        }
+    } catch (error) {
+        console.log({error})
+        return { ok: false, errorMessage: error.message }
+    }
+}
+
+export const getDataById = async(collectionName, id) => {
+    try {
+        const querySnapshot = await getDoc(doc(FirebaseDB, collectionName, id));
+
+        const data = querySnapshot.data();
         return {
             ok: true,
             data: data

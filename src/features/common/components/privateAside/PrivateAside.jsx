@@ -11,6 +11,14 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
         logout()
     }
 
+    const visibleItems = asideItems.filter((item) => {
+    // Si no tiene restricciones, todos lo ven
+        if (!item.allowedRoles || item.allowedRoles.length === 0) return true;
+
+        // Si el usuario tiene al menos un rol permitido
+        return user.roles?.some((role) => item.allowedRoles.includes(role));
+    });
+
     return (
         <aside
             className={`
@@ -31,9 +39,10 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
             </div>
             <ul className="grow bg-gradient-to-br from-primary-light to-primary p-2 mb-4">
                 {
-                    asideItems.map(({path, label}) => {
+                    visibleItems.map(({path, label}) => {
                         return(
                             <PrivateAsideItem
+                                key={path}
                                 path={path}
                                 label={label}
                             />
