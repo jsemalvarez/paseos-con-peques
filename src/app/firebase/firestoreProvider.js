@@ -53,12 +53,17 @@ export const getData = async(collectionName) => {
 
 export const getDataById = async(collectionName, id) => {
     try {
-        const querySnapshot = await getDoc(doc(FirebaseDB, collectionName, id));
+        const docRef = doc(FirebaseDB, collectionName, id)
+        const querySnapshot = await getDoc(docRef);
 
-        const data = querySnapshot.data();
-        return {
-            ok: true,
-            data: data
+        if(querySnapshot.exists()){
+            const data = querySnapshot.data();
+            return {
+                ok: true,
+                data: data
+            }
+        }else{
+            return { ok: false, errorMessage: "Documento no encontrado" };
         }
     } catch (error) {
         console.log({error})
@@ -68,8 +73,8 @@ export const getDataById = async(collectionName, id) => {
 
 export const updateData = async (collectionName, id, updatedData) => {
     try {
-        const placeRef = doc(FirebaseDB, collectionName, id); // Referencia al documento
-        await updateDoc(placeRef, updatedData); // Actualizar datos
+        const docRef = doc(FirebaseDB, collectionName, id); // Referencia al documento
+        await updateDoc(docRef, updatedData); // Actualizar datos
 
         return {
             ok: true,

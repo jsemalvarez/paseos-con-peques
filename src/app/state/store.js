@@ -4,6 +4,7 @@ import { placeSlice } from '../../features/places/state/placeSlice'
 import { eventSlice } from '../../features/events/state/eventSlice'
 import { driverSlice } from '../../features/drivers/state/driverSlice'
 import { userSlice } from '../../features/users/state/userSlice'
+import { visualSettingsSlice } from '../../features/visualSettings/state/visualSettingsSlice'
 
 
 export default configureStore({
@@ -13,5 +14,6 @@ export default configureStore({
     events: eventSlice.reducer,
     drivers: driverSlice.reducer,
     users: userSlice.reducer,
+    visualSettings: visualSettingsSlice.reducer
   },
 })

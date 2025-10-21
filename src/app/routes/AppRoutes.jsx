@@ -7,6 +7,7 @@ import { useEvents } from '../../features/events/hooks/useEvents';
 import { usePlaces } from '../../features/places/hooks/usePlaces';
 import { useEffect } from 'react';
 import { Loader } from '../../features/common/components/Loader';
+import { useVisualSettings } from '../../features/visualSettings/hooks/useVisualSettings';
 
 
 export const AppRoutes = () => {
@@ -15,10 +16,16 @@ export const AppRoutes = () => {
 
     const { getEvents } = useEvents();
     const { getPlaces } = usePlaces()
+    const { getVisualSettings } = useVisualSettings()
 
-    useEffect(() => {
+    const setInitalState = () => {
         getEvents();
         getPlaces();
+        getVisualSettings();
+    }
+
+    useEffect(() => {
+        setInitalState()
     },[])
 
     const isAuthenticated = userAuth.status == 'authenticated';

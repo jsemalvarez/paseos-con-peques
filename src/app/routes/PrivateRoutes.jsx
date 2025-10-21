@@ -10,6 +10,7 @@ import { UserFormPage } from "../../features/users/pages/UserFormPage";
 import { UsersPage } from "../../features/users/pages/UsersPage";
 import { ROLES } from "../../features/common/constants/roles";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { VisualSettingsPage } from "../../features/visualSettings/pages/VisaulSettingsPage";
 
 
 export const PrivateRoutes = ({userAuth}) => {
@@ -45,6 +46,15 @@ export const PrivateRoutes = ({userAuth}) => {
         element={
           <ProtectedRoute user={userAuth} allowedRoles={[ROLES.SUPER_ADMIN]}>
             <UsersPage />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/visual-settings" 
+        element={
+          <ProtectedRoute user={userAuth} allowedRoles={[ROLES.SUPER_ADMIN]}>
+            <VisualSettingsPage />
           </ProtectedRoute>
         } 
       />

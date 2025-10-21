@@ -26,4 +26,9 @@ export const asideItems = [
         label:'Choferes', 
         allowedRoles: [ROLES.SUPER_ADMIN, ROLES.DRIVER],    
     },
+    {
+        path:'/visual-settings',
+        label:'Configuraciones', 
+        allowedRoles: [ROLES.SUPER_ADMIN],    
+    },
 ]
