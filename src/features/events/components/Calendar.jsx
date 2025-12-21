@@ -4,13 +4,13 @@ import 'dayjs/locale/es'; // importa el idioma
 import { ChevronLeftIcon, ChevronRightIcon } from "../../common/components/Icons";
 dayjs.locale('es'); // lo setea como predeterminado
 
-export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAside}) => {
+export const Calendar = ({ events: eventData, openEventDetail, openCalendarDayAside }) => {
 
 
   const [currentDate, setCurrentDate] = useState(dayjs());
 
-  const currentDayNumber = currentDate.date(); //14
   const currentMonthNumberRef = useRef(dayjs().month());
+  const currentDayNumber = currentDate.date(); //14
 
 
   const startOfMonth = currentDate.startOf("month");
@@ -44,13 +44,13 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
           className={`h-[120px] ${isToday ? "bg-secondary" : "bg-primary"}`}
         >
           <span className={`${isToday ? "text-primary" : "text-secondary"} text-xs p-1`}>
-              {day}
+            {day}
           </span>
 
           {events.slice(0, 2).map((event) => (
             <button
               key={event.id}
-              className={`${ event.bgColor ? event.bgColor : 'bg-gray-500'} w-full cursor-pointer mb-1 px-1 truncate`}
+              className={`${event.bgColor ? event.bgColor : 'bg-gray-500'} w-full cursor-pointer mb-1 px-1 truncate`}
               onClick={() => openEventDetail(event)}
             >
               {event.title}
@@ -60,7 +60,7 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
           {events.length > 2 && (
             <button
               className="block mx-auto w-9/10 bg-gray-200 text-blue-500 font-semibold text-center rounded-full text-red-500 cursor-pointer truncate"
-              onClick={() => openCalendarDayAside( events )}
+              onClick={() => openCalendarDayAside(events)}
             >
               +{events.length - 2} más
             </button>
@@ -82,7 +82,7 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
         <h2 className="font-bold text-secondary">
           {currentDate.format("MMMM YYYY")}
         </h2>
-        <button className="cursor-pointer" onClick={handleNextMonth}> 
+        <button className="cursor-pointer" onClick={handleNextMonth}>
           <ChevronRightIcon />
         </button>
       </div>
@@ -92,8 +92,8 @@ export const Calendar = ({events:eventData, openEventDetail, openCalendarDayAsid
           ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((day) => {
             const isWeekend = day === "Sáb" || day === "Dom";
             return (
-              <div 
-                key={day} 
+              <div
+                key={day}
                 className={`${isWeekend ? "text-gray-200" : "text-secondary"}`}
               >{day}</div>
             )

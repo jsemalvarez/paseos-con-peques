@@ -51,7 +51,7 @@ export const startGetingDrivers = () => {
     return async( dispatch) => {
         dispatch( initProcessingData() )
         const response = await driverService.getDrivers();
-        
+        console.log(response.data)
         if(response.ok){
             // const eventsFormatted = response.data.map( formatEvent );
             dispatch( setDrivers( response.data ));
