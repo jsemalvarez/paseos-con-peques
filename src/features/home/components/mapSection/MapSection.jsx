@@ -5,6 +5,8 @@ import { usePlaces } from '../../../places/hooks/usePlaces'
 import { AGE_RANGES } from '../../../common/utils/constants'
 import { CATEGORIES, CATEGORIES_TRANSLATE } from '../../../places/utils/categories'
 import { BtnFilterMap } from './BtnFilterMap'
+// import { DriverRoutes } from '../../../common/components/map/DriverRoutes'
+import { DriversMarkers } from '../../../common/components/map/DriversMarkers'
 
 
 export const MapSection = () => {
@@ -63,6 +65,8 @@ export const MapSection = () => {
         <div className='aspect-[4/5] md:aspect-[10/5]'>
           <MapView>
             <Markers places={filteredPlaces} handleClick={handleOpenPlaceDetail} /> 
+            {/* <DriverRoutes /> */}
+            <DriversMarkers />
           </MapView>
         </div>
 

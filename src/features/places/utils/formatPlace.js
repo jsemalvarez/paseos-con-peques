@@ -27,5 +27,6 @@ export const formatPlace = (place) => {
         description: place.description || 'Sin Descripción',
         iconType: place.iconType || '',
         bgColor: place.bgColor || '',
+        isFeatured: place.isFeatured || '',
     }
 }

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { CloudinaryImage } from "../../../common/components/CloudinaryImage";
 
 const images = [
-    {
-      src: "banner_techno_kids_avartt.webp",
-      title: "Techno Kids",
-      subTitle: "Primera fiesta electrónica para niños y familias",
-    },
+    // {
+    //   src: "banner_techno_kids_avartt.webp",
+    //   title: "Techno Kids",
+    //   subTitle: "Primera fiesta electrónica para niños y familias",
+    // },
     {
       src: "banner_la_audacia_iagg08.webp", 
       title: "Circo La Audacia",

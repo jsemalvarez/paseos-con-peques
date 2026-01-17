@@ -34,6 +34,8 @@ const initialForm = {
     hasSupervision: false,
     categories:[],
     ageRanges:[],
+    isFeatured: false,
+    hasCustomIcon: false,
     description: '',
     iconType:'',
     bgColor:'',
@@ -67,6 +69,8 @@ export const PlaceFormPage = () => {
         bgColor,
         categories,
         ageRanges,
+        isFeatured,
+        hasCustomIcon,
         formState, 
         setFormState, 
         onInputChange, 
@@ -216,6 +220,68 @@ export const PlaceFormPage = () => {
                                     // disabled={!isSharing}
                                 />
                                 <div className={`w-11 h-6 ${isShowInMap?'bg-red-600':'bg-gray-600'} rounded-full peer peer-checked:bg-green-600 transition-colors`}></div>
+                                <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Lugar destacado:
+                        </span>
+                        <div className='h-[42px] flex justify-between items-center border border-white rounded-xl px-2 shadow-sm bg-primary'>
+                        
+                            <p
+                                className={`mt-1 font-semibold ${
+                                    isFeatured ? "text-green-600" : "text-red-600"
+                                }`}
+                                >
+                                {                                    
+                                    isFeatured ? "Destacado" : "No Destacado"                                    
+                                }
+                            </p>
+                            
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="isFeatured"
+                                    checked={ isFeatured }
+                                    onChange={onInputChange}
+                                    className="sr-only peer"
+                                    // disabled={!isSharing}
+                                />
+                                <div className={`w-11 h-6 ${isFeatured?'bg-red-600':'bg-gray-600'} rounded-full peer peer-checked:bg-green-600 transition-colors`}></div>
+                                <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col'>
+                        <span  className="block font-medium mb-1">
+                            Icono destacado:
+                        </span>
+                        <div className='h-[42px] flex justify-between items-center border border-white rounded-xl px-2 shadow-sm bg-primary'>
+                        
+                            <p
+                                className={`mt-1 font-semibold ${
+                                    hasCustomIcon ? "text-green-600" : "text-red-600"
+                                }`}
+                                >
+                                {                                    
+                                    hasCustomIcon ? "Destacado" : "No Destacado"                                    
+                                }
+                            </p>
+                            
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="hasCustomIcon"
+                                    checked={ hasCustomIcon }
+                                    onChange={onInputChange}
+                                    className="sr-only peer"
+                                    // disabled={!isSharing}
+                                />
+                                <div className={`w-11 h-6 ${hasCustomIcon?'bg-red-600':'bg-gray-600'} rounded-full peer peer-checked:bg-green-600 transition-colors`}></div>
                                 <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
                             </label>
                         </div>

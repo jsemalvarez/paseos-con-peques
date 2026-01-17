@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import { XMarkIcon } from './Icons';
-import { useUserLogin } from '../../auth/hooks/useUserLogin';
-
+import { XMarkIcon } from '../Icons';
+import { useUserLogin } from '../../../auth/hooks/useUserLogin';
+import { PrivateAsideItem } from './PrivateAsideItem';
+import { asideItems } from './asideItems';
 
 export const PrivateAside = ({isOpen, setIsOpen }) => {
 
@@ -11,8 +11,13 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
         logout()
     }
 
-    const itemClass = "w-full border-l-6 border-secondary mb-2 p-1 cursor-pointer flex justify-center hover:bg-secondary hover:text-primary hover:border-secondary";
-    const activeItemClass = "bg-secondary text-primary border-l-6 border-secondary";
+    const visibleItems = asideItems.filter((item) => {
+    // Si no tiene restricciones, todos lo ven
+        if (!item.allowedRoles || item.allowedRoles.length === 0) return true;
+
+        // Si el usuario tiene al menos un rol permitido
+        return user.roles?.some((role) => item.allowedRoles.includes(role));
+    });
 
     return (
         <aside
@@ -33,30 +38,17 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
                 <p className='text-primary font-bold text-center'>{user.email}</p>
             </div>
             <ul className="grow bg-gradient-to-br from-primary-light to-primary p-2 mb-4">
-                <li>
-                    <NavLink 
-                        to='/'
-                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
-                    >
-                        Panel
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/places'
-                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
-                    >
-                        Lugares
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/events'
-                        className={({ isActive }) => `${itemClass} ${isActive ? activeItemClass : undefined}`}
-                    >
-                        Eventos
-                    </NavLink>
-                </li>
+                {
+                    visibleItems.map(({path, label}) => {
+                        return(
+                            <PrivateAsideItem
+                                key={path}
+                                path={path}
+                                label={label}
+                            />
+                        )
+                    })
+                }
             </ul>
             <button
                 className='bg-secondary p-1 text-white font-bold rounded-sm cursor-pointer hover:bg-primary'
@@ -67,3 +59,4 @@ export const PrivateAside = ({isOpen, setIsOpen }) => {
         </aside>
     )
 }
+

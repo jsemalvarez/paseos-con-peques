@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { FirebaseDB } from './firebase';
 
 export const saveNewData = async( collectionName, dataToSave ) => {
@@ -12,6 +12,25 @@ export const saveNewData = async( collectionName, dataToSave ) => {
         return { ok: false, errorMessage: error.message }
     }
 }
+
+export const saveDocWithId = async (collectionName, docId, data, merge = false) => {
+  try {
+    const docRef = doc(FirebaseDB, collectionName, docId);
+
+    const dataToSave = {
+        ...data,
+    }
+
+    await setDoc(docRef, dataToSave, { merge });
+
+    return {
+      ok: true,
+      id: docId
+    };
+  } catch (error) {
+    return { ok: false, errorMessage: error.message };
+  }
+};
 
 export const getData = async(collectionName) => {
     try {
@@ -32,10 +51,30 @@ export const getData = async(collectionName) => {
     }
 }
 
+export const getDataById = async(collectionName, id) => {
+    try {
+        const docRef = doc(FirebaseDB, collectionName, id)
+        const querySnapshot = await getDoc(docRef);
+
+        if(querySnapshot.exists()){
+            const data = querySnapshot.data();
+            return {
+                ok: true,
+                data: data
+            }
+        }else{
+            return { ok: false, errorMessage: "Documento no encontrado" };
+        }
+    } catch (error) {
+        console.log({error})
+        return { ok: false, errorMessage: error.message }
+    }
+}
+
 export const updateData = async (collectionName, id, updatedData) => {
     try {
-        const placeRef = doc(FirebaseDB, collectionName, id); // Referencia al documento
-        await updateDoc(placeRef, updatedData); // Actualizar datos
+        const docRef = doc(FirebaseDB, collectionName, id); // Referencia al documento
+        await updateDoc(docRef, updatedData); // Actualizar datos
 
         return {
             ok: true,
@@ -101,6 +140,26 @@ export const getEventsOrderByTimeStart = async(collectionName) => {
             id: doc.id, // ID del documento
             ...doc.data(), // Datos del evento
         }));
+
+        return {
+            ok: true,
+            data: data
+        }
+    } catch (error) {
+        console.log({error})
+        return { ok: false, errorMessage: error.message }
+    }
+}
+
+export const getActiveItem = async(collectionName) => {
+    try {
+        const q = query(collection(FirebaseDB, collectionName), where("isActive", "==", true));
+        const querySnapshot = await getDocs(q);
+
+        const data = querySnapshot.docs.map(doc => ({
+            id: doc.id, // ID del documento
+            ...doc.data(), // Datos
+          }));
 
         return {
             ok: true,

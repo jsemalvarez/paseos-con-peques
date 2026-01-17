@@ -7,23 +7,30 @@ import { useEvents } from '../../features/events/hooks/useEvents';
 import { usePlaces } from '../../features/places/hooks/usePlaces';
 import { useEffect } from 'react';
 import { Loader } from '../../features/common/components/Loader';
+import { useVisualSettings } from '../../features/visualSettings/hooks/useVisualSettings';
 
 
 export const AppRoutes = () => {
 
-    const authState = useCheckAuth();
+    const userAuth = useCheckAuth();
 
     const { getEvents } = useEvents();
     const { getPlaces } = usePlaces()
+    const { getVisualSettings } = useVisualSettings()
 
-    useEffect(() => {
+    const setInitalState = () => {
         getEvents();
         getPlaces();
+        getVisualSettings();
+    }
+
+    useEffect(() => {
+        setInitalState()
     },[])
 
-    const isAuthenticated = authState == 'authenticated';
+    const isAuthenticated = userAuth.status == 'authenticated';
 
-    const isChecking = authState == 'checking';
+    const isChecking = userAuth.status == 'checking';
 
     if( isChecking ){
         return(
@@ -36,7 +43,7 @@ export const AppRoutes = () => {
 
             {
                 (isAuthenticated)
-                ? <Route path="/*" element={ <PrivateRoutes /> } />
+                ? <Route path="/*" element={ <PrivateRoutes userAuth={userAuth} /> } />
                 : <Route path="/public/*" element={ <PublicRoutes /> } />
             }
             {/* Si accede a una ruta desconocida, lo redirigimos */}
